@@ -220,3 +220,12 @@ resource "aws_route_table_association" "rta_public_a" {
 * Site-to-Site VPN のベストプラクティス（IKEv2 推奨）。([AWS文档][3])
 
 ---
+[1]: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html?utm_source=chatgpt.com "Control traffic to your AWS resources using security groups"
+[2]: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-best-practices.html?utm_source=chatgpt.com "Security best practices for your VPC"
+[3]: https://docs.aws.amazon.com/vpn/latest/s2svpn/cgw-best-practice.html?utm_source=chatgpt.com "Best practices for an AWS Site-to-Site VPN customer ..."
+[4]: https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html?utm_source=chatgpt.com "What is AWS Transit Gateway for Amazon VPC?"
+[5]: https://pages.awscloud.com/rs/112-TZM-766/images/AWS-40_AWS_Summit_Online_2020_NET01.pdf?utm_source=chatgpt.com "Transit Gateway,PrivateLink VPC アーキテクチャー deep dive"
+[6]: https://docs.aws.amazon.com/wellarchitected/latest/framework/perf-networking.html?utm_source=chatgpt.com "Networking and content delivery - AWS Well-Architected ..."
+[7]: https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-site-to-site-vpn.html?utm_source=chatgpt.com "AWS Direct Connect + AWS Site-to-Site VPN"
+[8]: https://docs.aws.amazon.com/whitepapers/latest/aws-best-practices-ddos-resiliency/security-groups-and-network-acls-bp5.html?utm_source=chatgpt.com "Security groups and network ACLs (BP5)"
+
