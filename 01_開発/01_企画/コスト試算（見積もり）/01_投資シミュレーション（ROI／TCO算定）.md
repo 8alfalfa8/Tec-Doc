@@ -64,11 +64,6 @@
   
   <img width="112" height="41" alt="image" src="https://github.com/user-attachments/assets/938aad21-e2cb-4104-9123-d8913a1deec2" />
 
-
-  [
-  \mathrm{NPV} = \sum_{t=0}^{N} \frac{CF_t}{(1+r)^t}
-  ]
-
   （ただし (CF_0) は通常マイナスの初期投資）
 
 * **IRR（内部収益率）**
@@ -76,9 +71,7 @@
 
 * **単純ROI（累積ベース）**
 
-  [
-  \mathrm{ROI} = \frac{\text{期間中の総便益} - \text{期間中の総コスト}}{\text{期間中の総コスト}}
-  ]
+<img width="230" height="41" alt="image" src="https://github.com/user-attachments/assets/05452eae-8e74-4b0f-9a75-3b5791212437" />
 
   ※割引考慮していないため補助的指標。
 
