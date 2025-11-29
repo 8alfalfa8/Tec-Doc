@@ -61,6 +61,9 @@
 
 * **NPV（正味現在価値）**
   全ての将来キャッシュフロー（便益 − コスト）を割引率で現在価値に換算して合算。NPV > 0 → 投資を検討可。
+  
+  <img width="112" height="41" alt="image" src="https://github.com/user-attachments/assets/938aad21-e2cb-4104-9123-d8913a1deec2" />
+
 
   [
   \mathrm{NPV} = \sum_{t=0}^{N} \frac{CF_t}{(1+r)^t}
