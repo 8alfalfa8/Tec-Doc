@@ -248,7 +248,7 @@ public PaymentResult processPayment(PaymentRequest request) {
 
 ## 6. Spring Boot固有の規約
 
-### 6.1 依存性注入
+### 6.1 依存性注入（DI）
 ```java
 // コンストラクタインジェクションを推奨
 @Service
@@ -333,10 +333,118 @@ public class UserController {
     }
 }
 ```
+## 7. DTOとエンティティ
 
-## 7. テスト規約
+### 7.1 エンティティクラス
+```java
+package com.example.project.domain;
 
-### 7.1 テストクラス構成
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+
+/**
+ * ユーザー情報を表すエンティティ
+ * 
+ * <p>データベースのusersテーブルとマッピングされる</p>
+ */
+@Entity
+@Table(name = "users")
+@Getter
+@Setter
+public class User {
+    
+    /**
+     * ユーザーID（主キー）
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    /**
+     * ユーザー名（必須）
+     */
+    @Column(nullable = false, unique = true, length = 50)
+    private String username;
+    
+    /**
+     * メールアドレス（必須）
+     */
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+    
+    /**
+     * アカウント有効フラグ
+     */
+    @Column(nullable = false)
+    private boolean enabled = true;
+    
+    /**
+     * レコード作成日時
+     */
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+    
+    /**
+     * レコード更新日時
+     */
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+}
+```
+
+### 7.2 DTOクラス
+```java
+package com.example.project.dto.request;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+/**
+ * ユーザー作成リクエストのDTO
+ */
+@Data
+@Schema(description = "ユーザー作成リクエスト")
+public class CreateUserRequestDto {
+    
+    /**
+     * ユーザー名（3〜50文字）
+     */
+    @NotBlank(message = "ユーザー名は必須です")
+    @Size(min = 3, max = 50, message = "ユーザー名は3〜50文字で入力してください")
+    @Schema(description = "ユーザー名", example = "john_doe", requiredMode = Schema.RequiredMode.REQUIRED)
+    private String username;
+    
+    /**
+     * メールアドレス
+     */
+    @NotBlank(message = "メールアドレスは必須です")
+    @Email(message = "有効なメールアドレスを入力してください")
+    @Schema(description = "メールアドレス", example = "john@example.com", requiredMode = Schema.RequiredMode.REQUIRED)
+    private String email;
+    
+    /**
+     * パスワード（8文字以上）
+     */
+    @NotBlank(message = "パスワードは必須です")
+    @Size(min = 8, message = "パスワードは8文字以上で入力してください")
+    @Schema(description = "パスワード", example = "password123", requiredMode = Schema.RequiredMode.REQUIRED)
+    private String password;
+}
+```
+
+## 8. テスト規約
+
+### 8.1 テストクラス構成
 ```java
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -398,9 +506,96 @@ class UserServiceTest {
 }
 ```
 
-## 8. ドキュメント生成
+## 9. ロギング規約
 
-### 8.1 Javadoc生成設定（pom.xml）
+```java
+@Slf4j  // Lombokのアノテーション
+@Service
+@RequiredArgsConstructor
+public class UserService {
+    
+    private final UserRepository userRepository;
+    
+    /**
+     * ユーザー情報を更新する
+     */
+    @Transactional
+    public UserResponseDto updateUser(UpdateUserRequestDto request) {
+        log.info("ユーザー更新開始: userId={}", request.getId());
+        
+        try {
+            User user = userRepository.findById(request.getId())
+                    .orElseThrow(() -> {
+                        log.warn("ユーザーが見つかりません: userId={}", request.getId());
+                        return new UserNotFoundException(request.getId());
+                    });
+            
+            user.update(request);
+            
+            log.debug("ユーザー情報を更新しました: {}", user);
+            return UserMapper.toDto(user);
+            
+        } catch (Exception e) {
+            log.error("ユーザー更新中にエラーが発生しました: userId={}", request.getId(), e);
+            throw e;
+        } finally {
+            log.info("ユーザー更新終了: userId={}", request.getId());
+        }
+    }
+}
+```
+
+## 10. 設定ファイル規約
+
+### 10.1 application.yml
+```yml
+# 環境ごとの設定ファイル命名
+# application.yml          # 共通設定
+# application-local.yml    # ローカル開発環境
+# application-dev.yml      # 開発環境
+# application-prod.yml     # 本番環境
+
+spring:
+  application:
+    name: example-project
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/example_db
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate  # 本番では 'validate' または 'none'
+    show-sql: false       # 本番では false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+# カスタム設定
+app:
+  security:
+    jwt:
+      secret: ${JWT_SECRET:defaultSecretKey}
+      expiration-ms: 86400000  # 24時間
+  pagination:
+    default-page-size: 20
+    max-page-size: 100
+
+# ロギング設定
+logging:
+  level:
+    com.example.project: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+```
+
+## 11. ドキュメント生成
+
+### 11.1 Javadoc生成設定（pom.xml）
 ```xml
 <build>
     <plugins>
@@ -427,7 +622,7 @@ class UserServiceTest {
 </build>
 ```
 
-### 8.2 OpenAPI/Swagger設定
+### 12.2 OpenAPI/Swagger設定
 ```java
 @Configuration
 public class OpenApiConfig {
@@ -453,9 +648,9 @@ public class OpenApiConfig {
 }
 ```
 
-## 9. コード品質チェック
+## 13. コード品質チェック
 
-### 9.1 Checkstyle設定例（checkstyle.xml）
+### 13.1 Checkstyle設定例（checkstyle.xml）
 ```xml
 <?xml version="1.0"?>
 <!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
@@ -485,12 +680,12 @@ public class OpenApiConfig {
 </module>
 ```
 
-### 9.2 静的解析ツール
+### 13.2 静的解析ツール
 - **SpotBugs**: 潜在的なバグ検出
 - **PMD**: コード品質チェック
 - **SonarQube**: 総合的なコード品質管理
 
-## 10. Gitコミット規約
+## 14. Gitコミット規約
 
 ```
 feat: 新機能追加
