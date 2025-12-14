@@ -1,4 +1,4 @@
-# CSIRT（Computer Security Incident Response Team）構築における具体的作業
+# ◆ CSIRT（Computer Security Incident Response Team）構築における具体的作業
 
 以下では、**企業内CSIRT（Computer Security Incident Response Team）構築**について、
 **実務レベルで「何を・何を使って・どうやって・何を作るか」**が分かるように、
@@ -216,7 +216,7 @@
 
 ---
 
-#  AWS向けCSIRT構築における具体的作業
+# ◆ AWS向けCSIRT構築における具体的作業
 
 以下では、**AWS環境に特化したCSIRT設計例**を、
 **「実案件でそのまま設計書に落とせる粒度」**で整理します。
