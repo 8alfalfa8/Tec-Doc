@@ -1,4 +1,4 @@
-# RAG（Retrieval-Augmented Generation）システムの設計
+# ◆ RAG（Retrieval-Augmented Generation）システムの設計
 
 以下に、RAG（Retrieval-Augmented Generation）システムの設計に関する詳細を、各項目ごとに説明します。
 
