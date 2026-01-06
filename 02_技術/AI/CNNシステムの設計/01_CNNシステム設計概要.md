@@ -1,4 +1,4 @@
-# CNN（Convolutional Neural Network）システム設計概要
+# ◆ CNN（Convolutional Neural Network）システム設計概要
 ※Convolutional Neural Network：畳み込みニューラルネットワーク
 
 ## 📋 **CNNの基本設計思想**
