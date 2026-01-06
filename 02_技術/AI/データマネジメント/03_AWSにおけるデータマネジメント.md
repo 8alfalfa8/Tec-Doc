@@ -348,7 +348,7 @@
 
 #### 作業方法
 
-* KMS設計
+* KMS（AWSにおける暗号鍵（Encryption Key）を一元管理するためのサービス）設計
 * Column Masking
 * Macie
 
