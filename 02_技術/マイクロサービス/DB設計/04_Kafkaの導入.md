@@ -1,4 +1,4 @@
-# Apache Kafka とは？導入必要性の評価
+# ◆ Apache Kafka とは？導入必要性の評価
 
 ## 1. Apache Kafka の基本概念
 
