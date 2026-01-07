@@ -1,4 +1,4 @@
-# CDC（Change Data Capture）の詳細解説
+# ◆ CDC（Change Data Capture）の詳細解説
 
 ## 1. CDCとは何か？
 
