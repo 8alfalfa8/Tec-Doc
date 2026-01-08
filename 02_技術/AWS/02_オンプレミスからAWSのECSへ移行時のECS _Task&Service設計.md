@@ -321,9 +321,9 @@ maxThreads="200"
 
 # 11. 実務での設計まとめ（判断軸）
 
-✔ オンプレの**ピーク時実測値**
-✔ JVMの**Heap以外の消費**
-✔ Fargateの**CPU×Memory制約表**
+✔ オンプレの**ピーク時実測値**<br>
+✔ JVMの**Heap以外の消費**<br>
+✔ Fargateの**CPU×Memory制約表**<br>
 ✔ スケール前提（単体最適NG）
 
 ---
