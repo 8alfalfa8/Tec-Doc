@@ -343,10 +343,10 @@ CodePipeline
 
 ## 11. よくある失敗ポイント
 
-❌ Task Role未設定
-❌ NATなしでECR Pull失敗
-❌ Heap > Fargate Memory
-❌ ALB Health Checkミス
+❌ Task Role未設定<br>
+❌ NATなしでECR Pull失敗<br>
+❌ Heap > Fargate Memory<br>
+❌ ALB Health Checkミス<br>
 ❌ latestタグ運用
 
 ---
