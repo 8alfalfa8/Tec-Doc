@@ -13,9 +13,9 @@
 
 ---
 
-# 1. 全体アーキテクチャ設計（ECS on EC2）
+## 1. 全体アーキテクチャ設計（ECS on EC2）
 
-## 1.1 論理構成図
+### 1.1 論理構成図
 
 ```
 [ Developer ]
@@ -49,7 +49,7 @@
 
 ---
 
-## 1.2 ECS on EC2 を選ぶ前提（整理）
+### 1.2 ECS on EC2 を選ぶ前提（整理）
 
 | 観点     | 理由                   |
 | ------ | -------------------- |
@@ -60,19 +60,19 @@
 
 ---
 
-# 2. AWS インフラ設計（詳細）
+## 2. AWS インフラ設計（詳細）
 
 ---
 
-## 2.1 VPC / ネットワーク設計
+### 2.1 VPC / ネットワーク設計
 
-### VPC
+#### VPC
 
 | 項目   | 値           |
 | ---- | ----------- |
 | CIDR | 10.0.0.0/16 |
 
-### Subnet設計
+#### Subnet設計
 
 | 種別      | AZ              | CIDR         | 用途      |
 | ------- | --------------- | ------------ | ------- |
@@ -81,7 +81,7 @@
 | Private | 1a              | 10.0.11.0/24 | ECS EC2 |
 | Private | 1c              | 10.0.12.0/24 | ECS EC2 |
 
-### ポイント
+#### ポイント
 
 * **EC2 は Private Subnet**
 * NAT Gateway 経由で ECR / S3 / 外部通信
@@ -89,9 +89,9 @@
 
 ---
 
-## 2.2 セキュリティ設計
+### 2.2 セキュリティ設計
 
-### Security Group
+#### Security Group
 
 | 対象       | Inbound         | Outbound |
 | -------- | --------------- | -------- |
@@ -101,13 +101,13 @@
 
 ---
 
-# 3. IAM 設計（ECS on EC2 の肝）
+## 3. IAM 設計（ECS on EC2 の肝）
 
 ---
 
-## 3.1 ECS 用 IAM ロール
+### 3.1 ECS 用 IAM ロール
 
-### ① ECS Instance Role（EC2用）
+#### ① ECS Instance Role（EC2用）
 
 * AmazonEC2ContainerServiceforEC2Role
 * ECR Pull
@@ -117,25 +117,25 @@
 
 ---
 
-### ② ECS Task Execution Role
+#### ② ECS Task Execution Role
 
 * ECR Pull
 * CloudWatch Logs
 
 ---
 
-### ③ ECS Task Role
+#### ③ ECS Task Role
 
 * Secrets Manager
 * S3 / DynamoDB / RDS などアプリ権限
 
 ---
 
-# 4. ECR 設計
+## 4. ECR 設計
 
 ---
 
-## 4.1 ECR リポジトリ
+### 4.1 ECR リポジトリ
 
 | 項目         | 設定           |
 | ---------- | ------------ |
@@ -143,18 +143,18 @@
 | Image Scan | ON           |
 | Lifecycle  | 30世代         |
 
-### タグ戦略（推奨）
+#### タグ戦略（推奨）
 
 * `git-sha`
 * `release-yyyymmdd`
 
 ---
 
-# 5. ECS（EC2）設計（超重要）
+## 5. ECS（EC2）設計（超重要）
 
 ---
 
-## 5.1 ECS Cluster
+### 5.1 ECS Cluster
 
 | 項目                | 内容                |
 | ----------------- | ----------------- |
@@ -163,9 +163,9 @@
 
 ---
 
-## 5.2 EC2（Auto Scaling Group）設計
+### 5.2 EC2（Auto Scaling Group）設計
 
-### インスタンス設計例
+#### インスタンス設計例
 
 | 項目            | 値                 |
 | ------------- | ----------------- |
@@ -175,7 +175,7 @@
 | AMI           | ECS Optimized AMI |
 | Root Volume   | 50GB              |
 
-### ASG 設定
+#### ASG 設定
 
 | 項目      | 値 |
 | ------- | - |
@@ -187,9 +187,9 @@
 
 ---
 
-## 5.3 ECS Task Definition（EC2用）
+### 5.3 ECS Task Definition（EC2用）
 
-### リソース指定（Fargateとの違い）
+#### リソース指定（Fargateとの違い）
 
 | 項目     | 設定   |
 | ------ | ---- |
@@ -200,7 +200,7 @@
 
 ---
 
-### コンテナ定義（例）
+#### コンテナ定義（例）
 
 | 項目      | 値           |
 | ------- | ----------- |
@@ -212,7 +212,7 @@
 
 ---
 
-## 5.4 ECS Service
+### 5.4 ECS Service
 
 | 項目            | 設定          |
 | ------------- | ----------- |
@@ -223,11 +223,11 @@
 
 ---
 
-# 6. ALB 設計
+## 6. ALB 設計
 
 ---
 
-## 6.1 ALB 設定
+### 6.1 ALB 設定
 
 | 項目          | 値               |
 | ----------- | --------------- |
@@ -236,18 +236,18 @@
 | Target Type | instance        |
 | HealthCheck | /health         |
 
-### 推奨
+#### 推奨
 
 * Idle Timeout：60s
 * HTTP/2：ON
 
 ---
 
-# 7. CI/CD 設計（ECS on EC2）
+## 7. CI/CD 設計（ECS on EC2）
 
 ---
 
-## 7.1 CI/CD 全体像
+### 7.1 CI/CD 全体像
 
 ```
 Git Push
@@ -264,7 +264,7 @@ CD
 
 ---
 
-## 7.2 CIツール選定
+### 7.2 CIツール選定
 
 | ツール            | 理由           |
 | -------------- | ------------ |
@@ -274,13 +274,13 @@ CD
 
 ---
 
-# 8. CI 構築手順（GitHub Actions 例）
+## 8. CI 構築手順（GitHub Actions 例）
 
 ---
 
-## 8.1 CI用 IAM
+### 8.1 CI用 IAM
 
-### 権限
+#### 権限
 
 * ecr:PutImage
 * ecs:RegisterTaskDefinition
@@ -288,7 +288,7 @@ CD
 
 ---
 
-## 8.2 GitHub Actions Workflow（概要）
+### 8.2 GitHub Actions Workflow（概要）
 
 ```yaml
 name: ecs-ec2-deploy
@@ -326,7 +326,7 @@ jobs:
 
 ---
 
-# 9. CD（Blue/Green）構成（推奨）
+## 9. CD（Blue/Green）構成（推奨）
 
 ```
 CodePipeline
@@ -336,7 +336,7 @@ CodePipeline
  └─ Approval
 ```
 
-### メリット
+#### メリット
 
 * 即ロールバック
 * 無停止デプロイ
@@ -344,11 +344,11 @@ CodePipeline
 
 ---
 
-# 10. 監視・ログ設計
+## 10. 監視・ログ設計
 
 ---
 
-## 10.1 ログ
+### 10.1 ログ
 
 | 種別        | 保存先             |
 | --------- | --------------- |
@@ -358,7 +358,7 @@ CodePipeline
 
 ---
 
-## 10.2 メトリクス
+### 10.2 メトリクス
 
 * ECS CPU / Memory
 * EC2 CPU / Disk
@@ -366,7 +366,7 @@ CodePipeline
 
 ---
 
-# 11. ECS on EC2 特有の設計ポイント（重要）
+## 11. ECS on EC2 特有の設計ポイント（重要）
 
 ✔ EC2 台数 × Task 配置計算
 ✔ CPU / Memory オーバーコミット可
