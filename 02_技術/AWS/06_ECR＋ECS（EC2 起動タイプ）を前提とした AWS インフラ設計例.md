@@ -368,9 +368,9 @@ CodePipeline
 
 ## 11. ECS on EC2 特有の設計ポイント（重要）
 
-✔ EC2 台数 × Task 配置計算
-✔ CPU / Memory オーバーコミット可
-✔ AMI 更新運用必須
+✔ EC2 台数 × Task 配置計算<br>
+✔ CPU / Memory オーバーコミット可<br>
+✔ AMI 更新運用必須<br>
 ✔ EC2 障害時の Task 再配置
 
 ---
