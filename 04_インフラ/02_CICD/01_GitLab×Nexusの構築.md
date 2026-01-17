@@ -338,7 +338,7 @@ gitlab-ctl tail
 ---
 ### 6.3 アカウント・権限
 
-★★★別資料作成中
+* [GitLab×Nexusのアカウント・権限管理](GitLab×Nexusのアカウント・権限管理.md)
 
 ---
 
