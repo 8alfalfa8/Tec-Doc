@@ -335,3 +335,356 @@ SonarQubeは
 
 ---
 
+
+# ◆ SonarQube 構築チェックリスト（作業手順書）
+
+**（Jenkins × GitLab 連携・Linux環境）**
+
+以下は
+**Jenkins / GitLab 連携を前提とした SonarQube 構築チェックリスト（作業手順書）**です。
+**金融・公共案件／監査対応／CI/CD標準**を想定し、**「作業 → 確認 → 成果物」**が明確になる構成にしています。
+
+---
+
+## 0. 基本情報（冒頭記載）
+
+| 項目                | 内容                    |
+| ----------------- | --------------------- |
+| 対象システム            | SonarQube             |
+| OS                | RHEL / Rocky / Ubuntu |
+| SonarQube Version | LTS（例：10.x LTS）       |
+| Java              | OpenJDK 17            |
+| DB                | PostgreSQL 13+        |
+| CI                | Jenkins / GitLab CI   |
+| 認証                | GitLab OAuth / LDAP   |
+
+---
+
+## 1. 事前準備チェック
+
+### 1.1 インフラ・NW
+
+☐ サーバ確保（CPU 4core / Memory 8GB以上）
+☐ 固定IP / DNS 登録
+☐ Jenkins / GitLab Runner から疎通可能
+☐ FW / SG：TCP 9000 許可
+☐ NTP 同期設定
+
+**成果物**
+
+* サーバ構成表
+* ネットワーク構成図
+
+---
+
+### 1.2 OS初期設定
+
+☐ OS最新化
+☐ 必須パッケージ導入（unzip, curl, wget）
+☐ swap 設定確認（推奨 ON）
+
+```bash
+dnf update -y
+dnf install -y unzip wget curl
+```
+
+**成果物**
+
+* OS設定チェックシート
+
+---
+
+## 2. OSチューニング（必須）
+
+### 2.1 kernelパラメータ
+
+☐ vm.max_map_count 設定
+☐ fs.file-max 設定
+
+```bash
+sysctl -w vm.max_map_count=262144
+sysctl -w fs.file-max=65536
+```
+
+永続化確認
+
+```bash
+sysctl -a | grep vm.max_map_count
+```
+
+---
+
+### 2.2 ulimit設定
+
+☐ sonarユーザー用制限設定
+
+```bash
+vi /etc/security/limits.conf
+
+sonar  -  nofile  65536
+sonar  -  nproc   4096
+```
+
+**成果物**
+
+* OSチューニング設定一覧
+
+---
+
+## 3. PostgreSQL構築
+
+### 3.1 DBインストール
+
+☐ PostgreSQL インストール
+☐ 自動起動設定
+
+```bash
+dnf install -y postgresql-server
+postgresql-setup --initdb
+systemctl enable --now postgresql
+```
+
+---
+
+### 3.2 DB・ユーザー作成
+
+☐ DB作成
+☐ 専用ユーザー作成
+☐ パスワード管理ルール遵守
+
+```sql
+CREATE DATABASE sonarqube;
+CREATE USER sonar WITH PASSWORD '********';
+GRANT ALL PRIVILEGES ON DATABASE sonarqube TO sonar;
+```
+
+**成果物**
+
+* DB接続情報管理表（秘匿）
+
+---
+
+## 4. Java環境構築
+
+☐ OpenJDK 17 インストール
+☐ JAVA_HOME 設定確認
+
+```bash
+dnf install -y java-17-openjdk
+java -version
+```
+
+**成果物**
+
+* ミドルウェア構成表
+
+---
+
+## 5. SonarQubeインストール
+
+### 5.1 ユーザー作成
+
+☐ sonar 専用ユーザー作成
+
+```bash
+useradd sonar
+```
+
+---
+
+### 5.2 本体配置
+
+☐ SonarQube ダウンロード
+☐ /opt 配置
+☐ 権限設定
+
+```bash
+cd /opt
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.x.zip
+unzip sonarqube-10.x.zip
+chown -R sonar:sonar sonarqube
+```
+
+---
+
+### 5.3 設定ファイル編集
+
+☐ DB接続設定
+☐ Listenアドレス確認
+
+```properties
+sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
+sonar.jdbc.username=sonar
+sonar.jdbc.password=********
+
+sonar.web.host=0.0.0.0
+sonar.web.port=9000
+```
+
+**成果物**
+
+* SonarQube設定ファイル控え
+
+---
+
+## 6. systemd登録
+
+☐ サービス定義作成
+☐ 自動起動設定
+
+```ini
+[Service]
+User=sonar
+ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+```
+
+```bash
+systemctl daemon-reload
+systemctl enable --now sonarqube
+```
+
+☐ 起動確認（port 9000）
+
+**成果物**
+
+* サービス定義ファイル
+
+---
+
+## 7. 初期セットアップ
+
+### 7.1 初期ログイン
+
+☐ 管理者PW変更
+☐ 言語・時刻設定確認
+
+---
+
+### 7.2 認証連携
+
+☐ GitLab OAuth設定
+☐ LDAP連携（任意）
+
+**成果物**
+
+* 認証連携設定仕様書
+
+---
+
+## 8. Jenkins / GitLab 連携設定
+
+### 8.1 SonarQubeトークン
+
+☐ CI専用トークン作成
+☐ 個人トークン禁止
+
+---
+
+### 8.2 Jenkins設定
+
+☐ SonarQube Server登録
+☐ SonarScanner設定
+
+```groovy
+withSonarQubeEnv('sonarqube') {
+  sh 'mvn sonar:sonar'
+}
+```
+
+---
+
+### 8.3 Quality Gate連携
+
+☐ Gate判定をPipelineで強制
+
+```groovy
+waitForQualityGate abortPipeline: true
+```
+
+**成果物**
+
+* Jenkinsfileテンプレート
+* CI連携設計書
+
+---
+
+## 9. Quality Gate設計（重要）
+
+☐ 新規コードのみ判定
+☐ バグ・脆弱性 0
+☐ カバレッジ基準定義
+
+| 指標      | 基準    |
+| ------- | ----- |
+| 新規バグ    | 0     |
+| 新規脆弱性   | 0     |
+| 新規カバレッジ | ≥ 80% |
+
+**成果物**
+
+* Quality Gate定義書
+
+---
+
+## 10. 動作確認・試験
+
+☐ 解析成功確認
+☐ Gate通過/失敗確認
+☐ Jenkinsビルド連動確認
+
+**成果物**
+
+* 試験結果報告書
+
+---
+
+## 11. 運用設計
+
+### 11.1 バックアップ
+
+☐ DBバックアップ設計
+☐ data/extensions 退避
+
+---
+
+### 11.2 監視
+
+☐ プロセス監視
+☐ ディスク監視
+☐ ジョブ失敗検知
+
+---
+
+### 11.3 権限管理
+
+☐ Admin最小化
+☐ Gate変更は申請制
+
+**成果物**
+
+* 運用設計書
+* 障害対応Runbook
+
+---
+
+## 12. 監査・セキュリティ対応
+
+☐ 管理操作ログ確認
+☐ トークン棚卸
+☐ ルール変更履歴管理
+
+**成果物**
+
+* 監査対応資料
+
+---
+
+## 補足（実務ノウハウ）
+
+* **最初から厳しすぎるGateはNG**
+* 既存資産は評価対象外
+* CIトークンは半年ローテーション
+* LTS以外は使わない
+
+---
