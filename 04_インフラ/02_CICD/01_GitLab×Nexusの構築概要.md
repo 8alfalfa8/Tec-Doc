@@ -1,4 +1,4 @@
-# ◆ GitLab × Nexusの構築
+# ◆ GitLab × Nexusの構築概要
 
 以下では、**Linux環境における GitLab + Nexus（Sonatype Nexus Repository）** を
 **「構築 → 運用 → 利用（開発者視点／CI/CD視点）」** の流れで、**実務・運用設計レベル**まで踏み込んで詳しく説明します。
