@@ -341,7 +341,7 @@ SonarQubeは
 **（Jenkins × GitLab 連携・Linux環境）**
 
 以下は
-**Jenkins / GitLab 連携を前提とした SonarQube 構築チェックリスト（作業手順書）**です。
+**Jenkins / GitLab 連携を前提とした SonarQube 構築チェックリスト**（**作業手順書**）です。
 **金融・公共案件／監査対応／CI/CD標準**を想定し、**「作業 → 確認 → 成果物」**が明確になる構成にしています。
 
 ---
