@@ -13,11 +13,11 @@
 
 OpenAPI は単なる Swagger ではありません。
 
-✔ **API契約（Contract）**
-✔ **フロント・バックの合意文書**
+✔ **API契約（Contract）**<br>
+✔ **フロント・バックの合意文書**<br>
 ✔ **テスト・型生成・監査の起点**
 
-👉 BFF では **「画面仕様＝API仕様」** になるため、OpenAPIとの親和性が非常に高い。
+👉 BFF では 「**画面仕様＝API仕様**」 になるため、OpenAPIとの親和性が非常に高い。
 
 ---
 
@@ -260,9 +260,9 @@ GET /bff/users/{id}/view
 
 ## 10. アンチパターン（要注意）
 
-❌ CRUD API をそのまま公開
-❌ DBスキーマ露出
-❌ レスポンスの過剰汎用化
+❌ CRUD API をそのまま公開<br>
+❌ DBスキーマ露出<br>
+❌ レスポンスの過剰汎用化<br>
 ❌ バージョンなしAPI
 
 ---
@@ -289,10 +289,10 @@ GET /bff/users/{id}/view
 
 ## 13. まとめ（設計の勘所）
 
-✔ OpenAPI は **契約そのもの**
-✔ BFF は **画面専用API**
-✔ 設計 → OpenAPI → 実装の順
-✔ Components徹底再利用
+✔ OpenAPI は **契約そのもの**<br>
+✔ BFF は **画面専用API**<br>
+✔ 設計 → OpenAPI → 実装の順<br>
+✔ Components徹底再利用<br>
 ✔ CIで破壊的変更を防ぐ
 
 ---
