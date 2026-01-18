@@ -310,10 +310,10 @@ CI/CD では：
 
 ## 9. 実務でのベストプラクティスまとめ
 
-✔ shadcn/ui を**ベースUI**にする
-✔ Tailwind は「微調整のみ」
-✔ ページ肥大化 → Feature Component 分割
-✔ 型とLintを**妥協しない**
+✔ shadcn/ui を**ベースUI**にする<br>
+✔ Tailwind は「微調整のみ」<br>
+✔ ページ肥大化 → Feature Component 分割<br>
+✔ 型とLintを**妥協しない**<br>
 ✔ Server Component を基本に設計
 
 ---
