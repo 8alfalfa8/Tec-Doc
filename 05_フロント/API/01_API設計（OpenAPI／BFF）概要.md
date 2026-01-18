@@ -215,7 +215,7 @@ openapi-generator-cli generate \
   -o frontend/api
 ```
 
-✔ API型安全
+✔ API型安全<br>
 ✔ 実装ミス防止
 
 ---
