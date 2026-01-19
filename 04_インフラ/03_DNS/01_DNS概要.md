@@ -349,6 +349,8 @@ server:
 
 ※金融系では「**DNSSEC対応有無**」が監査指摘になりやすい
 
+---
+
 ### 6.3 基本的なセキュリティ対策設定例
 ```bind
 options {
@@ -373,7 +375,21 @@ options {
     dnssec-validation yes;
 };
 ```
+---
 
+### 6.4 ACL設定
+```bind
+// ACL定義
+acl trusted-nets {
+    192.168.1.0/24;
+    10.0.0.0/8;
+};
+
+acl dns-servers {
+    192.168.1.10;
+    192.168.1.11;
+};
+```
 
 ---
 
@@ -468,7 +484,9 @@ rndc reload example.com
 
 ---
 
-### 7.6 監視項目（Zabbix等）
+### 7.6 監視とメンテナンス
+
+#### 監視項目（Zabbix等）
 
 | 項目        | 指標        |
 | --------- | --------- |
@@ -478,6 +496,38 @@ rndc reload example.com
 | プロセス      | named     |
 | ポート       | 53        |
 
+
+```bash
+# サービス状態確認
+systemctl status named
+
+# DNS応答確認
+dig @localhost example.com +short
+dig @localhost google.com +stats
+
+# キャッシュ状態確認
+rndc dumpdb -cache
+cat /var/cache/bind/named_dump.db | head -50
+
+# リソース使用状況
+ps aux | grep named
+```
+
+#### バックアップとリストア
+```bash
+# 設定ファイルのバックアップ
+sudo tar czf /backup/bind-config-$(date +%Y%m%d).tar.gz /etc/bind/
+
+# ゾーンファイルのバックアップ
+sudo rsync -av /etc/bind/zones/ /backup/bind-zones/
+
+# 自動バックアップスクリプト例
+#!/bin/bash
+BACKUP_DIR="/backup/bind"
+DATE=$(date +%Y%m%d)
+tar czf "$BACKUP_DIR/bind-full-$DATE.tar.gz" /etc/bind /var/cache/bind
+find "$BACKUP_DIR" -name "*.tar.gz" -mtime +30 -delete
+```
 ---
 
 ## 8. DNS利用（クライアント側）
