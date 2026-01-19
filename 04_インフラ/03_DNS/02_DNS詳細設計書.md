@@ -202,8 +202,10 @@
 
 ### 14.2 用語集
 
-* TTL
-* AXFR
+* SOA（SOA レコード）：
+* TTL（Time to Live）：
+* AXFR（Authoritative Transfer）：フルゾーン転送
+* IXFR（Incremental Zone Transfers）：差分ゾーン転送
 
 
 
