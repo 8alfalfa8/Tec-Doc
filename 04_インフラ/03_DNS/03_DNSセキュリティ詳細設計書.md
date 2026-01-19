@@ -42,7 +42,7 @@
 
 ---
 
-## 3. DNSSEC設計
+## 3. DNSSEC（Domain Name System Security Extensions：DNSセキュリティ拡張）設計
 
 ### 3.1 DNSSEC概要
 
@@ -86,7 +86,7 @@ DNSSECはDNS応答に電子署名を付与し、応答の真正性・完全性�
 
 ---
 
-## 5. TSIG設計
+## 5. TSIG（Transaction SIGnature：トランザクション署名）設計
 
 ### 5.1 TSIG概要
 
