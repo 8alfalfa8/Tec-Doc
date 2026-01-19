@@ -379,7 +379,68 @@ options {
 
 ## 7. 運用設計（非常に重要）
 
-### 7.1 運用タスク一覧
+### 7.1 コマンドラインツール
+```bash
+# DNS設定のテスト
+nslookup example.com
+dig example.com
+dig example.com MX
+dig -x 192.168.1.1  # 逆引き
+
+# BINDツール
+named-checkconf      # 設定ファイルチェック
+named-checkzone example.com /etc/bind/zones/db.example.com
+
+# 統計情報の確認
+rndc status
+rndc stats
+```
+
+---
+
+### 7.2 ログ管理
+```bash
+# BINDのログ設定 (named.conf)
+logging {
+    channel default_log {
+        file "/var/log/named/named.log" versions 5 size 10m;
+        severity info;
+        print-time yes;
+        print-severity yes;
+        print-category yes;
+    };
+    category default { default_log; };
+    category queries { default_log; };
+};
+
+# ログの確認
+sudo tail -f /var/log/named/named.log
+journalctl -u named -f
+```
+
+---
+
+### 7.3 ゾーン転送設定
+```bind
+// マスターサーバー設定
+zone "example.com" {
+    type master;
+    file "/etc/bind/zones/db.example.com";
+    allow-transfer { 192.168.1.11; };  // スレーブサーバー
+    also-notify { 192.168.1.11; };
+};
+
+// スレーブサーバー設定
+zone "example.com" {
+    type slave;
+    file "/var/cache/bind/db.example.com";
+    masters { 192.168.1.10; };
+};
+```
+
+---
+
+### 7.4 運用タスク一覧
 
 | タスク    | 内容           |
 | ------ | ------------ |
@@ -392,7 +453,7 @@ options {
 
 ---
 
-### 7.2 変更手順（例）
+### 7.5 変更手順（例）
 
 1. TTLを事前に短縮
 2. レコード追加
@@ -407,7 +468,7 @@ rndc reload example.com
 
 ---
 
-### 7.3 監視項目（Zabbix等）
+### 7.6 監視項目（Zabbix等）
 
 | 項目        | 指標        |
 | --------- | --------- |
