@@ -111,3 +111,9 @@
 
 ---
 
+## 🌱 AI開発構築参照例(ソースコードを含む)
+
+[マルチLLM対応AIチャットアプリ](https://github.com/8alfalfa8/freeAiChat)
+
+---
+
