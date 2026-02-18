@@ -405,3 +405,9 @@ PUT _plugins/_alerting/monitors
 この設計フローに従うことで、OpenSearchの特徴を活かした効率的でスケーラブルなシステムを構築できます。特にセキュリティ設定やライフサイクル管理は、初期設計段階から組み込むことが重要です。
 
 ---
+
+## 🌱 AI開発構築参照例(ソースコードを含む)
+
+[マルチLLM対応AIチャットアプリ](https://github.com/8alfalfa8/freeAiChat)
+
+---
