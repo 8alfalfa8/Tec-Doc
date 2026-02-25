@@ -361,7 +361,7 @@ rndc reload
 
 | No | FQDN                                      | 種別    | 値                         | TTL  | 用途   | 備考      |
 | -- | ----------------------------------------- | ----- | ------------------------- | ---- | ---- | ------- |
-| 1  | [www.example.com]| A     | 203.0.113.10              | 300  | Web  | 切替用短TTL |
+| 1  | www.example.com        | A     | 203.0.113.10              | 300  | Web  | 切替用短TTL |
 | 2  | api.example.com                           | CNAME | alb-xxx.elb.amazonaws.com | 300  | API  | AWS ALB |
 | 3  | example.com                               | MX    | mail.example.com          | 3600 | Mail | 優先度10   |
 
