@@ -1171,49 +1171,49 @@ Decision Layer（統制提案）
 
 # 1️⃣ リスク発生確率モデル
 
-各リスク ( r_i ) の時刻 t における発生確率：
+各リスク $$r_i$$ の時刻 t における発生確率：
 
-[
+$$
 P_{i,t} = \sigma(\mathbf{w}_i^\top \mathbf{x}_t)
-]
+$$
 
-* ( \mathbf{x}_t )：特徴量ベクトル
+* $$\mathbf{x}_t$$：特徴量ベクトル
 
   * 権限逸脱率
   * 異常ログ件数
   * 業務負荷
   * 過去事故頻度
-* ( \sigma(z) = \frac{1}{1 + e^{-z}} )（ロジスティック）
+* $$\sigma(z) = \frac{1}{1 + e^{-z}}$$（ロジスティック）
 
 ---
 
 # 2️⃣ 損失期待値（Expected Loss）
 
-[
+$$
 EL_{i,t} = P_{i,t} \cdot L_i
-]
+$$
 
-* ( L_i )：リスクiの損失規模（財務影響）
+* $$L_i$$：リスクiの損失規模（財務影響）
 
 全体リスク：
 
-[
+$$
 EL_t = \sum_i P_{i,t} L_i
-]
+$$
 
 ---
 
 # 3️⃣ 統制効果関数
 
-統制 ( c_j ) の強度を ( u_j \in [0,1] ) とする。
+統制 $$c_j$$ の強度を $$u_j \in [0,1]$$ とする。
 
 統制導入後のリスク確率：
 
-[
+$$
 P'*{i,t} = P*{i,t} \cdot \prod_j (1 - \alpha_{ij} u_j)
-]
+$$
 
-* ( \alpha_{ij} )：統制jがリスクiに与える抑制係数
+* $$\alpha_{ij}$$：統制jがリスクiに与える抑制係数
 
 ---
 
@@ -1221,9 +1221,9 @@ P'*{i,t} = P*{i,t} \cdot \prod_j (1 - \alpha_{ij} u_j)
 
 統制コスト：
 
-[
+$$
 C(u) = \sum_j c_j u_j
-]
+$$
 
 ---
 
@@ -1231,15 +1231,13 @@ C(u) = \sum_j c_j u_j
 
 目的関数：
 
-[
+$$
 \min_{u} \quad \sum_i P_{i,t} L_i \prod_j (1 - \alpha_{ij} u_j) + \sum_j c_j u_j
-]
+$$
 
 制約：
 
-[
-0 \le u_j \le 1
-]
+$$0 \le u_j \le 1$$
 
 これは非線形最適化問題。
 
@@ -1249,27 +1247,27 @@ C(u) = \sum_j c_j u_j
 
 状態：
 
-[
+$$
 s_t = (\mathbf{x}_t, \mathbf{u}_t)
-]
+$$
 
 行動：
 
-[
+$$
 a_t = \Delta \mathbf{u}_t
-]
+$$
 
 報酬：
 
-[
+$$
 R_t = - (EL_t + C(u_t))
-]
+$$
 
 遷移：
 
-[
+$$
 P(s_{t+1} | s_t, a_t)
-]
+$$
 
 ---
 
@@ -1277,18 +1275,18 @@ P(s_{t+1} | s_t, a_t)
 
 Q関数：
 
-[
+$$
 Q(s,a) = \mathbb{E}\left[\sum_{k=0}^\infty \gamma^k R_{t+k} \right]
-]
+$$
 
 更新式：
 
-[
+$$
 Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha
 \left[
 R_t + \gamma \max_a Q(s_{t+1},a) - Q(s_t,a_t)
 \right]
-]
+$$
 
 ---
 
@@ -1296,17 +1294,17 @@ R_t + \gamma \max_a Q(s_{t+1},a) - Q(s_t,a_t)
 
 事前確率：
 
-[
+$$
 P(P_i)
-]
+$$
 
 事故観測D後：
 
-[
+$$
 P(P_i|D) =
 \frac{P(D|P_i)P(P_i)}
 {P(D)}
-]
+$$
 
 これによりリスクパラメータを更新。
 
@@ -1316,9 +1314,9 @@ P(P_i|D) =
 
 統制効果：
 
-[
+$$
 ATE = E[Y|do(u=1)] - E[Y|do(u=0)]
-]
+$$
 
 * Y：事故発生有無
 
