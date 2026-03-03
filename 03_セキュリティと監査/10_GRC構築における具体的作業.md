@@ -1401,15 +1401,15 @@ $$
 
 GRCの数理本質は：
 
-[
+$$
 Risk = Probability \times Impact
-]
+$$
 
 を
 
-[
+$$
 Control = Optimization \ Problem
-]
+$$
 
 へ昇華すること。
 
