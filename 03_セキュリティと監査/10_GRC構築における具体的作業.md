@@ -2320,9 +2320,9 @@ Embedding対象：
 
 検索：
 
-[
+$$
 Relevant_Policies = VectorSearch(Query)
-]
+$$
 
 Query例：
 
@@ -2438,15 +2438,15 @@ LLM入力：
 
 規程更新効果：
 
-[
+$$
 Risk_{t+1} = Risk_t - \Delta ControlEffect(policy_update)
-]
+$$
 
 目的：
 
-[
+$$
 \min \sum (ExpectedLoss + PolicyComplexityCost)
-]
+$$
 
 ---
 
@@ -2526,16 +2526,16 @@ RAG統合AI-GRCとは
 
 規程進化をマルコフ決定過程で定義：
 
-[
+$$
 \mathcal{M} = (S, A, P, R, \gamma)
-]
+$$
 
 #### 状態 ( S )
 
-[
+$$
 S_t =
 { RiskScore_t, IncidentRate_t, AuditFinding_t, ComplianceGap_t, PolicyComplexity_t }
-]
+$$
 
 例：
 
@@ -2560,22 +2560,18 @@ S_t =
 
 #### 状態遷移 ( P )
 
-[
+$$
 S_{t+1} = f(S_t, A_t, EnvironmentNoise)
-]
+$$
 
 ---
 
 #### 割引率
 
-[
-0 < \gamma < 1
-]
+$$0 < \gamma < 1$$
 
 長期安定性を重視する場合：
-[
-\gamma \approx 0.95
-]
+$$\gamma \approx 0.95$$
 
 ---
 
@@ -2583,15 +2579,13 @@ S_{t+1} = f(S_t, A_t, EnvironmentNoise)
 
 規程進化の成功を数値化：
 
-[
+$$
 R_t =
-
-* \alpha \cdot ExpectedLoss_t
-* \beta \cdot AuditPenalty_t
-* \delta \cdot ComplexityCost_t
-
-- \lambda \cdot ComplianceScore_t
-  ]
+-\alpha \cdot ExpectedLoss_t
+-\beta \cdot AuditPenalty_t
+-\delta \cdot ComplexityCost_t
++\lambda \cdot ComplianceScore_t
+$$
 
 ---
 
@@ -2599,35 +2593,35 @@ R_t =
 
 #### ① 期待損失
 
-[
+$$
 ExpectedLoss = \sum P_i \cdot Impact_i
-]
+$$
 
 #### ② 監査ペナルティ
 
-[
+$$
 AuditPenalty = Findings_{critical} \times weight
-]
+$$
 
 #### ③ 規程複雑性
 
-[
-ComplexityCost = #Clauses + #CrossReferences
-]
+$$
+ComplexityCost = \\#Clauses + \\#CrossReferences
+$$
 
 #### ④ 適合スコア
 
-[
+$$
 ComplianceScore = 1 - GapRatio
-]
+$$
 
 ---
 
 ## 4️⃣ 目的関数
 
-[
+$$
 \max_\pi \mathbb{E} \left[ \sum_{t=0}^{\infty} \gamma^t R_t \right]
-]
+$$
 
 すなわち：
 
@@ -2655,15 +2649,15 @@ ComplianceScore = 1 - GapRatio
 
 規程を埋め込み：
 
-[
+$$
 PolicyEmbedding = f(policy_text)
-]
+$$
 
 コサイン類似度で冗長検知：
 
-[
+$$
 Similarity = \frac{A \cdot B}{||A|| ||B||}
-]
+$$
 
 ---
 
@@ -2726,9 +2720,9 @@ Similarity = \frac{A \cdot B}{||A|| ||B||}
 
 現実では即時検証不可のため：
 
-[
+$$
 Risk_{t+1} = Risk_t \cdot (1 - ControlEffectiveness(A_t))
-]
+$$
 
 ControlEffectivenessは統計推定。
 
@@ -2769,13 +2763,13 @@ RL探索
 
 収束条件：
 
-[
+$$
 \alpha_{learning} \rightarrow 0
-]
+$$
 
-[
+$$
 \sum \alpha_t = \infty, \quad \sum \alpha_t^2 < \infty
-]
+$$
 
 ---
 
@@ -2789,9 +2783,9 @@ RL探索
 
 従って：
 
-[
+$$
 \min (Risk + Complexity)
-]
+$$
 
 が本質。
 
