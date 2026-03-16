@@ -1,3 +1,4 @@
+
 # ◆ AIDD × DocDD × RAG 開発方式概要
 
 **AIDD × DocDD × RAG** は、現在のエンタープライズAI開発で非常に重要なアーキテクチャです。  
@@ -118,44 +119,350 @@ Architecture:
 
 ## 4. Knowledge Layer（RAG Knowledge Base）
 
-調査中
+DocDDドキュメントは **RAGの知識ベース**になります。
+
+RAGとは
+
+**検索 + AI生成**
+
+を組み合わせた技術です。
+ユーザー質問に対して関連情報を検索し、その情報をコンテキストとしてLLMが回答を生成します。
+
+---
+
+### RAGデータパイプライン
+
+```
+Document
+ ↓
+Parsing
+ ↓
+Chunking
+ ↓
+Embedding
+ ↓
+VectorDB
+```
+
+---
+
+### データ処理
+
+#### ① Parsing
+
+```
+PDF
+Word
+Markdown
+HTML
+```
+
+↓
+
+```
+Text
+Metadata
+```
+
+---
+
+#### ② Chunking
+
+文章を小さく分割
+
+例
+
+```
+512 token
+overlap 128
+```
+
+---
+
+#### ③ Embedding
+
+```
+Text → Vector
+```
+
+例
+
+```
+"API design principles"
+↓
+
+[0.234, -0.552, 0.934, ...]
+```
+
+---
+
+#### ④ Vector Database
+
+保存
+
+```
+Vector + metadata
+```
+
+例
+
+```
+Weaviate
+Pinecone
+Milvus
+pgvector
+```
 
 ---
 
 ## 5. Retrieval Layer（検索）
 
-調査中
+ユーザーが質問すると
+
+```
+Query
+ ↓
+Embedding
+ ↓
+Vector search
+ ↓
+TopK documents
+```
+
+---
+
+### Retrievalフロー
+
+```
+User Query
+ ↓
+Query Embedding
+ ↓
+Vector Search
+ ↓
+TopK documents
+ ↓
+Context Builder
+```
 
 ---
 
 ## 6. AI Generation Layer（LLM）
 
-調査中
+RAGで取得した情報を **LLMに渡して生成**します。
+
+---
+
+### Prompt構造
+
+```
+System:
+You are a software architect
+
+Context:
+[retrieved docs]
+
+Question:
+Generate API design
+```
+
+---
+
+### 出力
+
+```
+FastAPI implementation
+```
 
 ---
 
 ## 7. AI Agent Layer（AIDD）
 
-調査中
+ここが **AIDDの核心**です。
+
+AIが開発作業を自動化します。
+
+---
+
+### AIエージェント構成
+
+```
+AI Orchestrator
+      │
+      ├ Code Agent
+      ├ Test Agent
+      ├ Infra Agent
+      ├ Security Agent
+      └ Review Agent
+```
+
+---
+
+### 例
+
+#### Code Agent
+
+```
+Doc → code
+```
+
+例
+
+```
+API spec
+↓
+FastAPI code
+```
+
+---
+
+#### Test Agent
+
+```
+Doc → test
+```
+
+例
+
+```
+API spec
+↓
+pytest
+```
+
+---
+
+#### Infra Agent
+
+```
+Architecture doc
+↓
+Terraform
+```
 
 ---
 
 ## 8. DevOps Layer
 
-調査中
+生成されたコードは
+
+```
+Git
+CI/CD
+```
+
+に流れます。
+
+---
+
+### CI/CD構成
+
+```
+GitHub
+ ↓
+GitHub Actions
+ ↓
+Build
+ ↓
+Test
+ ↓
+Deploy
+```
 
 ---
 
 ## 9. データフロー（重要）
 
-調査中
+### 開発フロー
+
+```
+1 Developer writes document
+2 Document stored
+3 RAG indexing
+4 AI retrieves context
+5 AI generates code
+6 CI/CD deploy
+```
+
+---
+
+### 図
+
+```
+Doc
+ ↓
+VectorDB
+ ↓
+RAG
+ ↓
+LLM
+ ↓
+Code
+ ↓
+Deploy
+```
 
 ---
 
 ## 10. 実際の技術スタック
 
-調査中
+### Frontend
+
+```
+React
+Next.js
+```
 
 ---
 
+### Backend
+
+```
+FastAPI
+Node.js
+```
+
+---
+
+### RAG
+
+```
+LangChain
+LlamaIndex
+Haystack
+```
+
+---
+
+### VectorDB
+
+```
+Pinecone
+Weaviate
+Milvus
+pgvector
+```
+
+---
+
+### LLM
+
+```
+OpenAI
+Claude
+Llama
+Mistral
+```
+
+---
+
+### Agent
+
+```
+CrewAI
+LangGraph
+AutoGPT
+```
+
+---
 
