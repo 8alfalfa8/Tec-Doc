@@ -103,10 +103,10 @@
 
 1. Security Groups のテンプレート化（Web, App, DB）— 最小権限で作成
 
-   * Security Group はステートフルである点に注意（戻りトラフィックは自動許可）。公式参照。([AWS文档][1])
+   * Security Group はステートフルである点に注意（戻りトラフィックは自動許可）。公式参照。([AWSドキュメント][1])
 2. NACL の設定（サブネット境界でのデナイ/アロールール）— 管理用、外部向けでデフォルト拒否を検討
 3. Network Firewall / WAF の配置（必要に応じて）
-4. VPC Flow Logs を有効化して CloudWatch or S3 に保存（監査用）。([AWS文档][2])
+4. VPC Flow Logs を有効化して CloudWatch or S3 に保存（監査用）。([AWSドキュメント][2])
 
 **検証**：ポートスキャン（内部から）、許可/拒否のログ確認（Flow Logs）
 
@@ -114,8 +114,8 @@
 
 1. 要件に応じて選定：**Direct Connect（専用線）** or **Site-to-Site VPN（IPsec）**
 
-   * VPN は IKEv2 推奨（公式のベストプラクティス）。([AWS文档][3])
-2. Transit Gateway を使うか、Virtual Private Gateway + VPC Peering を使うか決定。大規模環境は Transit Gateway 推奨。([AWS文档][4])
+   * VPN は IKEv2 推奨（公式のベストプラクティス）。([AWSドキュメント][3])
+2. Transit Gateway を使うか、Virtual Private Gateway + VPC Peering を使うか決定。大規模環境は Transit Gateway 推奨。([AWSドキュメント][4])
 3. BGP 設計（ASN、プレフィックス）、冗長構成（Customer Gateway の二重化）
 4. Direct Connect の場合は virtual interface 設定と VLAN/帯域の確保
 
@@ -131,7 +131,7 @@
 
 ## F. 監視・ログ・運用設定
 
-1. VPC Flow Logs、CloudWatch アラーム、GuardDuty、Network Access Analyzer を有効にする（不正アクセス検知・調査用）。([AWS文档][2])
+1. VPC Flow Logs、CloudWatch アラーム、GuardDuty、Network Access Analyzer を有効にする（不正アクセス検知・調査用）。([AWSドキュメント][2])
 2. 定期的なネットワーク構成の自動評価（AWS Config ルール等）
 3. コスト・タグ付けポリシーを実施（NAT、Transit Gateway、Data Transfer のコストに注意）
 
@@ -148,16 +148,16 @@
 * [ ] VPC Endpoints が不要なパブリック経路を開かないか
 * [ ] Flow Logs の保存先と保持期間
 * [ ] Direct Connect / VPN の BGP 冗長（2 セッション）実施
-* [ ] IKE バージョンは IKEv2 推奨で設定（VPN）。([AWS文档][3])
+* [ ] IKE バージョンは IKEv2 推奨で設定（VPN）。([AWSドキュメント][3])
 
 ---
 
 # 5) 設計上の重要な考慮点（ベストプラクティス要約）
 
-* **スケールを見越した CIDR 設計**：後での分割やピアリングを考慮する（/16, /20 等を用途に応じて）。（Well-Architected のネットワーキング指針参照）。([AWS文档][6])
-* **Transit Gateway の活用**：多数の VPC／オンプレ接続がある場合、管理性・スケール面で有利。([AWS文档][4])
-* **セキュリティの多層化**：Security Group（ステートフル）＋ NACL（サブネット境界）＋ Network Firewall（インスペクション）を組合せる。([AWS文档][1])
-* **専用線と VPN の使い分け**：帯域・レイテンシ重視なら Direct Connect、柔軟性重視なら Site-to-Site VPN。Direct Connect と VPN の併用で冗長化も可能。([AWS文档][7])
+* **スケールを見越した CIDR 設計**：後での分割やピアリングを考慮する（/16, /20 等を用途に応じて）。（Well-Architected のネットワーキング指針参照）。([AWSドキュメント][6])
+* **Transit Gateway の活用**：多数の VPC／オンプレ接続がある場合、管理性・スケール面で有利。([AWSドキュメント][4])
+* **セキュリティの多層化**：Security Group（ステートフル）＋ NACL（サブネット境界）＋ Network Firewall（インスペクション）を組合せる。([AWSドキュメント][1])
+* **専用線と VPN の使い分け**：帯域・レイテンシ重視なら Direct Connect、柔軟性重視なら Site-to-Site VPN。Direct Connect と VPN の併用で冗長化も可能。([AWSドキュメント][7])
 
 ---
 
@@ -204,8 +204,8 @@ resource "aws_route_table_association" "rta_public_a" {
 
 * CIDR 設計不足 → 後に VPC ピアリングや Direct Connect で衝突する。
 * NAT Gateway を AZ 1 だけに置き、AZ 間データ転送でコスト増。
-* Security Group を雑に開けてしまう（プリンシプルは “deny by default” を維持）([AWS文档][8])
-* 監査ログ（VPC Flow Logs）を保管しておらず、障害解析に手間がかかる。([AWS文档][2])
+* Security Group を雑に開けてしまう（プリンシプルは “deny by default” を維持）([AWSドキュメント][8])
+* 監査ログ（VPC Flow Logs）を保管しておらず、障害解析に手間がかかる。([AWSドキュメント][2])
 
 ---
 
@@ -213,11 +213,11 @@ resource "aws_route_table_association" "rta_public_a" {
 
 主要なベストプラクティス・機能説明（参照）：
 
-* Transit Gateway の説明・設計ベストプラクティス。([AWS文档][4])
-* AWS Well-Architected — Networking のガイドライン。([AWS文档][6])
-* Security Groups / NACL の仕様と設計注意点。([AWS文档][1])
-* VPC セキュリティベストプラクティス（Flow Logs, Network Firewall 等）。([AWS文档][2])
-* Site-to-Site VPN のベストプラクティス（IKEv2 推奨）。([AWS文档][3])
+* Transit Gateway の説明・設計ベストプラクティス。([AWSドキュメント][4])
+* AWS Well-Architected — Networking のガイドライン。([AWSドキュメント][6])
+* Security Groups / NACL の仕様と設計注意点。([AWSドキュメント][1])
+* VPC セキュリティベストプラクティス（Flow Logs, Network Firewall 等）。([AWSドキュメント][2])
+* Site-to-Site VPN のベストプラクティス（IKEv2 推奨）。([AWSドキュメント][3])
 
 ---
 [1]: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html?utm_source=chatgpt.com "Control traffic to your AWS resources using security groups"
