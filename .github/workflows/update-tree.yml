@@ -16,7 +16,7 @@ jobs:
 
       - name: Generate Linked Directory Tree
         run: |
-          echo "## Project Structure" > tree.txt
+          echo "## プロジェクト構成" > tree.txt
           echo "" >> tree.txt
           # Pythonを使用して、再帰的にリンク付きMarkdownリストを生成
           python3 -c "
