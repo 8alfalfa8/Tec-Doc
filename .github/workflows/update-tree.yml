@@ -3,7 +3,7 @@ name: Update Directory Tree
 on:
   push:
     branches:
-      - main  # 実際のブランチ名に合わせてください
+      - main  # 実際のブランチ名が master の場合は master に書き換えてください
 
 jobs:
   build:
@@ -16,31 +16,33 @@ jobs:
 
       - name: Generate Directory Tree
         run: |
-          sudo apt-get install -y tree
+          sudo apt-get update && sudo apt-get install -y tree
           echo "## Project Structure" > tree.txt
           echo '```' >> tree.txt
-          # 日本語が化けないよう、-N オプションを推奨（環境による）
+          # -N: 日本語文字化け防止
           tree -N -I '.git|.github' >> tree.txt
           echo '```' >> tree.txt
 
       - name: Update README
         run: |
-          # タグを変数に定義（HTMLコメントとして消えるのを防ぐ）
-          START_TAG=""
-          END_TAG=""
+          # タグをBase64でデコードして生成（シェルによる消失を防止）
+          S_TAG=$(echo "PCEtLSBTVEFSVF9UUkVFIC0tPg==" | base64 -d)
+          E_TAG=$(echo "PCEtLSBFTkRfVFJFRSAtLT4=" | base64 -d)
 
-          # READMEが存在しない場合の作成
           touch README.md
 
-          # タグが存在しない場合は追記する
-          if ! grep -q "$START_TAG" README.md; then
-            echo -e "\n$START_TAG\n$END_TAG" >> README.md
+          # タグが存在しない場合は末尾に追記
+          if ! grep -q "$S_TAG" README.md; then
+            echo -e "\n$S_TAG\n$E_TAG" >> README.md
           fi
           
-          # 一時ファイルを使って安全に置換
-          sed -n "1,/$START_TAG/p" README.md > new_readme.md
-          cat tree.txt >> new_readme.md
-          sed -n "/$END_TAG/,\$p" README.md >> new_readme.md
+          # awkを使用してタグの間に tree.txt を挿入
+          awk -v s="$S_TAG" -v e="$E_TAG" -v r="$(cat tree.txt)" '
+            BEGIN {p=1}
+            $0 == s {print $0; print r; p=0}
+            $0 == e {p=1}
+            p && $0 != s && $0 != e {print $0}
+          ' README.md > new_readme.md
           
           mv new_readme.md README.md
 
