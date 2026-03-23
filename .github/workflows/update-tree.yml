@@ -17,7 +17,7 @@ jobs:
       - name: Generate Linked Directory Tree
         run: |
           # tree.txtを初期化
-          # echo '```' > tree.txt
+          echo '```' > tree.txt
           
           python3 -c "
           import os
@@ -38,45 +38,42 @@ jobs:
                   url_path = urllib.parse.quote(rel_path)
                   
                   connector = '├── ' if i < len(items) - 1 else '└── '
-                  
-                  # 行末に半角スペース2つを追加
                   line_end = '  ' 
                   
                   if os.path.isdir(full_path):
-                      # ディレクトリはリンクなし（名前のみ）
                       f.write(f'{indent}{connector}{item}/{line_end}\n')
                       generate_tree(full_path, f, indent + ('│   ' if i < len(items) - 1 else '    '))
                   else:
-                      # ファイルのみリンクあり
                       f.write(f'{indent}{connector}[{item}]({url_path}){line_end}\n')
 
           with open('tree.txt', 'a', encoding='utf-8') as f:
               generate_tree('.', f)
           "
-          # echo '```' >> tree.txt
-          
-          # デバッグ用出力
-          cat tree.txt
+          echo '```' >> tree.txt
 
       - name: Update README
         run: |
           S_TAG=$(echo "PCEtLSBTVEFSVF9UUkVFIC0tPg==" | base64 -d)
           E_TAG=$(echo "PCEtLSBFTkRfVFJFRSAtLT4=" | base64 -d)
 
+          touch README.md
           if ! grep -q "$S_TAG" README.md; then
             echo -e "\n$S_TAG\n$E_TAG" >> README.md
           fi
           
-          awk -v s="$S_TAG" -v e="$E_TAG" -v r="$(cat tree.txt)" '
-            BEGIN {p=1}
-            $0 == s {print $0; print r; p=0}
-            $0 == e {p=1}
-            p && $0 != s && $0 != e {print $0}
-          ' README.md > new_readme.md
+          # 【重要】引数を使わず、一時ファイルに分割して結合する
+          # 1. 開始タグまでを抽出
+          sed -n "1,/$S_TAG/p" README.md > top.md
+          # 2. 終了タグ以降を抽出
+          sed -n "/$E_TAG/,\$p" README.md > bottom.md
           
-          mv new_readme.md README.md
+          # 3. すべてを結合（top + tree.txt + bottom）
+          cat top.md tree.txt bottom.md > README.md
+          
+          # 不要なファイルを削除
+          rm top.md tree.txt bottom.md
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs: update directory tree (files only linked) [skip ci]"
+          commit_message: "docs: update directory tree (fix argument list too long) [skip ci]"
