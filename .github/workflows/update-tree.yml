@@ -50,7 +50,7 @@ jobs:
           with open('tree.txt', 'a', encoding='utf-8') as f:
               generate_tree('.', f)
           "
-          echo '```' >> tree.txt
+          # echo '```' >> tree.txt
 
       - name: Update README
         run: |
