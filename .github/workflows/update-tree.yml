@@ -19,7 +19,6 @@ jobs:
           # tree.txtを初期化
           # echo '```' > tree.txt
           
-          # Pythonで直接tree.txtに書き込む（出力漏れを防ぐ）
           python3 -c "
           import os
           import urllib.parse
@@ -30,29 +29,33 @@ jobs:
               except PermissionError:
                   return
                   
-              # 除外リスト
               exclude = ['.git', '.github', 'tree.txt', 'new_readme.md']
               items = [i for i in items if i not in exclude]
               
               for i, item in enumerate(items):
                   full_path = os.path.join(path, item)
-                  # リンク用のパス（スペースや日本語をエンコード）
-                  url_path = urllib.parse.quote(os.path.relpath(full_path, '.'))
+                  rel_path = os.path.relpath(full_path, '.')
+                  url_path = urllib.parse.quote(rel_path)
                   
                   connector = '├── ' if i < len(items) - 1 else '└── '
                   
+                  # 行末に半角スペース2つを追加
+                  line_end = '  ' 
+                  
                   if os.path.isdir(full_path):
-                      f.write(f'{indent}{connector}[{item}/]({url_path})\n')
+                      # ディレクトリはリンクなし（名前のみ）
+                      f.write(f'{indent}{connector}{item}/{line_end}\n')
                       generate_tree(full_path, f, indent + ('│   ' if i < len(items) - 1 else '    '))
                   else:
-                      f.write(f'{indent}{connector}[{item}]({url_path})\n')
+                      # ファイルのみリンクあり
+                      f.write(f'{indent}{connector}[{item}]({url_path}){line_end}\n')
 
           with open('tree.txt', 'a', encoding='utf-8') as f:
               generate_tree('.', f)
           "
           # echo '```' >> tree.txt
           
-          # デバッグ用：生成された中身をログに出す（Actionsの画面で確認できます）
+          # デバッグ用出力
           cat tree.txt
 
       - name: Update README
@@ -60,12 +63,10 @@ jobs:
           S_TAG=$(echo "PCEtLSBTVEFSVF9UUkVFIC0tPg==" | base64 -d)
           E_TAG=$(echo "PCEtLSBFTkRfVFJFRSAtLT4=" | base64 -d)
 
-          # READMEの状態をクリーンにする（もしタグが壊れていたら再作成）
           if ! grep -q "$S_TAG" README.md; then
             echo -e "\n$S_TAG\n$E_TAG" >> README.md
           fi
           
-          # awkで確実に置換
           awk -v s="$S_TAG" -v e="$E_TAG" -v r="$(cat tree.txt)" '
             BEGIN {p=1}
             $0 == s {print $0; print r; p=0}
@@ -78,4 +79,4 @@ jobs:
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs: update directory tree with links [skip ci]"
+          commit_message: "docs: update directory tree (files only linked) [skip ci]"
