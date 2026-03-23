@@ -17,7 +17,7 @@ jobs:
       - name: Generate Directory Tree
         run: |
           sudo apt-get update && sudo apt-get install -y tree
-          echo "## Project Structure" > tree.txt
+          echo "## プロジェクト構成" > tree.txt
           echo '```' >> tree.txt
           # -N: 日本語文字化け防止
           tree -N -I '.git|.github' >> tree.txt
