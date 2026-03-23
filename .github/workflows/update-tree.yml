@@ -3,28 +3,39 @@ name: Update Directory Tree
 on:
   push:
     branches:
-      - main  # あなたのメインブランチ名に合わせてください
+      - main  # 自分のブランチ名が master なら master に書き換えてください
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Generate Directory Tree
         run: |
-          # treeコマンドをインストールして実行
           sudo apt-get install -y tree
-          echo "DIRECTORY_TREE<<EOF" >> $GITHUB_ENV
-          tree -I '.git|.github' >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          # 以前のエラーを避けるため、一旦ファイルに書き出す
+          echo "## Project Structure" > tree.txt
+          echo '```' >> tree.txt
+          tree -I '.git|.github' >> tree.txt
+          echo '```' >> tree.txt
 
       - name: Update README
         run: |
-          # README内の と の間を置換
-          sed -i '//,//{//!d}' README.md
-          sed -i '//a ```\n'"$DIRECTORY_TREE"'\n```' README.md
+          # タグの間に tree.txt の内容を流し込むスクリプト
+          # sedのエラーを避けるため、マーカーが見つからない場合は作成する処理を追加
+          if ! grep -q "" README.md; then
+            echo -e "\n\n" >> README.md
+          fi
+          
+          # 一時ファイルを使って安全に置換
+          sed -n '1,//p' README.md > new_readme.md
+          cat tree.txt >> new_readme.md
+          sed -n '//,$p' README.md >> new_readme.md
+          mv new_readme.md README.md
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
