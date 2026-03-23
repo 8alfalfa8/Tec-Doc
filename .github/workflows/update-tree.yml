@@ -17,7 +17,7 @@ jobs:
       - name: Generate Linked Directory Tree
         run: |
           # tree.txtを初期化
-          echo '```' > tree.txt
+          # echo '```' > tree.txt
           
           # Pythonで直接tree.txtに書き込む（出力漏れを防ぐ）
           python3 -c "
@@ -50,7 +50,7 @@ jobs:
           with open('tree.txt', 'a', encoding='utf-8') as f:
               generate_tree('.', f)
           "
-          echo '```' >> tree.txt
+          # echo '```' >> tree.txt
           
           # デバッグ用：生成された中身をログに出す（Actionsの画面で確認できます）
           cat tree.txt
