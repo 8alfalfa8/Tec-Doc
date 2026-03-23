@@ -15,4 +15,4 @@
 商用利用や改変等を希望する場合は、著作権者（8alfalfa8）までご連絡ください。
 
 <!-- START_TREE -->
-## Project Structure
+## プロジェクト構成
