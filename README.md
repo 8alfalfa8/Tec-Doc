@@ -2,6 +2,8 @@
 
 このリポジトリは、8alfalfa8 により作成された文書・資料を含んでいます。
 
+# プロジェクト構成
+
 ## 📄 ライセンス
 
 このリポジトリの内容は [CC BY-NC-ND 4.0 ライセンス](https://creativecommons.org/licenses/by-nc-nd/4.0/) のもとで提供されています。
