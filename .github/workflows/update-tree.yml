@@ -1,0 +1,32 @@
+name: Update Directory Tree
+
+on:
+  push:
+    branches:
+      - main  # あなたのメインブランチ名に合わせてください
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Directory Tree
+        run: |
+          # treeコマンドをインストールして実行
+          sudo apt-get install -y tree
+          echo "DIRECTORY_TREE<<EOF" >> $GITHUB_ENV
+          tree -I '.git|.github' >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Update README
+        run: |
+          # README内の と の間を置換
+          sed -i '//,//{//!d}' README.md
+          sed -i '//a ```\n'"$DIRECTORY_TREE"'\n```' README.md
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: update directory tree [skip ci]"
