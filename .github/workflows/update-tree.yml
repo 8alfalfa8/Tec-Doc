@@ -3,7 +3,7 @@ name: Update Directory Tree
 on:
   push:
     branches:
-      - main  # 自分のブランチ名が master なら master に書き換えてください
+      - main  # 実際のブランチ名に合わせてください
 
 jobs:
   build:
@@ -17,24 +17,31 @@ jobs:
       - name: Generate Directory Tree
         run: |
           sudo apt-get install -y tree
-          # 以前のエラーを避けるため、一旦ファイルに書き出す
           echo "## Project Structure" > tree.txt
           echo '```' >> tree.txt
-          tree -I '.git|.github' >> tree.txt
+          # 日本語が化けないよう、-N オプションを推奨（環境による）
+          tree -N -I '.git|.github' >> tree.txt
           echo '```' >> tree.txt
 
       - name: Update README
         run: |
-          # タグの間に tree.txt の内容を流し込むスクリプト
-          # sedのエラーを避けるため、マーカーが見つからない場合は作成する処理を追加
-          if ! grep -q "" README.md; then
-            echo -e "\n\n" >> README.md
+          # タグを変数に定義（HTMLコメントとして消えるのを防ぐ）
+          START_TAG=""
+          END_TAG=""
+
+          # READMEが存在しない場合の作成
+          touch README.md
+
+          # タグが存在しない場合は追記する
+          if ! grep -q "$START_TAG" README.md; then
+            echo -e "\n$START_TAG\n$END_TAG" >> README.md
           fi
           
           # 一時ファイルを使って安全に置換
-          sed -n '1,//p' README.md > new_readme.md
+          sed -n "1,/$START_TAG/p" README.md > new_readme.md
           cat tree.txt >> new_readme.md
-          sed -n '//,$p' README.md >> new_readme.md
+          sed -n "/$END_TAG/,\$p" README.md >> new_readme.md
+          
           mv new_readme.md README.md
 
       - name: Commit and Push changes
