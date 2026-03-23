@@ -1,9 +1,9 @@
-name: Update Directory Tree
+name: Update Directory Tree with Links
 
 on:
   push:
     branches:
-      - main  # 実際のブランチ名が master の場合は master に書き換えてください
+      - main  # 必要に応じて master に変更
 
 jobs:
   build:
@@ -14,39 +14,56 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate Directory Tree
+      - name: Generate Linked Directory Tree
         run: |
-          sudo apt-get update && sudo apt-get install -y tree
-          echo "## プロジェクト構成" > tree.txt
-          echo '```' >> tree.txt
-          # -N: 日本語文字化け防止
-          tree -N -I '.git|.github' >> tree.txt
-          echo '```' >> tree.txt
+          echo "## Project Structure" > tree.txt
+          echo "" >> tree.txt
+          # Pythonを使用して、再帰的にリンク付きMarkdownリストを生成
+          python3 -c "
+          import os
+          import urllib.parse
+
+          def generate_tree(path, indent=''):
+              items = sorted(os.listdir(path))
+              # .git や .github は除外
+              items = [i for i in items if i not in ['.git', '.github', 'tree.txt']]
+              
+              for i, item in enumerate(items):
+                  full_path = os.path.join(path, item)
+                  rel_path = os.path.relpath(full_path, '.')
+                  url_path = urllib.parse.quote(rel_path)
+                  
+                  # 枝の記号
+                  connector = '├── ' if i < len(items) - 1 else '└── '
+                  
+                  if os.path.isdir(full_path):
+                      print(f'{indent}{connector}[{item}/]({url_path})')
+                      generate_tree(full_path, indent + ('│   ' if i < len(items) - 1 else '    '))
+                  else:
+                      print(f'{indent}{connector}[{item}]({url_path})')
+
+          print('```')
+          generate_tree('.')
+          print('```')
+          " >> tree.txt
 
       - name: Update README
         run: |
-          # タグをBase64でデコードして生成（シェルによる消失を防止）
           S_TAG=$(echo "PCEtLSBTVEFSVF9UUkVFIC0tPg==" | base64 -d)
           E_TAG=$(echo "PCEtLSBFTkRfVFJFRSAtLT4=" | base64 -d)
-
           touch README.md
-
-          # タグが存在しない場合は末尾に追記
           if ! grep -q "$S_TAG" README.md; then
             echo -e "\n$S_TAG\n$E_TAG" >> README.md
           fi
-          
-          # awkを使用してタグの間に tree.txt を挿入
           awk -v s="$S_TAG" -v e="$E_TAG" -v r="$(cat tree.txt)" '
             BEGIN {p=1}
             $0 == s {print $0; print r; p=0}
             $0 == e {p=1}
             p && $0 != s && $0 != e {print $0}
           ' README.md > new_readme.md
-          
           mv new_readme.md README.md
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs: update directory tree [skip ci]"
+          commit_message: "docs: update directory tree with links [skip ci]"
