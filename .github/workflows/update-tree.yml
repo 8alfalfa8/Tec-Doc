@@ -43,7 +43,7 @@ jobs:
                   
                   if os.path.isdir(full_path):
                       f.write(f'{indent}{connector}{item}/{line_end}\n')
-                      generate_tree(full_path, f, indent + ('│            ' if i < len(items) - 1 else '             '))
+                      generate_tree(full_path, f, indent + ('│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' if i < len(items) - 1 else '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'))
                   else:
                       f.write(f'{indent}{connector}[{item}]({url_path}){line_end}\n')
 
