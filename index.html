@@ -675,5 +675,32 @@ href="88_%E6%A5%AD%E5%8B%99%E7%9F%A5%E8%AD%98/02_%E5%B0%8F%E5%A3%B2/%E5%9C%A8%E5
 ├── <a href="README.md">README.md</a><br />
 └── <a href="index.html">index.html</a></p>
 <p>72 directories, 182 files</p>
-<script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";mermaid.initialize({startOnLoad:true});</script></body>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['2853', '2853'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      ignoreHtmlClass: 'tex2jax_ignore',
+      processHtmlClass: 'tex2jax_process'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default'
+  });
+</script>
+<style>
+  /* 見栄えを良くするための最小限のスタイル */
+  body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; color: #333; }
+  pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 5px; }
+  code { font-family: monospace; background: #eee; padding: 0.2rem 0.4rem; border-radius: 3px; }
+</style>
+</body>
 </html>
