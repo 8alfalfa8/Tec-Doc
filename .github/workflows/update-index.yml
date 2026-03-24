@@ -26,7 +26,7 @@ jobs:
           # --mathjax: MathJaxを有効化
           # --metadata title: ブラウザのタブに表示されるタイトル
           pandoc README.md -s --mathjax \
-          --metadata title="Project Documentation" \
+          --metadata title="プロジェクト ドキュメント" \
           -o index.html
 
       - name: Inject Mermaid.js Script
