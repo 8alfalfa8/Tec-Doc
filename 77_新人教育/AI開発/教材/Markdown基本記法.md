@@ -325,13 +325,29 @@ Markdown記法はもともと、ホームページを簡単に書くことを目
 よって、MarkDown記法にない装飾等は、HTMLタグが使えますよ。
 
 ```html
-<div><font size="1" color="red">フォントサイズと色変えてみた</font></div>
 <div align="center">真ん中に寄せてみた</div>
 ```
 
 #### 〇表示例
 
-<div><font size="1" color="red">フォントサイズと色変えてみた</font></div>
 <div align="center">真ん中に寄せてみた</div>
+
+---
+
+## 16. LaTeX記法
+ほとんどのMarkdown環境でLaTeX記法もサポートしています。  
+※サポートない環境もあります。 
+
+```Markdown
+インライン数式： $E = mc^2$ の例です。  
+括弧分数表示： $\left(\frac{1}{2}\right)$  
+文字色： $\color{red}{\text{赤文字}}$
+```
+
+#### 〇表示例
+
+インライン数式： $E = mc^2$ の例です。  
+括弧分数表示： $\left(\frac{1}{2}\right)$  
+文字色： $\color{red}{\text{赤文字}}$
 
 ---
