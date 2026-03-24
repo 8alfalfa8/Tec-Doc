@@ -319,3 +319,19 @@ ___
 ***
 ___
 - - -
+
+## 15. HTMLタグ
+Markdown記法はもともと、ホームページを簡単に書くことを目的として作成されています。
+よって、MarkDown記法にない装飾等は、HTMLタグが使えますよ。
+
+```html
+<div><font size="1" color="red">フォントサイズと色変えてみた</font></div>
+<div align="center">真ん中に寄せてみた</div>
+```
+
+#### 〇表示例
+
+<div><font size="1" color="red">フォントサイズと色変えてみた</font></div>
+<div align="center">真ん中に寄せてみた</div>
+
+---
