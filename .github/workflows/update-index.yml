@@ -1,3 +1,4 @@
+# READMEよりindex.htmlを自動生成更新
 name: Update index.html from README
 
 on:
