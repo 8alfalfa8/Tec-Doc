@@ -288,6 +288,7 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── AI開発/  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [01_初心者向けAI開発の土台となる基本技術.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/01_%E5%88%9D%E5%BF%83%E8%80%85%E5%90%91%E3%81%91AI%E9%96%8B%E7%99%BA%E3%81%AE%E5%9C%9F%E5%8F%B0%E3%81%A8%E3%81%AA%E3%82%8B%E5%9F%BA%E6%9C%AC%E6%8A%80%E8%A1%93.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 教材/  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Git実務操作.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/%E6%95%99%E6%9D%90/Git%E5%AE%9F%E5%8B%99%E6%93%8D%E4%BD%9C.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Linux基本操作.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/%E6%95%99%E6%9D%90/Linux%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [Markdown基本記法.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/%E6%95%99%E6%9D%90/Markdown%E5%9F%BA%E6%9C%AC%E8%A8%98%E6%B3%95.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [新人基礎スキル集中研修計画.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/%E6%96%B0%E4%BA%BA%E5%9F%BA%E7%A4%8E%E3%82%B9%E3%82%AD%E3%83%AB%E9%9B%86%E4%B8%AD%E7%A0%94%E4%BF%AE%E8%A8%88%E7%94%BB.md)  
@@ -304,4 +305,4 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 ├── [README.md](README.md)  
 └── [index.html](index.html)  
 
-72 directories, 182 files  
+72 directories, 183 files  
