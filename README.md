@@ -290,7 +290,8 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 教材/  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Git実務操作.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/%E6%95%99%E6%9D%90/Git%E5%AE%9F%E5%8B%99%E6%93%8D%E4%BD%9C.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Linux基本操作.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/%E6%95%99%E6%9D%90/Linux%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.md)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [Markdown基本記法.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/%E6%95%99%E6%9D%90/Markdown%E5%9F%BA%E6%9C%AC%E8%A8%98%E6%B3%95.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Markdown基本記法.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/%E6%95%99%E6%9D%90/Markdown%E5%9F%BA%E6%9C%AC%E8%A8%98%E6%B3%95.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [Pythonプログラム開発（基礎編）.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/AI%E9%96%8B%E7%99%BA/%E6%95%99%E6%9D%90/Python%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E9%96%8B%E7%99%BA%EF%BC%88%E5%9F%BA%E7%A4%8E%E7%B7%A8%EF%BC%89.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [新人基礎スキル集中研修計画.md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/%E6%96%B0%E4%BA%BA%E5%9F%BA%E7%A4%8E%E3%82%B9%E3%82%AD%E3%83%AB%E9%9B%86%E4%B8%AD%E7%A0%94%E4%BF%AE%E8%A8%88%E7%94%BB.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [新人研修計画書(インフラ・セキュリティ監視向け).md](77_%E6%96%B0%E4%BA%BA%E6%95%99%E8%82%B2/%E6%96%B0%E4%BA%BA%E7%A0%94%E4%BF%AE%E8%A8%88%E7%94%BB%E6%9B%B8%28%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E3%83%BB%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%9B%A3%E8%A6%96%E5%90%91%E3%81%91%29.md)  
 ├── 88_業務知識/  
@@ -305,4 +306,4 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 ├── [README.md](README.md)  
 └── [index.html](index.html)  
 
-72 directories, 183 files  
+72 directories, 184 files  
