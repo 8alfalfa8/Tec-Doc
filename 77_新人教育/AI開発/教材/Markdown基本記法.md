@@ -9,7 +9,7 @@ date: 2026-03-28
 
 license: [CC BY-NC-ND 4.0 ライセンス](https://creativecommons.org/licenses/by-nc-nd/4.0/) 
 
-repository: [https://github.com/8alfalfa8/docs](https://github.com/8alfalfa8/docs)
+repository: [https://github.com/8alfalfa8/Tec-Doc](https://github.com/8alfalfa8/Tec-Doc)
 ---
 
 Markdown（マークダウン）は、シンプルな記法で文書構造を表現できる軽量マークアップ言語です。
