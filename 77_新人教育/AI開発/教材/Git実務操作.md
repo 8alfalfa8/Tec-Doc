@@ -34,7 +34,7 @@ Git実務操作は、ソフトウェア開発やAI開発において欠かせな
 [Github]:https://github.com/
 [Git]:https://git-scm.com/
 
-[🔙 目次に戻る](#index) | [⬆ トップへ](#)
+[🔙 目次に戻る](#index)
 
 ---
 
@@ -87,7 +87,7 @@ git push origin HEAD
 git push
 ```
 
-[🔙 目次に戻る](#index) | [⬆ トップへ](#)
+[🔙 目次に戻る](#index)
 
 ---
 
@@ -126,7 +126,7 @@ git add 修正したファイル
 git commit -m "コンフリクト解消"
 ```
 
-[🔙 目次に戻る](#index) | [⬆ トップへ](#)
+[🔙 目次に戻る](#index)
 
 ---
 
@@ -152,7 +152,7 @@ git branch
 git branch -a
 ```
 
-[🔙 目次に戻る](#index) | [⬆ トップへ](#)
+[🔙 目次に戻る](#index)
 
 ---
 
@@ -172,7 +172,7 @@ git log --oneline --graph
 git blame ファイル名
 ```
 
-[🔙 目次に戻る](#index) | [⬆ トップへ](#)
+[🔙 目次に戻る](#index)
 
 ---
 
@@ -228,7 +228,7 @@ git push
 
 これだけ覚えておけば、ほとんどの現場で通用します。あとは必要に応じて調べながらで大丈夫です。
 
-[🔙 目次に戻る](#index) | [⬆ トップへ](#)
+[🔙 目次に戻る](#index)
 
 ---
 
@@ -240,7 +240,7 @@ git push
 
 repository: [https://github.com/8alfalfa8/Tec-Doc](https://github.com/8alfalfa8/Tec-Doc)
 
-[🔙 目次に戻る](#index) | [⬆ トップへ](#)
+[🔙 目次に戻る](#index)
 
 ---
 
