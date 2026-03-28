@@ -1,12 +1,5 @@
 # ◆ Markdown 基本記法
 
-|author|version|   date   |
-|------|-------|----------|
-| Y.F  |1.0.0  |2026-03-28|
-
-repository: [https://github.com/8alfalfa8/Tec-Doc](https://github.com/8alfalfa8/Tec-Doc)
----
-
 Markdown（マークダウン）は、シンプルな記法で文書構造を表現できる軽量マークアップ言語です。
 プレーンテキストで記述できるため、特別なツールがなくても作成・閲覧が可能であり、可読性の高さが特徴です。
 主にドキュメント作成、ブログ記事、技術資料、READMEファイルなどで広く利用されています。
@@ -440,5 +433,13 @@ graph TD
 文字色： $\color{red}{\text{赤文字}}$
 
 [🔙 目次に戻る](#index)
+
+---
+
+|author|version|   date   |
+|------|-------|----------|
+| Y.F  |1.0.0  |2026-03-28|
+
+repository: [https://github.com/8alfalfa8/Tec-Doc](https://github.com/8alfalfa8/Tec-Doc)
 
 ---
