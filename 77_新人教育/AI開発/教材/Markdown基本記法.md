@@ -7,8 +7,6 @@ version: 1.0.0
 
 date: 2026-03-28
 
-license: [CC BY-NC-ND 4.0 ライセンス](https://creativecommons.org/licenses/by-nc-nd/4.0/) 
-
 repository: [https://github.com/8alfalfa8/Tec-Doc](https://github.com/8alfalfa8/Tec-Doc)
 ---
 
