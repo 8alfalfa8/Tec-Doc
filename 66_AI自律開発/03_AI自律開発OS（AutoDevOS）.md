@@ -1,13 +1,3 @@
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-  - [LLM](#llm)
-  - [Agent Framework](#agent-framework)
-  - [RAG](#rag)
-  - [VectorDB](#vectordb)
-  - [DevOps](#devops)
-<!-- TOC_END -->
-
 # ◆ AI自律開発OS（AutoDev OS）
 
 **AI自律開発OS（AutoDev OS：Autonomous Development Operating System）** とは、
@@ -324,8 +314,6 @@ Deploy
 AutoDev OSの実装例
 
 ### LLM
-[🔙 目次に戻る](#index)
-
 
 ```
 OpenAI
@@ -333,12 +321,7 @@ Claude
 Llama
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ### Agent Framework
-[🔙 目次に戻る](#index)
-
 
 ```
 LangGraph
@@ -346,12 +329,7 @@ CrewAI
 Semantic Kernel
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ### RAG
-[🔙 目次に戻る](#index)
-
 
 ```
 LangChain
@@ -359,12 +337,7 @@ LlamaIndex
 Haystack
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ### VectorDB
-[🔙 目次に戻る](#index)
-
 
 ```
 Milvus
@@ -373,12 +346,7 @@ Pinecone
 pgvector
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ### DevOps
-[🔙 目次に戻る](#index)
-
 
 ```
 GitHub
@@ -427,6 +395,3 @@ Deployment
 ```
 
 ---
-
-[🔙 目次に戻る](#index)
-

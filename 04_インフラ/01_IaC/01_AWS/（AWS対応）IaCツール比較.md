@@ -1,26 +1,11 @@
 
 ---
 
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-- [🧩 AWS対応IaCツール比較表](#aws対応iacツール比較表)
-- [📝 各ツールの特徴・強み](#各ツールの特徴強み)
-  - [✅ Terraform](#terraform)
-  - [✅ AWS CloudFormation](#aws-cloudformation)
-  - [✅ AWS CDK（Cloud Development Kit）](#aws-cdkcloud-development-kit)
-- [🎯 選定の目安（どれを使うべきか）](#選定の目安どれを使うべきか)
-- [🧪 補足：共存も可能](#補足共存も可能)
-- [📝 推奨IaCツール(無料)](#推奨iacツール無料)
-<!-- TOC_END -->
-
 # 🚀 AWS対応IaCツール
 
 ---
 
 ## 🧩 AWS対応IaCツール比較表
-[🔙 目次に戻る](#index)
-
 
 | 項目           | Terraform                         | AWS CloudFormation    | AWS CDK                           |
 | ------------ | --------------------------------- | --------------------- | --------------------------------- |
@@ -38,57 +23,32 @@
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 📝 各ツールの特徴・強み
-[🔙 目次に戻る](#index)
-
 
 ### ✅ Terraform
-[🔙 目次に戻る](#index)
-
 
 * **クラウド横断**対応（AWS/Azure/GCPなどを1つのコードで管理）
 * 大規模環境やマルチクラウド戦略に最適
 * コミュニティが非常に活発（moduleやproviderが豊富）
 * **ステートファイル管理が重要**（S3+lockがベストプラクティス）
 
-[🔙 目次に戻る](#index)
-
-
 ### ✅ AWS CloudFormation
-[🔙 目次に戻る](#index)
-
 
 * **AWS公式のツール**で、IAMやコンソール連携が抜群
 * **変更セット（Change Set）** によるデプロイプレビュー機能が便利
 * **YAML形式**が読みやすく、AWSサービス追加対応も早い
 * スタックネストやテンプレート分割も可能だがやや複雑
 
-[🔙 目次に戻る](#index)
-
-
 ### ✅ AWS CDK（Cloud Development Kit）
-[🔙 目次に戻る](#index)
-
 
 * **プログラミング言語でインフラを記述可能（OOP/抽象化）**
-
-[🔙 目次に戻る](#index)
-
 * 条件分岐・ループ・共通化などが柔軟に行える
 * **開発者フレンドリー**：アプリとインフラを同一言語で管理可能
 * デプロイには最終的にCloudFormationが生成される
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 🎯 選定の目安（どれを使うべきか）
-[🔙 目次に戻る](#index)
-
 
 | ユースケース                                | 推奨ツール                 |
 | ------------------------------------- | --------------------- |
@@ -100,12 +60,7 @@
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 🧪 補足：共存も可能
-[🔙 目次に戻る](#index)
-
 
 * **Terraformでベースのインフラ（VPC, S3）を構築**
 * **CloudFormationまたはCDKでアプリ系リソース（Lambda, API Gatewayなど）を管理**
@@ -113,17 +68,9 @@
 など、使い分け・組み合わせもできます。
 
 ---
-
-[🔙 目次に戻る](#index)
-
 ## 📝 推奨IaCツール(無料)
-[🔙 目次に戻る](#index)
-
 
 * Terraform Code Generator from Excel(for AWS)
   - Excelで定義されたAWSインフラ構成情報(パラメータシート)から、Terraformコードを自動生成するためのツールです。
   - https://github.com/8alfalfa8/aws-terraform-code-generator
 ---
-
-[🔙 目次に戻る](#index)
-

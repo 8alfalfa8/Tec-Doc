@@ -1,34 +1,3 @@
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-- [0. 全体像（採用理由と役割分担）](#0-全体像採用理由と役割分担)
-- [1. 開発前の設計（最重要）](#1-開発前の設計最重要)
-  - [1.1 画面・機能設計](#11-画面機能設計)
-  - [1.2 コンポーネント設計方針](#12-コンポーネント設計方針)
-- [2. 環境構築（Next.js + Tailwind + shadcn/ui）](#2-環境構築nextjs-tailwind-shadcnui)
-  - [2.1 Next.js プロジェクト作成](#21-nextjs-プロジェクト作成)
-  - [2.2 Tailwind CSS 設定確認](#22-tailwind-css-設定確認)
-  - [2.3 shadcn/ui 導入](#23-shadcnui-導入)
-  - [2.4 UIコンポーネント追加](#24-uiコンポーネント追加)
-- [3. 実装手順（基本フロー）](#3-実装手順基本フロー)
-  - [3.1 ページ作成（Next.js App Router）](#31-ページ作成nextjs-app-router)
-  - [3.2 shadcn/ui + Tailwind 使用例](#32-shadcnui-tailwind-使用例)
-  - [3.3 レイアウト（Header / Sidebar）](#33-レイアウトheader-sidebar)
-- [4. 状態管理・データ取得](#4-状態管理データ取得)
-  - [4.1 Server Component / Client Component](#41-server-component-client-component)
-  - [4.2 API連携（fetch）](#42-api連携fetch)
-- [5. スタイリング指針（重要）](#5-スタイリング指針重要)
-  - [5.1 Tailwind運用ルール](#51-tailwind運用ルール)
-  - [5.2 テーマ・ダークモード](#52-テーマダークモード)
-- [6. フォーム・バリデーション（実務必須）](#6-フォームバリデーション実務必須)
-  - [6.1 React Hook Form + Zod](#61-react-hook-form-zod)
-- [7. 品質担保（CI前提）](#7-品質担保ci前提)
-  - [7.1 静的チェック](#71-静的チェック)
-  - [7.2 コンポーネント単体テスト（任意）](#72-コンポーネント単体テスト任意)
-- [8. ビルド・デプロイ](#8-ビルドデプロイ)
-- [9. 実務でのベストプラクティスまとめ](#9-実務でのベストプラクティスまとめ)
-<!-- TOC_END -->
-
 # ◆ React / Next.js + shadcn/ui + Tailwind CSS開発概要
 
 以下では、**React / Next.js + shadcn/ui + Tailwind CSS** を前提に、
@@ -38,8 +7,6 @@
 ---
 
 ## 0. 全体像（採用理由と役割分担）
-[🔙 目次に戻る](#index)
-
 
 | 技術                | 役割     | 採用理由                            |
 | ----------------- | ------ | ------------------------------- |
@@ -54,16 +21,9 @@
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 1. 開発前の設計（最重要）
-[🔙 目次に戻る](#index)
-
 
 ### 1.1 画面・機能設計
-[🔙 目次に戻る](#index)
-
 
 **最低限やるべき成果物**
 
@@ -84,12 +44,7 @@
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 1.2 コンポーネント設計方針
-[🔙 目次に戻る](#index)
-
 
 **Atomic Design を簡略化して使うのが実務向け**
 
@@ -101,21 +56,11 @@ components/
  └─ layout/      ← レイアウト
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 2. 環境構築（Next.js + Tailwind + shadcn/ui）
-[🔙 目次に戻る](#index)
-
 
 ### 2.1 Next.js プロジェクト作成
-[🔙 目次に戻る](#index)
-
 
 ```bash
 npx create-next-app@latest my-app \
@@ -139,12 +84,7 @@ src/
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 2.2 Tailwind CSS 設定確認
-[🔙 目次に戻る](#index)
-
 
 `tailwind.config.ts`
 
@@ -162,12 +102,7 @@ export default {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 2.3 shadcn/ui 導入
-[🔙 目次に戻る](#index)
-
 
 ```bash
 npx shadcn-ui@latest init
@@ -182,21 +117,13 @@ npx shadcn-ui@latest init
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 2.4 UIコンポーネント追加
-[🔙 目次に戻る](#index)
-
 
 ```bash
 npx shadcn-ui@latest add button
 npx shadcn-ui@latest add dialog
 npx shadcn-ui@latest add table
 ```
-
-[🔙 目次に戻る](#index)
-
 
 生成先：
 
@@ -207,16 +134,9 @@ components/ui/dialog.tsx
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 3. 実装手順（基本フロー）
-[🔙 目次に戻る](#index)
-
 
 ### 3.1 ページ作成（Next.js App Router）
-[🔙 目次に戻る](#index)
-
 
 ```tsx
 // src/app/users/page.tsx
@@ -231,12 +151,7 @@ export default function UsersPage() {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 3.2 shadcn/ui + Tailwind 使用例
-[🔙 目次に戻る](#index)
-
 
 ```tsx
 import { Button } from "@/components/ui/button"
@@ -255,12 +170,7 @@ Tailwindは**微調整専用**に使うのがコツ：
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 3.3 レイアウト（Header / Sidebar）
-[🔙 目次に戻る](#index)
-
 
 ```tsx
 // src/app/layout.tsx
@@ -272,25 +182,15 @@ export default function RootLayout({ children }) {
         <main className="flex-1 p-6">{children}</main>
       </body>
     </html>
-
-[🔙 目次に戻る](#index)
-
   )
 }
 ```
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 4. 状態管理・データ取得
-[🔙 目次に戻る](#index)
-
 
 ### 4.1 Server Component / Client Component
-[🔙 目次に戻る](#index)
-
 
 * **デフォルト：Server Component**
 * フォーム・モーダル：Client Component
@@ -301,12 +201,7 @@ export default function RootLayout({ children }) {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 4.2 API連携（fetch）
-[🔙 目次に戻る](#index)
-
 
 ```tsx
 const res = await fetch(`${process.env.API_URL}/users`, {
@@ -321,21 +216,11 @@ const users = await res.json()
 * SWR
   を併用するケースが多い
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 5. スタイリング指針（重要）
-[🔙 目次に戻る](#index)
-
 
 ### 5.1 Tailwind運用ルール
-[🔙 目次に戻る](#index)
-
 
 ❌ NG
 
@@ -353,12 +238,7 @@ const users = await res.json()
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 5.2 テーマ・ダークモード
-[🔙 目次に戻る](#index)
-
 
 shadcn/ui は `CSS variables` 管理
 
@@ -372,21 +252,11 @@ shadcn/ui は `CSS variables` 管理
 className="bg-primary text-primary-foreground"
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 6. フォーム・バリデーション（実務必須）
-[🔙 目次に戻る](#index)
-
 
 ### 6.1 React Hook Form + Zod
-[🔙 目次に戻る](#index)
-
 
 ```bash
 npm install react-hook-form zod @hookform/resolvers
@@ -402,19 +272,9 @@ const schema = z.object({
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
-[🔙 目次に戻る](#index)
-
-
 ## 7. 品質担保（CI前提）
-[🔙 目次に戻る](#index)
-
 
 ### 7.1 静的チェック
-[🔙 目次に戻る](#index)
-
 
 * TypeScript
 * ESLint
@@ -427,27 +287,14 @@ npm run build
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 7.2 コンポーネント単体テスト（任意）
-[🔙 目次に戻る](#index)
-
 
 * Vitest
 * Testing Library
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 8. ビルド・デプロイ
-[🔙 目次に戻る](#index)
-
 
 ```bash
 npm run build
@@ -461,12 +308,7 @@ CI/CD では：
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 9. 実務でのベストプラクティスまとめ
-[🔙 目次に戻る](#index)
-
 
 ✔ shadcn/ui を**ベースUI**にする<br>
 ✔ Tailwind は「微調整のみ」<br>
@@ -475,6 +317,3 @@ CI/CD では：
 ✔ Server Component を基本に設計
 
 ---
-
-[🔙 目次に戻る](#index)
-

@@ -1,40 +1,3 @@
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-- [1. APIテストの全体像（まず俯瞰）](#1-apiテストの全体像まず俯瞰)
-  - [1.1 APIテストの位置づけ](#11-apiテストの位置づけ)
-    - [APIテストの目的](#apiテストの目的)
-- [2. APIテスト設計（考え方）](#2-apiテスト設計考え方)
-  - [2.1 設計方針（最重要）](#21-設計方針最重要)
-  - [2.2 テスト観点一覧（チェックリスト）](#22-テスト観点一覧チェックリスト)
-    - [共通観点（全API必須）](#共通観点全api必須)
-    - [画面系API（BFF特有）](#画面系apibff特有)
-- [3. APIテスト方法（何を使うか）](#3-apiテスト方法何を使うか)
-  - [3.1 採用技術](#31-採用技術)
-- [4. 構築手順（Step by Step）](#4-構築手順step-by-step)
-  - [Step 1：テスト環境構築](#step-1テスト環境構築)
-  - [Step 2：ディレクトリ構成作成](#step-2ディレクトリ構成作成)
-  - [Step 3：TestClient 定義（conftest.py）](#step-3testclient-定義conftestpy)
-  - [Step 4：認証モック設定](#step-4認証モック設定)
-  - [Step 5：外部依存モック（重要）](#step-5外部依存モック重要)
-    - [5.1 Dependency Override](#51-dependency-override)
-  - [Step 6：APIテスト実装（例）](#step-6apiテスト実装例)
-    - [6.1 正常系](#61-正常系)
-    - [6.2 入力エラー（400）](#62-入力エラー400)
-    - [6.3 認証エラー（401）](#63-認証エラー401)
-    - [6.4 認可エラー（403）](#64-認可エラー403)
-  - [Step 7：エラーレスポンス検証](#step-7エラーレスポンス検証)
-  - [Step 8：OpenAPI 契約テスト](#step-8openapi-契約テスト)
-- [5. テスト実行](#5-テスト実行)
-- [6. CI/CD 組み込み（例）](#6-cicd-組み込み例)
-- [7. 運用ルール（実務）](#7-運用ルール実務)
-  - [7.1 テスト追加ルール](#71-テスト追加ルール)
-  - [7.2 命名規約](#72-命名規約)
-- [8. よくある失敗](#8-よくある失敗)
-- [9. 金融・公共向け追加対応](#9-金融公共向け追加対応)
-- [10. まとめ（重要ポイント）](#10-まとめ重要ポイント)
-<!-- TOC_END -->
-
 # ◆ APIテスト概要
 以下では、**FastAPI（BFF）× OpenAPI × pytest** を前提に、
 **実務（業務システム／金融・公共レベル）で通用する APIテスト**を
@@ -45,12 +8,8 @@
 ---
 
 ## 1. APIテストの全体像（まず俯瞰）
-[🔙 目次に戻る](#index)
-
 
 ### 1.1 APIテストの位置づけ
-[🔙 目次に戻る](#index)
-
 
 ```
 単体テスト（Service）
@@ -61,8 +20,6 @@ E2E（画面＋API）
 ```
 
 #### APIテストの目的
-[🔙 目次に戻る](#index)
-
 
 * API契約（OpenAPI）を守っているか
 * 認証・認可・異常系が正しく動くか
@@ -70,22 +27,9 @@ E2E（画面＋API）
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
-[🔙 目次に戻る](#index)
-
-
-[🔙 目次に戻る](#index)
-
-
 ## 2. APIテスト設計（考え方）
-[🔙 目次に戻る](#index)
-
 
 ### 2.1 設計方針（最重要）
-[🔙 目次に戻る](#index)
-
 
 | 項目    | 方針                   |
 | ----- | -------------------- |
@@ -98,16 +42,9 @@ E2E（画面＋API）
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 2.2 テスト観点一覧（チェックリスト）
-[🔙 目次に戻る](#index)
-
 
 #### 共通観点（全API必須）
-[🔙 目次に戻る](#index)
-
 
 | 観点      | 内容              |
 | ------- | --------------- |
@@ -121,35 +58,17 @@ E2E（画面＋API）
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 #### 画面系API（BFF特有）
-[🔙 目次に戻る](#index)
-
-[🔙 目次に戻る](#index)
-
-
 
 * データ過不足がない
 * 画面描画に必要な項目が揃っている
 * Null許容の扱い
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 3. APIテスト方法（何を使うか）
-[🔙 目次に戻る](#index)
-
 
 ### 3.1 採用技術
-[🔙 目次に戻る](#index)
-
 
 | 目的         | 技術                   |
 | ---------- | -------------------- |
@@ -162,19 +81,9 @@ E2E（画面＋API）
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
-[🔙 目次に戻る](#index)
-
-
 ## 4. 構築手順（Step by Step）
-[🔙 目次に戻る](#index)
-
 
 ### Step 1：テスト環境構築
-[🔙 目次に戻る](#index)
-
 
 ```bash
 pip install pytest pytest-asyncio httpx
@@ -188,12 +97,7 @@ pip install fastapi[all]
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### Step 2：ディレクトリ構成作成
-[🔙 目次に戻る](#index)
-
 
 ```text
 tests/
@@ -206,12 +110,7 @@ tests/
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### Step 3：TestClient 定義（conftest.py）
-[🔙 目次に戻る](#index)
-
 
 ```python
 import pytest
@@ -225,12 +124,7 @@ def client():
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### Step 4：認証モック設定
-[🔙 目次に戻る](#index)
-
 
 ```python
 @pytest.fixture
@@ -242,16 +136,9 @@ def auth_header():
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### Step 5：外部依存モック（重要）
-[🔙 目次に戻る](#index)
-
 
 #### 5.1 Dependency Override
-[🔙 目次に戻る](#index)
-
 
 ```python
 from app.clients.core_api import get_core_client
@@ -270,19 +157,9 @@ app.dependency_overrides[get_core_client] = override_core_client
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
-[🔙 目次に戻る](#index)
-
-
 ### Step 6：APIテスト実装（例）
-[🔙 目次に戻る](#index)
-
 
 #### 6.1 正常系
-[🔙 目次に戻る](#index)
-
 
 ```python
 def test_get_users_success(client, auth_header):
@@ -297,12 +174,7 @@ def test_get_users_success(client, auth_header):
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 #### 6.2 入力エラー（400）
-[🔙 目次に戻る](#index)
-
 
 ```python
 def test_get_users_invalid_param(client, auth_header):
@@ -316,12 +188,7 @@ def test_get_users_invalid_param(client, auth_header):
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 #### 6.3 認証エラー（401）
-[🔙 目次に戻る](#index)
-
 
 ```python
 def test_get_users_unauthorized(client):
@@ -331,18 +198,10 @@ def test_get_users_unauthorized(client):
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 #### 6.4 認可エラー（403）
-[🔙 目次に戻る](#index)
-
 
 ```python
 def test_get_users_forbidden(client, auth_header):
-
-[🔙 目次に戻る](#index)
-
     res = client.get(
         "/api/bff/v1/admin",
         headers=auth_header
@@ -352,15 +211,7 @@ def test_get_users_forbidden(client, auth_header):
 
 ---
 
-[🔙 目次に戻る](#index)
-
-[🔙 目次に戻る](#index)
-
-
-
 ### Step 7：エラーレスポンス検証
-[🔙 目次に戻る](#index)
-
 
 ```python
 def test_user_not_found(client, auth_header):
@@ -376,12 +227,7 @@ def test_user_not_found(client, auth_header):
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### Step 8：OpenAPI 契約テスト
-[🔙 目次に戻る](#index)
-
 
 ```python
 def test_openapi_schema(client):
@@ -393,12 +239,7 @@ def test_openapi_schema(client):
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 5. テスト実行
-[🔙 目次に戻る](#index)
-
 
 ```bash
 pytest -v
@@ -406,12 +247,7 @@ pytest -v
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 6. CI/CD 組み込み（例）
-[🔙 目次に戻る](#index)
-
 
 ```yaml
 - name: Run API Tests
@@ -426,16 +262,9 @@ pytest -v
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 7. 運用ルール（実務）
-[🔙 目次に戻る](#index)
-
 
 ### 7.1 テスト追加ルール
-[🔙 目次に戻る](#index)
-
 
 * API追加 → テスト必須
 * OpenAPI変更 → テスト修正
@@ -443,12 +272,7 @@ pytest -v
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 7.2 命名規約
-[🔙 目次に戻る](#index)
-
 
 ```text
 test_[HTTPメソッド]_[条件]_[期待結果]
@@ -460,17 +284,9 @@ test_[HTTPメソッド]_[条件]_[期待結果]
 test_get_users_unauthorized_401
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 8. よくある失敗
-[🔙 目次に戻る](#index)
-
 
 ❌ DB直結テスト<br>
 ❌ 正常系のみ<br>
@@ -479,12 +295,7 @@ test_get_users_unauthorized_401
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 9. 金融・公共向け追加対応
-[🔙 目次に戻る](#index)
-
 
 * 監査ログ出力テスト
 * エラー情報秘匿テスト
@@ -493,12 +304,7 @@ test_get_users_unauthorized_401
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 10. まとめ（重要ポイント）
-[🔙 目次に戻る](#index)
-
 
 ✔ APIテストは **契約テスト**<br>
 ✔ BFFでは **画面単位API** を検証<br>
@@ -507,7 +313,4 @@ test_get_users_unauthorized_401
 ✔ CIで品質を自動担保
 
 ---
-
-[🔙 目次に戻る](#index)
-
 

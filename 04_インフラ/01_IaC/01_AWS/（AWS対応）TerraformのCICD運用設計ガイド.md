@@ -1,37 +1,17 @@
 
 ---
 
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-- [🎯 目的](#目的)
-- [🏗️ 基本構成図](#基本構成図)
-- [📁 リポジトリ構成（例）](#リポジトリ構成例)
-- [🧪 GitHub Actions でのCI/CD構成例](#github-actions-でのcicd構成例)
-- [🔐 セキュリティとガバナンスの考慮事項](#セキュリティとガバナンスの考慮事項)
-- [✅ 本番運用でのベストプラクティス](#本番運用でのベストプラクティス)
-- [📦 補足：CodePipeline/AWS環境で動かす場合](#補足codepipelineaws環境で動かす場合)
-- [📝 推奨IaCツール(無料)](#推奨iacツール無料)
-<!-- TOC_END -->
-
 # 🚀 TerraformのCI/CD運用設計ガイド（AWS対応）
 
 ---
 
 ## 🎯 目的
-[🔙 目次に戻る](#index)
-
 
 TerraformをCI/CDパイプラインに組み込み、**インフラコードの品質・一貫性・自動反映**を実現すること。
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 🏗️ 基本構成図
-[🔙 目次に戻る](#index)
-
 
 ```
 GitHub（main/devブランチ）
@@ -47,12 +27,7 @@ AWS環境へ反映（S3, EC2, etc.）
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 📁 リポジトリ構成（例）
-[🔙 目次に戻る](#index)
-
 
 ```
 infra/
@@ -81,12 +56,7 @@ infra/
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 🧪 GitHub Actions でのCI/CD構成例
-[🔙 目次に戻る](#index)
-
 
 ```yaml
 # .github/workflows/terraform.yml
@@ -141,12 +111,7 @@ jobs:
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 🔐 セキュリティとガバナンスの考慮事項
-[🔙 目次に戻る](#index)
-
 
 | 項目      | 対策案                                    |
 | ------- | -------------------------------------- |
@@ -157,12 +122,7 @@ jobs:
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## ✅ 本番運用でのベストプラクティス
-[🔙 目次に戻る](#index)
-
 
 | 項目          | 内容                                         |
 | ----------- | ------------------------------------------ |
@@ -173,12 +133,7 @@ jobs:
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 📦 補足：CodePipeline/AWS環境で動かす場合
-[🔙 目次に戻る](#index)
-
 
 GitHub Actions以外に、以下のような構成も可：
 
@@ -195,18 +150,10 @@ S3（tfstate）＋DynamoDB（lock）
 ```
 
 ---
-
-[🔙 目次に戻る](#index)
-
 ## 📝 推奨IaCツール(無料)
-[🔙 目次に戻る](#index)
-
 
 * Terraform Code Generator from Excel(for AWS)
   - Excelで定義されたAWSインフラ構成情報(パラメータシート)から、Terraformコードを自動生成するためのツールです。
   - https://github.com/8alfalfa8/aws-terraform-code-generator
 ---
-
-[🔙 目次に戻る](#index)
-
 

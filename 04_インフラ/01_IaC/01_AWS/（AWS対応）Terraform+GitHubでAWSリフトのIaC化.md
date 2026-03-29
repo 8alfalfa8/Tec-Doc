@@ -1,29 +1,6 @@
 
 ---
 
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-  - [🔧 プロジェクト概要](#プロジェクト概要)
-- [🚀 フェーズ別展開と内容](#フェーズ別展開と内容)
-  - [フェーズ1：Terraform最小構成の実装（1週間）](#フェーズ1terraform最小構成の実装1週間)
-    - [✅ 構成要素と設定](#構成要素と設定)
-    - [Terraformサンプル（抜粋）](#terraformサンプル抜粋)
-  - [フェーズ2：監査・セキュリティ対応（2週間）](#フェーズ2監査セキュリティ対応2週間)
-    - [✅ 実装内容](#実装内容)
-    - [Terraformサンプル（CloudTrail）](#terraformサンプルcloudtrail)
-  - [フェーズ3：本番環境の全体設計・構築（2ヶ月）](#フェーズ3本番環境の全体設計構築2ヶ月)
-    - [✅ サービス別構成内容](#サービス別構成内容)
-    - [モジュール構成（Terraform）](#モジュール構成terraform)
-    - [RDS（Oracle）構成詳細](#rdsoracle構成詳細)
-    - [Terraformサンプル（RDS Oracle）](#terraformサンプルrds-oracle)
-- [🧪 テストとCI/CD](#テストとcicd)
-- [🏁 成果とメリット](#成果とメリット)
-- [今後の展望](#今後の展望)
-- [👥 体制・役割分担](#体制役割分担)
-- [📝 推奨IaCツール(無料)](#推奨iacツール無料)
-<!-- TOC_END -->
-
 # 🚀【実践記】Terraform × GitHubでAWS移行を完全IaC化した記録
 
 〜2人チームで3ヶ月、Oracle RDS含む60台本番構築〜
@@ -31,8 +8,6 @@
 ---
 
 ### 🔧 プロジェクト概要
-[🔙 目次に戻る](#index)
-
 
 * **目的**：オンプレ環境からAWSへ移行（全リソースをIaC化）
 * **規模**：サーバー台数60台（EC2＋ECS/Fargate）
@@ -43,20 +18,11 @@
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 🚀 フェーズ別展開と内容
-[🔙 目次に戻る](#index)
-
 
 ### フェーズ1：Terraform最小構成の実装（1週間）
-[🔙 目次に戻る](#index)
-
 
 #### ✅ 構成要素と設定
-[🔙 目次に戻る](#index)
-
 
 | 項目             | 内容                         |
 | -------------- | -------------------------- |
@@ -67,12 +33,7 @@
 | EC2            | Amazon Linux 2、テスト用SSH許可   |
 | SG             | SSH (22)、HTTP(80)のみ許可      |
 
-[🔙 目次に戻る](#index)
-
-
 #### Terraformサンプル（抜粋）
-[🔙 目次に戻る](#index)
-
 
 ```hcl
 resource "aws_vpc" "main" {
@@ -96,21 +57,11 @@ resource "aws_subnet" "private" {
 }
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### フェーズ2：監査・セキュリティ対応（2週間）
-[🔙 目次に戻る](#index)
-
 
 #### ✅ 実装内容
-[🔙 目次に戻る](#index)
-
 
 | 項目         | 内容                                   |
 | ---------- | ------------------------------------ |
@@ -120,12 +71,7 @@ resource "aws_subnet" "private" {
 | KMS        | RDS/EBS/S3全て暗号化対応                    |
 | IAM        | ECS Task用Role、EC2 Instance Profile設定 |
 
-[🔙 目次に戻る](#index)
-
-
 #### Terraformサンプル（CloudTrail）
-[🔙 目次に戻る](#index)
-
 
 ```hcl
 resource "aws_cloudtrail" "main" {
@@ -141,21 +87,11 @@ resource "aws_cloudtrail" "main" {
 }
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### フェーズ3：本番環境の全体設計・構築（2ヶ月）
-[🔙 目次に戻る](#index)
-
 
 #### ✅ サービス別構成内容
-[🔙 目次に戻る](#index)
-
 
 | サービス            | 配置サブネット | 内容                       |
 | --------------- | ------- | ------------------------ |
@@ -167,12 +103,7 @@ resource "aws_cloudtrail" "main" {
 | S3（ログ保管）        | プライベート  | バケットポリシーで制限、KMS暗号化       |
 | Secrets Manager | プライベート  | RDS・ECSパスワード等を管理         |
 
-[🔙 目次に戻る](#index)
-
-
 #### モジュール構成（Terraform）
-[🔙 目次に戻る](#index)
-
 
 ```
 modules/
@@ -187,12 +118,7 @@ modules/
 ├── kms/
 ```
 
-[🔙 目次に戻る](#index)
-
-
 #### RDS（Oracle）構成詳細
-[🔙 目次に戻る](#index)
-
 
 | 項目        | 内容                                    |
 | --------- | ------------------------------------- |
@@ -204,15 +130,7 @@ modules/
 | モニタリング    | Enhanced Monitoring + CloudWatch Logs |
 | バックアップ保持  | 7日間、自動スナップショットあり                      |
 
-[🔙 目次に戻る](#index)
-
-[🔙 目次に戻る](#index)
-
-
-
 #### Terraformサンプル（RDS Oracle）
-[🔙 目次に戻る](#index)
-
 
 ```hcl
 resource "aws_db_instance" "oracle" {
@@ -226,9 +144,6 @@ resource "aws_db_instance" "oracle" {
   username          = "admin"
   password          = var.db_password
   multi_az          = true
-
-[🔙 目次に戻る](#index)
-
   vpc_security_group_ids = [aws_security_group.rds.id]
   db_subnet_group_name   = aws_db_subnet_group.main.name
   backup_retention_period = 7
@@ -238,12 +153,7 @@ resource "aws_db_instance" "oracle" {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 🧪 テストとCI/CD
-[🔙 目次に戻る](#index)
-
 
 * **GitHub Actions**でPRベースのCIを構成：
 
@@ -253,12 +163,7 @@ resource "aws_db_instance" "oracle" {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 🏁 成果とメリット
-[🔙 目次に戻る](#index)
-
 
 | 項目     | 内容                               |
 | ------ | -------------------------------- |
@@ -269,13 +174,7 @@ resource "aws_db_instance" "oracle" {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 今後の展望
-
-[🔙 目次に戻る](#index)
-
 * インフラ詳細設計書⇒IaC自動生成
 * Terraform CloudによるState管理の中央集約
 * Sentinelによるポリシー制御（Policy as Code）
@@ -284,12 +183,7 @@ resource "aws_db_instance" "oracle" {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 👥 体制・役割分担
-[🔙 目次に戻る](#index)
-
 
 | メンバー      | 役割                                |
 | --------- | --------------------------------- |
@@ -297,18 +191,10 @@ resource "aws_db_instance" "oracle" {
 | メンバーB     | AWSアーキテクト、Terraformレビュー・検証、RDS管理者 |
 
 ---
-
-[🔙 目次に戻る](#index)
-
 ## 📝 推奨IaCツール(無料)
-[🔙 目次に戻る](#index)
-
 
 * Terraform Code Generator from Excel(for AWS)
   - Excelで定義されたAWSインフラ構成情報(パラメータシート)から、Terraformコードを自動生成するためのツールです。
   - https://github.com/8alfalfa8/aws-terraform-code-generator
 ---
-
-[🔙 目次に戻る](#index)
-
 

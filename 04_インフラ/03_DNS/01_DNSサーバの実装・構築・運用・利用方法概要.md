@@ -1,54 +1,3 @@
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-- [1. DNSの基礎整理（設計前提）](#1-dnsの基礎整理設計前提)
-  - [1.1 DNSの役割](#11-dnsの役割)
-  - [1.2 DNSサーバ種別（重要）](#12-dnsサーバ種別重要)
-- [2. Linux DNSサーバ主要実装方式](#2-linux-dnsサーバ主要実装方式)
-  - [2.1 代表的DNSサーバソフト](#21-代表的dnsサーバソフト)
-- [3. DNSサーバ構成設計（重要）](#3-dnsサーバ構成設計重要)
-  - [3.1 標準構成（推奨）](#31-標準構成推奨)
-    - [ポイント](#ポイント)
-  - [3.2 Split DNS（内部/外部分離）](#32-split-dns内部外部分離)
-- [4. DNSサーバ構築（BIND9）](#4-dnsサーバ構築bind9)
-  - [4.1 インストール（RHEL / Ubuntu）](#41-インストールrhel-ubuntu)
-    - [RHEL系](#rhel系)
-    - [Ubuntu](#ubuntu)
-  - [4.2 基本設定ファイル構成](#42-基本設定ファイル構成)
-  - [4.3 基本的な設定例](#43-基本的な設定例)
-    - [named.conf（最小例）](#namedconf最小例)
-    - [named.conf.options (基本的なオプション設定)](#namedconfoptions-基本的なオプション設定)
-    - [named.conf (DNSキャッシュサーバーとしての設定)](#namedconf-dnsキャッシュサーバーとしての設定)
-  - [4.4 ゾーンファイル例](#44-ゾーンファイル例)
-    - [設定例１](#設定例１)
-    - [設定例２](#設定例２)
-  - [4.5 逆引きゾーンファイル](#45-逆引きゾーンファイル)
-  - [4.6 起動・確認](#46-起動確認)
-- [5. キャッシュDNS（Unbound）構築](#5-キャッシュdnsunbound構築)
-  - [5.1 インストール](#51-インストール)
-  - [5.2 設定例](#52-設定例)
-- [6. DNSセキュリティ設計（必須）](#6-dnsセキュリティ設計必須)
-  - [6.1 必須対策](#61-必須対策)
-  - [6.2 DNSSEC（概要）](#62-dnssec概要)
-  - [6.3 基本的なセキュリティ対策設定例](#63-基本的なセキュリティ対策設定例)
-  - [6.4 ACL設定](#64-acl設定)
-- [7. 運用設計（非常に重要）](#7-運用設計非常に重要)
-  - [7.1 コマンドラインツール](#71-コマンドラインツール)
-  - [7.2 ログ管理](#72-ログ管理)
-  - [7.3 ゾーン転送設定](#73-ゾーン転送設定)
-  - [7.4 運用タスク一覧](#74-運用タスク一覧)
-  - [7.5 変更手順（例）](#75-変更手順例)
-  - [7.6 監視とメンテナンス](#76-監視とメンテナンス)
-    - [監視項目（Zabbix等）](#監視項目zabbix等)
-    - [バックアップとリストア](#バックアップとリストア)
-- [8. DNS利用（クライアント側）](#8-dns利用クライアント側)
-  - [8.1 /etc/resolv.conf](#81-etcresolvconf)
-  - [8.2 動作確認](#82-動作確認)
-- [9. 高可用性設計](#9-高可用性設計)
-- [10. 金融・公共向けDNSチェックリスト（抜粋）](#10-金融公共向けdnsチェックリスト抜粋)
-- [11. まとめ（実務視点）](#11-まとめ実務視点)
-<!-- TOC_END -->
-
 # ◆ DNS概要
 
 以下では **Linux環境におけるDNSサーバの実装・構築・運用・利用方法** を、
@@ -58,12 +7,8 @@
 ---
 
 ## 1. DNSの基礎整理（設計前提）
-[🔙 目次に戻る](#index)
-
 
 ### 1.1 DNSの役割
-[🔙 目次に戻る](#index)
-
 
 - ドメイン名とIPアドレスの相互変換
 - 階層的な分散データベースシステム
@@ -81,12 +26,7 @@ DNS（Domain Name System）は以下を担います。
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 1.2 DNSサーバ種別（重要）
-[🔙 目次に戻る](#index)
-
 
 | 種別       | 役割      | 主な用途     |
 | -------- | ------- | -------- |
@@ -98,21 +38,11 @@ DNS（Domain Name System）は以下を担います。
 
 👉 **実務では「権威DNS」と「キャッシュDNS」を分離**するのが原則
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 2. Linux DNSサーバ主要実装方式
-[🔙 目次に戻る](#index)
-
 
 ### 2.1 代表的DNSサーバソフト
-[🔙 目次に戻る](#index)
-
 
 | ソフト          | 特徴           | 推奨用途       |
 | ------------ | ------------ | ---------- |
@@ -129,19 +59,9 @@ DNS（Domain Name System）は以下を担います。
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
-[🔙 目次に戻る](#index)
-
-
 ## 3. DNSサーバ構成設計（重要）
-[🔙 目次に戻る](#index)
-
 
 ### 3.1 標準構成（推奨）
-[🔙 目次に戻る](#index)
-
 
 ```
 [Client]
@@ -154,8 +74,6 @@ DNS（Domain Name System）は以下を担います。
 ```
 
 #### ポイント
-[🔙 目次に戻る](#index)
-
 
 * キャッシュDNSのみをクライアントに公開
 * 権威DNSは直接参照させない
@@ -163,42 +81,22 @@ DNS（Domain Name System）は以下を担います。
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
-[🔙 目次に戻る](#index)
-
-
 ### 3.2 Split DNS（内部/外部分離）
-[🔙 目次に戻る](#index)
-
 
 | 領域    | 内容                   |
 | ----- | -------------------- |
 | 内部DNS | intranet.example.com |
-
-[🔙 目次に戻る](#index)
-
 | 外部DNS | example.com          |
 
 **金融・公共では必須**
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 4. DNSサーバ構築（BIND9）
-[🔙 目次に戻る](#index)
-
 
 ### 4.1 インストール（RHEL / Ubuntu）
-[🔙 目次に戻る](#index)
-
 
 #### RHEL系
-[🔙 目次に戻る](#index)
-
 
 ```bash
 dnf install -y bind bind-utils
@@ -208,12 +106,7 @@ dnf install -y bind bind-utils
 
 ```
 
-[🔙 目次に戻る](#index)
-
-
 #### Ubuntu
-[🔙 目次に戻る](#index)
-
 
 ```bash
 sudo apt update
@@ -224,17 +117,9 @@ sudo apt install -y bind9 dnsutils
 #sudo apt install bind9 bind9-utils bind9-doc
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 4.2 基本設定ファイル構成
-[🔙 目次に戻る](#index)
-
 
 ```
 /etc/bind/
@@ -255,17 +140,9 @@ sudo apt install -y bind9 dnsutils
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 4.3 基本的な設定例
-[🔙 目次に戻る](#index)
-
 
 #### named.conf（最小例）
-
-[🔙 目次に戻る](#index)
-
 ```conf
 options {
     directory "/var/named";
@@ -280,12 +157,7 @@ zone "example.com" IN {
 };
 ```
 
-[🔙 目次に戻る](#index)
-
-
 #### named.conf.options (基本的なオプション設定)
-[🔙 目次に戻る](#index)
-
 
 ```bind
 options {
@@ -314,12 +186,7 @@ options {
 };
 ```
 
-[🔙 目次に戻る](#index)
-
-
 #### named.conf (DNSキャッシュサーバーとしての設定)
-[🔙 目次に戻る](#index)
-
 
 ```bind
 options {
@@ -334,25 +201,15 @@ options {
     dnssec-enable yes;
     dnssec-validation yes;
     auth-nxdomain no;
-
-[🔙 目次に戻る](#index)
-
 };
 ```
 
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 4.4 ゾーンファイル例
-[🔙 目次に戻る](#index)
-
 
 #### 設定例１
-[🔙 目次に戻る](#index)
-
 
 ```zone
 $TTL 3600
@@ -371,12 +228,7 @@ ns2 IN A 192.168.1.11
 www IN A 192.168.1.100
 ```
 
-[🔙 目次に戻る](#index)
-
-
 #### 設定例２
-[🔙 目次に戻る](#index)
-
 
 ```zone
 ; /etc/bind/zones/db.example.com
@@ -406,17 +258,9 @@ mail    IN      A       192.168.1.101
 ftp     IN      CNAME   www.example.com.
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 4.5 逆引きゾーンファイル
-[🔙 目次に戻る](#index)
-
 
 ```zone
 ; /etc/bind/zones/db.192.168.1
@@ -424,9 +268,6 @@ $TTL    86400
 @       IN      SOA     ns1.example.com. admin.example.com. (
                         2024010101
                         3600
-
-[🔙 目次に戻る](#index)
-
                         1800
                         604800
                         86400 )
@@ -444,12 +285,7 @@ $TTL    86400
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 4.6 起動・確認
-[🔙 目次に戻る](#index)
-
 
 ```bash
 systemctl enable named
@@ -463,16 +299,9 @@ named-checkzone example.com /var/named/example.com.zone
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 5. キャッシュDNS（Unbound）構築
-[🔙 目次に戻る](#index)
-
 
 ### 5.1 インストール
-[🔙 目次に戻る](#index)
-
 
 ```bash
 dnf install -y unbound
@@ -480,12 +309,7 @@ dnf install -y unbound
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 5.2 設定例
-[🔙 目次に戻る](#index)
-
 
 ```conf
 server:
@@ -497,21 +321,11 @@ server:
   prefetch: yes
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 6. DNSセキュリティ設計（必須）
-[🔙 目次に戻る](#index)
-
 
 ### 6.1 必須対策
-[🔙 目次に戻る](#index)
-
 
 | 項目         | 内容              |
 | ---------- | --------------- |
@@ -524,12 +338,7 @@ server:
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 6.2 DNSSEC（概要）
-[🔙 目次に戻る](#index)
-
 
 | 項目    | 内容     |
 | ----- | ------ |
@@ -542,13 +351,7 @@ server:
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 6.3 基本的なセキュリティ対策設定例
-
-[🔙 目次に戻る](#index)
-
 ```bind
 options {
     // 再帰問い合わせの制限
@@ -574,22 +377,13 @@ options {
 ```
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 6.4 ACL設定
-
-[🔙 目次に戻る](#index)
-
 ```bind
 // ACL定義
 acl trusted-nets {
     192.168.1.0/24;
     10.0.0.0/8;
 };
-
-[🔙 目次に戻る](#index)
-
 
 acl dns-servers {
     192.168.1.10;
@@ -599,17 +393,9 @@ acl dns-servers {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 7. 運用設計（非常に重要）
-[🔙 目次に戻る](#index)
-
 
 ### 7.1 コマンドラインツール
-
-[🔙 目次に戻る](#index)
-
 ```bash
 # DNS設定のテスト
 nslookup example.com
@@ -628,13 +414,7 @@ rndc stats
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 7.2 ログ管理
-
-[🔙 目次に戻る](#index)
-
 ```bash
 # BINDのログ設定 (named.conf)
 logging {
@@ -656,13 +436,7 @@ journalctl -u named -f
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 7.3 ゾーン転送設定
-
-[🔙 目次に戻る](#index)
-
 ```bind
 // マスターサーバー設定
 zone "example.com" {
@@ -682,12 +456,7 @@ zone "example.com" {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 7.4 運用タスク一覧
-[🔙 目次に戻る](#index)
-
 
 | タスク    | 内容           |
 | ------ | ------------ |
@@ -700,12 +469,7 @@ zone "example.com" {
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 7.5 変更手順（例）
-[🔙 目次に戻る](#index)
-
 
 1. TTLを事前に短縮
 2. レコード追加
@@ -720,16 +484,9 @@ rndc reload example.com
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 7.6 監視とメンテナンス
-[🔙 目次に戻る](#index)
-
 
 #### 監視項目（Zabbix等）
-[🔙 目次に戻る](#index)
-
 
 | 項目        | 指標        |
 | --------- | --------- |
@@ -756,16 +513,7 @@ cat /var/cache/bind/named_dump.db | head -50
 ps aux | grep named
 ```
 
-[🔙 目次に戻る](#index)
-
-
 #### バックアップとリストア
-
-[🔙 目次に戻る](#index)
-
-
-[🔙 目次に戻る](#index)
-
 ```bash
 # 設定ファイルのバックアップ
 sudo tar czf /backup/bind-config-$(date +%Y%m%d).tar.gz /etc/bind/
@@ -779,22 +527,12 @@ BACKUP_DIR="/backup/bind"
 DATE=$(date +%Y%m%d)
 tar czf "$BACKUP_DIR/bind-full-$DATE.tar.gz" /etc/bind /var/cache/bind
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +30 -delete
-
-[🔙 目次に戻る](#index)
-
 ```
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 8. DNS利用（クライアント側）
-[🔙 目次に戻る](#index)
-
 
 ### 8.1 /etc/resolv.conf
-[🔙 目次に戻る](#index)
-
 
 ```conf
 nameserver 192.168.1.20
@@ -804,29 +542,16 @@ search example.com
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ### 8.2 動作確認
-[🔙 目次に戻る](#index)
-
 
 ```bash
 dig www.example.com
 nslookup www.example.com
 ```
 
-[🔙 目次に戻る](#index)
-
-
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 9. 高可用性設計
-[🔙 目次に戻る](#index)
-
 
 | 方式        | 内容         |
 | --------- | ---------- |
@@ -837,12 +562,7 @@ nslookup www.example.com
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 10. 金融・公共向けDNSチェックリスト（抜粋）
-[🔙 目次に戻る](#index)
-
 
 * [ ] 権威/キャッシュ分離
 * [ ] 再帰制御あり
@@ -854,12 +574,7 @@ nslookup www.example.com
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 11. まとめ（実務視点）
-[🔙 目次に戻る](#index)
-
 
 * DNSは**インフラの中核**
 * 「動く」より「**安全・運用できる**」が重要
@@ -868,6 +583,3 @@ nslookup www.example.com
 * BIND + Unbound構成が最も無難
 
 ---
-
-[🔙 目次に戻る](#index)
-

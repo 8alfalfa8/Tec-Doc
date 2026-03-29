@@ -1,15 +1,3 @@
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-- [閲覧準備：Markdown Viewer のインストール](#閲覧準備markdown-viewer-のインストール)
-  - [1. インストール](#1-インストール)
-  - [2. ローカルファイルへのアクセス許可（必須）](#2-ローカルファイルへのアクセス許可必須)
-  - [3. 図解（Mermaid）と数式（LaTeX）の有効化](#3-図解mermaidと数式latexの有効化)
-- [📄 ライセンス](#ライセンス)
-- [📬 利用希望](#利用希望)
-- [プロジェクト構成](#プロジェクト構成)
-<!-- TOC_END -->
-
 # 開発資料 ＆ 技術情報 ＆ 実務メモ（8alfalfa8/Tec-Doc）
 
 本リポジトリは、8alfalfa8 により作成された文書・資料を含んでいます。
@@ -17,60 +5,35 @@
 ---
 
 ## 閲覧準備：Markdown Viewer のインストール
-[🔙 目次に戻る](#index)
-
 
 本リポジトリのドキュメント（Markdown記法）をブラウザで正しく閲覧し、図解（Mermaid）を表示させるために、ブラウザ拡張機能 **「Markdown Viewer」** のインストールと設定を推奨しています。
 
 ### 1. インストール
-
-[🔙 目次に戻る](#index)
-
 お使いのブラウザに合わせて、以下のリンクからインストールしてください。
 
 * **Chrome / Edge**: [Markdown Viewer (Chrome Web Store)](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcedbflnpeebnljnphakjden)
 * **Firefox**: [Markdown Viewer (Firefox Add-ons)](https://addons.mozilla.org/en-US/firefox/addon/markdown-viewer/)
 
-[🔙 目次に戻る](#index)
-
-
 ### 2. ローカルファイルへのアクセス許可（必須）
-
-[🔙 目次に戻る](#index)
-
 PC上のファイルをブラウザで開くために、以下の設定を行ってください。
 
 1. ブラウザの拡張機能アイコン（パズルマーク）から **[Markdown Viewer]** > **[詳細]**（または拡張機能の管理）を開きます。
 2. **「ファイルの URL へのアクセスを許可する」** を **ON** にします。
 
-[🔙 目次に戻る](#index)
-
-
 ### 3. 図解（Mermaid）と数式（LaTeX）の有効化
-
-[🔙 目次に戻る](#index)
-
 ドキュメント内のチャートを表示するために必要です。
 
 1. Markdown Viewer のオプション（⚙アイコン）を開きます。
 2. 左メニューの **[Compiler]** を選択します。
 3. 以下の2項目にチェックを入れてください。
    - **[Mermaid]**: チャートや図解を表示するために必要です。
-
-[🔙 目次に戻る](#index)
-
    - **[MathJax]**: $E=mc^2$ などの数式（LaTeX）を表示するために必要です。
 
 設定完了後、この `README.md` ファイルをブラウザにドラッグ＆ドロップすることで、整形されたレイアウトで閲覧可能になります。
 
 ---
 
-[🔙 目次に戻る](#index)
-
-
 ## 📄 ライセンス
-[🔙 目次に戻る](#index)
-
 
 このリポジトリの内容は [CC BY-NC-ND 4.0 ライセンス](https://creativecommons.org/licenses/by-nc-nd/4.0/) のもとで提供されています。
 
@@ -78,12 +41,7 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 - ❌ 商用利用禁止
 - ❌ 改変・二次配布禁止
 
-[🔙 目次に戻る](#index)
-
-
 ## 📬 利用希望
-[🔙 目次に戻る](#index)
-
 
 商用利用や改変等を希望する場合は、著作権者（8alfalfa8）までご連絡ください。
 

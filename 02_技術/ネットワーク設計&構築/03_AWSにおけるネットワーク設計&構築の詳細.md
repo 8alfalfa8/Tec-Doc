@@ -1,14 +1,3 @@
-<!-- TOC_START -->
-<a id="index"></a>📖 目次
-
-- [A. 事前準備](#a-事前準備)
-- [B. VPC とサブネット作成（例）](#b-vpc-とサブネット作成例)
-- [C. セキュリティ設定](#c-セキュリティ設定)
-- [D. プライベート接続（オンプレ→AWS）](#d-プライベート接続オンプレaws)
-- [E. サービス接続・最適化](#e-サービス接続最適化)
-- [F. 監視・ログ・運用設定](#f-監視ログ運用設定)
-<!-- TOC_END -->
-
 # ◆ AWS におけるネットワーク設計と構築 — タスク／成果物／構築手順（詳解）
 
 以下は、企業規模のクラウド移行／新規構築プロジェクトでの**ネットワーク（VPC〜オンプレ接続〜セキュリティ）を設計・実装する際の実務フロー**です。要件定義から運用移行までの典型的なタスク、作成すべき成果物（納品物）、そして構築手順（手順書に落とすべき具体手順）を段階的にまとめます。最重要ポイントには公式ドキュメントへの参照を付けています。
@@ -93,19 +82,12 @@
 > 以下は IaC（Terraform） を使う前提での順序。手順書は「目的→前提条件→コマンド／パラメータ→検証方法」を明確に。
 
 ## A. 事前準備
-[🔙 目次に戻る](#index)
-
 
 1. AWS アカウント／リージョンの確認、必要な IAM ロール作成（CloudFormation / Terraform 実行用）
 2. 変数定義（CIDR、AZ、タグ、環境名、運用担当）を YAML/TFVars に記載
 3. 構築メンバーとロール（実行者、レビューア、承認者）を決定
 
-[🔙 目次に戻る](#index)
-
-
 ## B. VPC とサブネット作成（例）
-[🔙 目次に戻る](#index)
-
 
 1. Terraform: `vpc` モジュールを適用 — VPC 作成（例: 10.0.0.0/16）
 2. Public subnet（各 AZ に 1 個以上）を作成（例: 10.0.0.0/24, 10.0.1.0/24）
@@ -117,12 +99,7 @@
 
 **検証**：各サブネット内の EC2 から外部への疎通確認（curl、dig）、パブリックIP取得の確認
 
-[🔙 目次に戻る](#index)
-
-
 ## C. セキュリティ設定
-[🔙 目次に戻る](#index)
-
 
 1. Security Groups のテンプレート化（Web, App, DB）— 最小権限で作成
 
@@ -133,12 +110,7 @@
 
 **検証**：ポートスキャン（内部から）、許可/拒否のログ確認（Flow Logs）
 
-[🔙 目次に戻る](#index)
-
-
 ## D. プライベート接続（オンプレ→AWS）
-[🔙 目次に戻る](#index)
-
 
 1. 要件に応じて選定：**Direct Connect（専用線）** or **Site-to-Site VPN（IPsec）**
 
@@ -149,12 +121,7 @@
 
 **検証**：BGP セッション確立、経路伝播確認、帯域測定
 
-[🔙 目次に戻る](#index)
-
-
 ## E. サービス接続・最適化
-[🔙 目次に戻る](#index)
-
 
 1. VPC Endpoint（Interface / Gateway）を用いて S3、DynamoDB、ECR などへのプライベートアクセスを作成（インターネット経由を避ける）
 2. PrivateLink を使って SaaS / パートナー接続を設計（必要に応じて）。Transit Gateway と PrivateLink の使い分けを明確に。([Amazon Web Services, Inc.][5])
@@ -162,12 +129,7 @@
 
 **検証**：エンドポイント経由でのアクセス確認、DNS 解決の検証
 
-[🔙 目次に戻る](#index)
-
-
 ## F. 監視・ログ・運用設定
-[🔙 目次に戻る](#index)
-
 
 1. VPC Flow Logs、CloudWatch アラーム、GuardDuty、Network Access Analyzer を有効にする（不正アクセス検知・調査用）。([AWSドキュメント][2])
 2. 定期的なネットワーク構成の自動評価（AWS Config ルール等）
@@ -266,7 +228,4 @@ resource "aws_route_table_association" "rta_public_a" {
 [6]: https://docs.aws.amazon.com/wellarchitected/latest/framework/perf-networking.html?utm_source=chatgpt.com "Networking and content delivery - AWS Well-Architected ..."
 [7]: https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-site-to-site-vpn.html?utm_source=chatgpt.com "AWS Direct Connect + AWS Site-to-Site VPN"
 [8]: https://docs.aws.amazon.com/whitepapers/latest/aws-best-practices-ddos-resiliency/security-groups-and-network-acls-bp5.html?utm_source=chatgpt.com "Security groups and network ACLs (BP5)"
-
-[🔙 目次に戻る](#index)
-
 
