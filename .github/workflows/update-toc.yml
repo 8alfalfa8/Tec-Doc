@@ -1,0 +1,75 @@
+name: Update Table of Contents
+
+on:
+  push:
+    paths:
+      - '**.md'
+      - '**.markdown'
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+    inputs:
+      heading_level:
+        description: '見出しレベル（例: "##" または "2,4"）'
+        required: false
+        default: '##'
+        type: string
+      target_pattern:
+        description: '対象ファイルパターン'
+        required: false
+        default: '**/*.md'
+        type: string
+
+jobs:
+  update-toc:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: |
+            **/*.md
+            **/*.markdown
+      
+      - name: Update TOC
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          INPUT_HEADING_LEVEL: ${{ inputs.heading_level || '##' }}
+          INPUT_TARGET_PATTERN: ${{ inputs.target_pattern || '**/*.md' }}
+          INPUT_EXCLUDE_PATTERN: ${{ vars.TOC_EXCLUDE_PATTERN || '' }}
+          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          python .github/scripts/update-toc.py
+      
+      - name: Commit and push changes
+        if: success() && steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          # 変更があった場合のみコミット
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .
+            git commit -m "docs: update table of contents [skip ci]"
+            git push
+            echo "✅ Changes committed and pushed"
+          else
+            echo "ℹ️ No changes to commit"
+          fi
