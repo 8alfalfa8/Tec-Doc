@@ -1,0 +1,45 @@
+name: Update Markdown TOC
+
+on:
+  push:
+    paths:
+      - '**.md'
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  update-toc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyYAML
+
+      - name: Update TOC for Markdown files
+        env:
+          HEADING_LEVEL: ${{ vars.HEADING_LEVEL }}
+        run: python .github/scripts/update_markdown_toc.py
+
+      - name: Commit and push changes
+        if: env.UPDATED == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add '*.md'
+          git diff --staged --quiet || git commit -m "docs: update markdown table of contents"
+          git push
