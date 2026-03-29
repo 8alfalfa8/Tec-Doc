@@ -4,9 +4,17 @@
 
 ---
 
-## 閲覧準備：Markdown Viewer のインストール
+<a id="index"></a>
+## 📖 目次
 
-本リポジトリのドキュメント（Markdown記法）をブラウザで正しく閲覧し、図解（Mermaid）を表示させるために、ブラウザ拡張機能 **「Markdown Viewer」** のインストールと設定を推奨しています。
+- [閲覧準備：Markdown Viewer のインストール](#閲覧準備-markdown-viewer-のインストール)
+- [📄 ライセンス](#ライセンス)
+- [📬 利用希望](#利用希望)
+- [プロジェクト構成](#プロジェクト構成)
+
+[🔙 目次に戻る](#index)
+
+## 閲覧準備：Markdown Viewer のインストール
 
 ### 1. インストール
 お使いのブラウザに合わせて、以下のリンクからインストールしてください。
@@ -33,24 +41,24 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 
 ---
 
-## 📄 ライセンス
+[🔙 目次に戻る](#index)
 
-このリポジトリの内容は [CC BY-NC-ND 4.0 ライセンス](https://creativecommons.org/licenses/by-nc-nd/4.0/) のもとで提供されています。
+## 📄 ライセンス
 
 - ✅ 著作表示すれば転載可
 - ❌ 商用利用禁止
 - ❌ 改変・二次配布禁止
 
-## 📬 利用希望
+[🔙 目次に戻る](#index)
 
-商用利用や改変等を希望する場合は、著作権者（8alfalfa8）までご連絡ください。
+## 📬 利用希望
 
 ---
 
 <!-- START_TREE -->
+
+[🔙 目次に戻る](#index)
 ## プロジェクト構成  
-├── 01_開発/  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 01_企画/  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [01_企画工程成果物一覧.md](01_%E9%96%8B%E7%99%BA/01_%E4%BC%81%E7%94%BB/01_%E4%BC%81%E7%94%BB%E5%B7%A5%E7%A8%8B%E6%88%90%E6%9E%9C%E7%89%A9%E4%B8%80%E8%A6%A7.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [02_ロードマップの設定.md](01_%E9%96%8B%E7%99%BA/01_%E4%BC%81%E7%94%BB/02_%E3%83%AD%E3%83%BC%E3%83%89%E3%83%9E%E3%83%83%E3%83%97%E3%81%AE%E8%A8%AD%E5%AE%9A.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [03_スマートスケジュールの設定.md](01_%E9%96%8B%E7%99%BA/01_%E4%BC%81%E7%94%BB/03_%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A.md)  
@@ -309,3 +317,5 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 └── [index.html](index.html)  
 
 72 directories, 186 files  
+[🔙 目次に戻る](#index)
+
