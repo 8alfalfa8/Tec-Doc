@@ -76,6 +76,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## ✅ 2. 主な構成要素（全体構成図）
 [🔙 目次に戻る](#index)
 
@@ -110,6 +113,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## ✅ 3. 認証・認可のパターン
 [🔙 目次に戻る](#index)
 
@@ -121,6 +127,9 @@
 | 管理者用コンソール | IAM + MFA     | IAM Identity CenterまたはCognito |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ 4. AWSサービス利用の設計ポイント
 [🔙 目次に戻る](#index)
@@ -134,12 +143,18 @@
 * **外部IdP連携**：Google, Apple, Azure ADなどとOAuth/SAMLで連携可能
 * **トークン**：Access Token (短命), ID Token (OIDC用), Refresh Token (長命)
 
+[🔙 目次に戻る](#index)
+
+
 ### ② API Gateway
 [🔙 目次に戻る](#index)
 
 
 * OIDCトークンの**検証**機能あり
 * **Cognitoオーソライザー**または**Lambdaオーソライザー**で細粒度の認可制御
+
+[🔙 目次に戻る](#index)
+
 
 ### ③ Lambda（カスタム認証処理用）
 [🔙 目次に戻る](#index)
@@ -149,6 +164,12 @@
 * Role/Scopeに応じた**認可判定**
 * 認証イベントログ（CloudWatch, X-Ray）
 
+[🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
+
+
 ### ④ IAM + STS
 [🔙 目次に戻る](#index)
 
@@ -156,6 +177,9 @@
 * サーバー間のマイクロサービス通信では、IAM Roleを付与し、**署名付きリクエスト (SigV4)** や **一時トークン (STS)** による認証が推奨される
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ 5. 認証フロー詳細（Cognito + OIDC）
 [🔙 目次に戻る](#index)
@@ -170,6 +194,9 @@
 3. 認証成功 → OIDCトークン発行（ID Token, Access Token, Refresh Token）
 4. SPA側で**アクセストークンを保持し、API呼び出し時にAuthorizationヘッダーに付与**
 
+[🔙 目次に戻る](#index)
+
+
 ### ② Tokenの検証フロー
 [🔙 目次に戻る](#index)
 
@@ -179,7 +206,13 @@
 * **exp（期限切れ）**, **aud（想定対象）**, **scope/role** をチェック
 * 有効であれば、処理を継続
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ 6. IAMベースのサービス間認証
 [🔙 目次に戻る](#index)
@@ -193,6 +226,9 @@
 * Lambda → RDS
 * ECSから別のECS（API）へ
 
+[🔙 目次に戻る](#index)
+
+
 ### 方法：
 [🔙 目次に戻る](#index)
 
@@ -201,7 +237,13 @@
 * 必要に応じて **AssumeRole + STS** で一時的に権限を借りる
 * SigV4署名でAPIリクエストを実行
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ 7. セキュリティ・運用観点の設計
 [🔙 目次に戻る](#index)
@@ -218,6 +260,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## ✅ 8. 拡張可能な実装例：認証ゲートウェイ構築
 [🔙 目次に戻る](#index)
 
@@ -232,6 +277,9 @@
 | サービス間トークン     | IAM署名 or JWT HMAC/SHA256   |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ 9. TerraformやCDKでのIaC化の例（Cognito）
 [🔙 目次に戻る](#index)
@@ -254,6 +302,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ AWSマイクロサービス環境における認証の全体像
 [🔙 目次に戻る](#index)
@@ -283,6 +334,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * ユーザーの権限を明確化（Authorization）
 * 安全にTokenを発行・利用し、アクセス制御を実現
 
+[🔙 目次に戻る](#index)
+
+
 #### 💡 一般構成
 [🔙 目次に戻る](#index)
 
@@ -295,6 +349,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 [API Gateway or ALB]
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### 🔧 技術・構成詳細
 [🔙 目次に戻る](#index)
 
@@ -306,7 +363,13 @@ resource "aws_cognito_user_pool_client" "web_app" {
 | トークン方式         | - JWT (JSON Web Token)<br> - ID Token（ユーザー属性）<br> - Access Token（APIアクセス用） |
 | API保護          | - API GatewayにCognitoオーソライザーを連携<br> - またはALBでCognitoと統合しOIDC検証             |
 
+[🔙 目次に戻る](#index)
+
+
 #### 🛡️ セキュリティ対策
+
+[🔙 目次に戻る](#index)
+
 [🔙 目次に戻る](#index)
 
 
@@ -315,6 +378,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * クレーム（claim）による権限制御（例：role, scope）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ✅ ② API Gatewayとマイクロサービスの認証
 [🔙 目次に戻る](#index)
@@ -326,6 +392,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 * 外部からのリクエストをAPI Gatewayが受け取り、正当性を判断
 * 各バックエンドサービスに安全にリクエストを転送
+
+[🔙 目次に戻る](#index)
+
 
 #### 💡 一般構成
 [🔙 目次に戻る](#index)
@@ -339,6 +408,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 [Backend (Lambda, ECS, EKS, etc.)]
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### 🔧 技術選択肢と構成例
 [🔙 目次に戻る](#index)
 
@@ -350,7 +422,13 @@ resource "aws_cognito_user_pool_client" "web_app" {
 | JWT検証をバックエンドで行う | 各サービスが自前でトークン検証        | 非同期トークン再検証や署名ロジック追加可能 | 実装・保守がやや複雑             |
 | IAM認証 (SigV4)   | IAMユーザー/ロールによる署名付きアクセス | 高セキュリティ、マネージド         | SPAなどのパブリッククライアントには不向き |
 
+[🔙 目次に戻る](#index)
+
+
 #### 🛡️ ベストプラクティス
+
+[🔙 目次に戻る](#index)
+
 [🔙 目次に戻る](#index)
 
 
@@ -359,6 +437,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * 権限チェック（Role, Scope, tenant ID など）をLambdaまたはバックエンドで追加
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ✅ ③ マイクロサービス間の認証（Service-to-Service）
 [🔙 目次に戻る](#index)
@@ -371,6 +452,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * 各サービスが自身を証明し、必要最小限のアクセス権で通信
 * API呼び出しやデータアクセスの際の信頼を確保
 
+[🔙 目次に戻る](#index)
+
+
 #### 💡 一般構成
 [🔙 目次に戻る](#index)
 
@@ -381,6 +465,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 [Service B (ECS/EKS/Lambda)]
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### 🔧 主な方式
 [🔙 目次に戻る](#index)
 
@@ -389,14 +476,23 @@ resource "aws_cognito_user_pool_client" "web_app" {
 | ---------------------- | --------------------------------------- | ------------------------------- |
 | IAMロール + SigV4署名       | AWSサービス間の標準。各サービスにIAMロール付与し、認証付きAPI呼び出し | ECS → S3 / Lambda → DynamoDB など |
 | AssumeRole + STS       | 他サービスのロールを一時的に引き受ける。信頼ポリシー制御が可能         | 複数アカウント連携、クロスサービス制御             |
+
+[🔙 目次に戻る](#index)
+
 | JWT + サービス専用秘密鍵        | 各サービスがJWTを発行・検証し、通信先で署名検証               | 非AWSサービスやZero Trust構成向け         |
 | mTLS（相互TLS）            | サービスメッシュ環境での通信暗号化＋認証（証明書ベース）            | EKS + Istio/Envoyなど             |
 | OPA（Open Policy Agent） | 認可判断をサービス外に委譲（Regoポリシー）                 | RBAC/ABACや属性ベース制御を行う場合          |
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ✅ サンプル構成例（IAM＋Cognito統合パターン）
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 ```plaintext
@@ -413,6 +509,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ✅ 監査・セキュリティ設計補足
 [🔙 目次に戻る](#index)
 
@@ -427,6 +526,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ✅ 最後に：設計ガイドラインまとめ
 [🔙 目次に戻る](#index)
 
@@ -440,6 +542,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 | 開発・運用の分離  | ステージング/本番環境ごとの認証基盤分離（Terraform活用）       |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ マイクロサービス側の認証最小化
 
@@ -462,6 +567,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 | サービス側  | 認証済み前提で受け取り、追加の認証チェックは不要（もしくは軽微な認可処理）                 |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ✅ 推奨構成アーキテクチャ（共通認証カプセル化）
 [🔙 目次に戻る](#index)
@@ -487,6 +595,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ✅ 実現するための構成要素と設計ポイント
 [🔙 目次に戻る](#index)
 
@@ -499,6 +610,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * API GatewayはCognitoと連携し、**JWTトークンの検証**を実施
 * 正常なら、JWTを**リクエストヘッダに添付**し、マイクロサービスへ中継
 
+[🔙 目次に戻る](#index)
+
+
 #### ② **API Gatewayでの認証責任の完結**
 [🔙 目次に戻る](#index)
 
@@ -507,8 +621,14 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * 不正トークン・失効トークンなどは**マイクロサービスに到達する前に拒否**
 * → **各マイクロサービスは「認証済の安全なユーザー」として処理開始可能**
 
+[🔙 目次に戻る](#index)
+
+
 #### ③ **各マイクロサービスの最小構成**
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 * トークンを再検証せず、ヘッダから必要なClaimだけ抽出（例：`user_id`, `role`）
@@ -516,6 +636,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * それ以上の**ユーザー認証処理は一切不要**
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ✅ オプション：サービスメッシュとmTLSによる“ゼロトラスト対応”
 [🔙 目次に戻る](#index)
@@ -528,6 +651,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
   * JWTベースの共通トークンを「サービス間通信用」に使ってもOK（例：Client Credentials Flow）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ✅ 補足：Lambda関数を共通Proxyとする案（認証抽象化）
 [🔙 目次に戻る](#index)
@@ -548,6 +674,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ✅ 実現時の注意点
 [🔙 目次に戻る](#index)
 
@@ -560,6 +689,12 @@ resource "aws_cognito_user_pool_client" "web_app" {
 | 内部API制御    | 外部アクセス不可のVPC内マイクロサービス構成（private subnet）                 |
 
 ---
+
+[🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
+
 
 ### ✅ まとめ：理想的な共通認証構成
 [🔙 目次に戻る](#index)
@@ -586,6 +721,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## ✅ ステップ①：要件定義
 [🔙 目次に戻る](#index)
 
@@ -610,6 +748,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * サービス一覧＋構成図（draw\.io）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ ステップ②：設計
 [🔙 目次に戻る](#index)
@@ -638,6 +779,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## ✅ ステップ③：実装
 [🔙 目次に戻る](#index)
 
@@ -663,6 +807,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 * テストレポート（各認証フローの通過ログ、異常時対応ログ）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## ✅ ステップ④：セキュリティ
 [🔙 目次に戻る](#index)
@@ -690,6 +837,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## ✅ ステップ⑤：運用
 [🔙 目次に戻る](#index)
 
@@ -715,6 +865,9 @@ resource "aws_cognito_user_pool_client" "web_app" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## ✅ まとめ表（全体一覧）
 [🔙 目次に戻る](#index)
 
@@ -728,3 +881,6 @@ resource "aws_cognito_user_pool_client" "web_app" {
 | ⑤ 運用     | 継続監視   | 初期2〜3日＋継続 | CloudWatch, Config, SecurityHub | 運用手順書、通知設定、ダッシュボード |
 
 ---
+
+[🔙 目次に戻る](#index)
+

@@ -31,6 +31,9 @@
 * **Chrome / Edge**: [Markdown Viewer (Chrome Web Store)](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcedbflnpeebnljnphakjden)
 * **Firefox**: [Markdown Viewer (Firefox Add-ons)](https://addons.mozilla.org/en-US/firefox/addon/markdown-viewer/)
 
+[🔙 目次に戻る](#index)
+
+
 ### 2. ローカルファイルへのアクセス許可（必須）
 
 [🔙 目次に戻る](#index)
@@ -39,6 +42,9 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 
 1. ブラウザの拡張機能アイコン（パズルマーク）から **[Markdown Viewer]** > **[詳細]**（または拡張機能の管理）を開きます。
 2. **「ファイルの URL へのアクセスを許可する」** を **ON** にします。
+
+[🔙 目次に戻る](#index)
+
 
 ### 3. 図解（Mermaid）と数式（LaTeX）の有効化
 
@@ -50,11 +56,17 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 2. 左メニューの **[Compiler]** を選択します。
 3. 以下の2項目にチェックを入れてください。
    - **[Mermaid]**: チャートや図解を表示するために必要です。
+
+[🔙 目次に戻る](#index)
+
    - **[MathJax]**: $E=mc^2$ などの数式（LaTeX）を表示するために必要です。
 
 設定完了後、この `README.md` ファイルをブラウザにドラッグ＆ドロップすることで、整形されたレイアウトで閲覧可能になります。
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 📄 ライセンス
 [🔙 目次に戻る](#index)
@@ -66,6 +78,9 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 - ❌ 商用利用禁止
 - ❌ 改変・二次配布禁止
 
+[🔙 目次に戻る](#index)
+
+
 ## 📬 利用希望
 [🔙 目次に戻る](#index)
 
@@ -75,6 +90,9 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 ---
 
 <!-- START_TREE -->
+
+[🔙 目次に戻る](#index)
+
 ## プロジェクト構成  
 ├── 01_開発/  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 01_企画/  
@@ -336,3 +354,6 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 └── [index.html](index.html)  
 
 72 directories, 186 files  
+
+[🔙 目次に戻る](#index)
+

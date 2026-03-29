@@ -87,6 +87,9 @@
 [DB / 外部API]
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### 基本方針
 [🔙 目次に戻る](#index)
 
@@ -101,7 +104,13 @@
 | CI/CD | GitHub Actions / CodePipeline  |
 | 可用性   | Pod冗長＋AutoScaling              |
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 2. 作業タスク一覧（WBS）
 [🔙 目次に戻る](#index)
@@ -125,6 +134,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 3. 各タスクの詳細
 [🔙 目次に戻る](#index)
 
@@ -146,12 +158,18 @@
 * JVMオプション
 * 外部依存（DB、外部API、ファイル）
 
+[🔙 目次に戻る](#index)
+
+
 #### 作業内容
 [🔙 目次に戻る](#index)
 
 
 * アプリ構成・起動方式の把握
 * 環境依存箇所洗い出し
+
+[🔙 目次に戻る](#index)
+
 
 #### 確認ポイント
 [🔙 目次に戻る](#index)
@@ -164,7 +182,13 @@
 | ファイル出力 | ローカルか共有か  |
 | バッチ    | 同居していないか  |
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
+
+[🔙 目次に戻る](#index)
+
 [🔙 目次に戻る](#index)
 
 
@@ -173,6 +197,9 @@
 * 移行影響調査書
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ② 移行方式・非機能要件整理
 [🔙 目次に戻る](#index)
@@ -187,12 +214,18 @@
 * 可用性要件
 * セキュリティ要件
 
+[🔙 目次に戻る](#index)
+
+
 #### 作業内容
 [🔙 目次に戻る](#index)
 
 
 * ステートレス化可否
 * セッション管理方針決定
+
+[🔙 目次に戻る](#index)
+
 
 #### 決定事項例
 [🔙 目次に戻る](#index)
@@ -204,6 +237,12 @@
 | ログ    | stdout → CloudWatch    |
 | ファイル  | S3/EFS                 |
 
+[🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
 
@@ -212,6 +251,9 @@
 * 非機能要件定義書
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ③ Docker化（Tomcat + WAR）
 [🔙 目次に戻る](#index)
@@ -225,6 +267,9 @@
 * Tomcat公式イメージ
 * JVM設定
 
+[🔙 目次に戻る](#index)
+
+
 #### Dockerfile例
 [🔙 目次に戻る](#index)
 
@@ -235,6 +280,9 @@ COPY sample.war /usr/local/tomcat/webapps/
 ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### 作業内容
 [🔙 目次に戻る](#index)
 
@@ -242,6 +290,12 @@ ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 * WAR組込み
 * JVMチューニング
 * ヘルスチェック設定
+
+[🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
+
 
 #### 成果物
 [🔙 目次に戻る](#index)
@@ -251,6 +305,9 @@ ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 * ローカル起動確認ログ
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ④ AWS / EKS 基盤設計
 [🔙 目次に戻る](#index)
@@ -264,6 +321,9 @@ ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 * VPC設計方針
 * セキュリティポリシー
 
+[🔙 目次に戻る](#index)
+
+
 #### 設計内容
 [🔙 目次に戻る](#index)
 
@@ -275,14 +335,23 @@ ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 | IAM  | IRSA               |
 | ログ   | CloudWatch         |
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 * AWS構成図
 * EKS設計書
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ⑤ EKS環境構築
 [🔙 目次に戻る](#index)
@@ -296,6 +365,9 @@ ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 * ノードグループ作成
 * kubectl 接続
 
+[🔙 目次に戻る](#index)
+
+
 #### コマンド例
 [🔙 目次に戻る](#index)
 
@@ -304,14 +376,23 @@ ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 eksctl create cluster --name app-cluster
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 * EKSクラスター
 * kubeconfig
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ⑥ アプリ設定の外部化
 [🔙 目次に戻る](#index)
@@ -327,6 +408,9 @@ eksctl create cluster --name app-cluster
 | 環境変数 | ConfigMap    |
 | 証明書  | ACM + Secret |
 
+[🔙 目次に戻る](#index)
+
+
 #### 作業内容
 [🔙 目次に戻る](#index)
 
@@ -334,14 +418,23 @@ eksctl create cluster --name app-cluster
 * application.properties 分離
 * 機密情報排除
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 * ConfigMap定義
 * Secret定義
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ⑦ Kubernetesリソース作成
 [🔙 目次に戻る](#index)
@@ -354,6 +447,9 @@ eksctl create cluster --name app-cluster
 * Deployment
 * Service
 * HPA
+
+[🔙 目次に戻る](#index)
+
 
 #### Deployment例
 [🔙 目次に戻る](#index)
@@ -371,13 +467,22 @@ spec:
         image: xxxx.dkr.ecr.ap-northeast-1.amazonaws.com/app
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 * YAMLマニフェスト一式
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ⑧ Ingress（ALB）構築
 [🔙 目次に戻る](#index)
@@ -390,6 +495,9 @@ spec:
 * ALB Ingress Controller導入
 * HTTPS設定
 
+[🔙 目次に戻る](#index)
+
+
 #### 設定ポイント
 [🔙 目次に戻る](#index)
 
@@ -400,8 +508,14 @@ spec:
 | パス      | /app    |
 | ヘルスチェック | /health |
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 * Ingress定義
@@ -409,12 +523,18 @@ spec:
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ⑨ CI/CD構築
 [🔙 目次に戻る](#index)
 
 
 #### 流れ
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 ```
@@ -424,6 +544,9 @@ Git Push
  → kubectl apply
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### 使用例
 [🔙 目次に戻る](#index)
 
@@ -431,14 +554,23 @@ Git Push
 * GitHub Actions
 * CodePipeline
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 * CI/CD定義
 * 自動デプロイ確認
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ⑩ データ・外部連携確認
 [🔙 目次に戻る](#index)
@@ -452,13 +584,22 @@ Git Push
 * 外部API疎通
 * IAM権限確認
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
 
 
 * 接続確認結果
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ⑪ テスト
 [🔙 目次に戻る](#index)
@@ -479,6 +620,12 @@ Git Push
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ### ⑫ 本番切替
 [🔙 目次に戻る](#index)
 
@@ -490,6 +637,9 @@ Git Push
 * DNS切替
 * Blue/Green or Canary
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
 
@@ -497,7 +647,13 @@ Git Push
 * 切替手順書
 * 切替完了報告
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ⑬ 運用設計・引継ぎ
 [🔙 目次に戻る](#index)
@@ -513,6 +669,9 @@ Git Push
 | 障害  | Runbook    |
 | ロール | 運用体制       |
 
+[🔙 目次に戻る](#index)
+
+
 #### 成果物
 [🔙 目次に戻る](#index)
 
@@ -520,7 +679,13 @@ Git Push
 * 運用設計書
 * 障害対応Runbook
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 4. よくある移行時の落とし穴
 [🔙 目次に戻る](#index)
@@ -534,4 +699,7 @@ Git Push
 | 再起動     | readinessProbe |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 

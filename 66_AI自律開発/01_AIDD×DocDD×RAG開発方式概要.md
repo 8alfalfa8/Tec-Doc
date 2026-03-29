@@ -89,6 +89,12 @@ graph TD
 ```
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ## 2. 各レイヤー詳細
 [🔙 目次に戻る](#index)
 
@@ -105,6 +111,9 @@ graph TD
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 3. Document Layer（DocDD）
 [🔙 目次に戻る](#index)
@@ -143,6 +152,9 @@ docs/
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ドキュメント例
 [🔙 目次に戻る](#index)
 
@@ -162,6 +174,9 @@ Feature:
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 #### architecture.md
 [🔙 目次に戻る](#index)
 
@@ -170,11 +185,20 @@ Feature:
 Architecture:
 - Frontend: React
 - Backend: FastAPI
+
+[🔙 目次に戻る](#index)
+
 - DB: PostgreSQL
 - AI: RAG
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 4. Knowledge Layer（RAG Knowledge Base）
 [🔙 目次に戻る](#index)
@@ -209,6 +233,9 @@ VectorDB
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### データ処理
 [🔙 目次に戻る](#index)
 
@@ -233,6 +260,9 @@ Metadata
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 #### ② Chunking
 [🔙 目次に戻る](#index)
 
@@ -247,6 +277,9 @@ overlap 128
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 #### ③ Embedding
 [🔙 目次に戻る](#index)
@@ -267,6 +300,9 @@ Text → Vector
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 #### ④ Vector Database
 [🔙 目次に戻る](#index)
 
@@ -277,7 +313,13 @@ Text → Vector
 Vector + metadata
 ```
 
+[🔙 目次に戻る](#index)
+
+
 例
+
+[🔙 目次に戻る](#index)
+
 
 ```
 Weaviate
@@ -287,6 +329,9 @@ pgvector
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 5. Retrieval Layer（検索）
 [🔙 目次に戻る](#index)
@@ -324,6 +369,12 @@ Context Builder
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ## 6. AI Generation Layer（LLM）
 [🔙 目次に戻る](#index)
 
@@ -349,6 +400,9 @@ Generate API design
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 出力
 [🔙 目次に戻る](#index)
 
@@ -357,7 +411,13 @@ Generate API design
 FastAPI implementation
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 7. AI Agent Layer（AIDD）
 [🔙 目次に戻る](#index)
@@ -385,6 +445,9 @@ AI Orchestrator
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 例
 [🔙 目次に戻る](#index)
 
@@ -407,6 +470,9 @@ FastAPI code
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 #### Test Agent
 [🔙 目次に戻る](#index)
 
@@ -425,17 +491,29 @@ pytest
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 #### Infra Agent
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 ```
 Architecture doc
+
+[🔙 目次に戻る](#index)
+
 ↓
 Terraform
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 8. DevOps Layer
 [🔙 目次に戻る](#index)
@@ -470,6 +548,12 @@ Deploy
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ## 9. データフロー（重要）
 [🔙 目次に戻る](#index)
 
@@ -489,6 +573,9 @@ Deploy
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 図
 [🔙 目次に戻る](#index)
 
@@ -507,7 +594,13 @@ Code
 Deploy
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 10. 実際の技術スタック
 [🔙 目次に戻る](#index)
@@ -524,6 +617,9 @@ Next.js
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### Backend
 [🔙 目次に戻る](#index)
 
@@ -534,6 +630,9 @@ Node.js
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### RAG
 [🔙 目次に戻る](#index)
@@ -546,6 +645,9 @@ Haystack
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### VectorDB
 [🔙 目次に戻る](#index)
@@ -560,6 +662,9 @@ pgvector
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### LLM
 [🔙 目次に戻る](#index)
 
@@ -573,6 +678,12 @@ Mistral
 
 ---
 
+[🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
+
+
 ### Agent
 [🔙 目次に戻る](#index)
 
@@ -584,4 +695,7 @@ AutoGPT
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 

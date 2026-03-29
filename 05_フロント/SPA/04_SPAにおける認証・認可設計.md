@@ -94,6 +94,9 @@
 * セッション確立
 * Token検証
 
+[🔙 目次に戻る](#index)
+
+
 ### 1.2 認可（Authorization）
 [🔙 目次に戻る](#index)
 
@@ -106,7 +109,13 @@
 
 👉 **SPAではこの2つを明確に分離して設計する**
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 2. SPA特有の脅威モデル
 [🔙 目次に戻る](#index)
@@ -126,13 +135,22 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 2.2 結論（業務系の原則）
 [🔙 目次に戻る](#index)
 
 
 > **「認証情報をJavaScriptに触らせない」**
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 3. 認証方式の比較
 [🔙 目次に戻る](#index)
@@ -148,6 +166,9 @@
 👉 **金融・公共では OIDC + Cookie が標準**
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 4. 推奨アーキテクチャ（結論）
 [🔙 目次に戻る](#index)
@@ -177,6 +198,12 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ## 5. 認証設計（詳細）
 [🔙 目次に戻る](#index)
 
@@ -198,6 +225,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 5.2 Cookie設計（重要）
 [🔙 目次に戻る](#index)
 
@@ -210,7 +240,13 @@
 | Domain   | 最小範囲         |
 | Path     | /            |
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 6. 認可設計（最重要）
 [🔙 目次に戻る](#index)
@@ -225,6 +261,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 6.2 認可モデル
 [🔙 目次に戻る](#index)
 
@@ -236,6 +275,9 @@
 * 管理者
 * 一般ユーザー
 
+[🔙 目次に戻る](#index)
+
+
 #### ② ABAC（Attribute-Based）
 [🔙 目次に戻る](#index)
 
@@ -246,7 +288,13 @@
 
 👉 **業務系では RBAC + ABAC の併用**
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### 6.3 認可粒度
 [🔙 目次に戻る](#index)
@@ -260,8 +308,14 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 6.4 フロントへの権限情報提供
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 ```json
@@ -278,6 +332,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 7. 画面遷移・ルーティング制御
 [🔙 目次に戻る](#index)
 
@@ -289,6 +346,9 @@
 * 未認証 → ログイン
 * 認可不足 → 403画面
 
+[🔙 目次に戻る](#index)
+
+
 ### 7.2 リロード耐性
 [🔙 目次に戻る](#index)
 
@@ -296,7 +356,13 @@
 * 初期ロード時に `/bff/me` 呼び出し
 * セッション有無判定
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 8. API設計上の注意
 [🔙 目次に戻る](#index)
@@ -311,6 +377,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 9. 非機能・運用設計
 [🔙 目次に戻る](#index)
 
@@ -323,6 +392,9 @@
 * 更新（Silent Refresh）
 * 多重ログイン制御
 
+[🔙 目次に戻る](#index)
+
+
 ### 9.2 監査ログ
 [🔙 目次に戻る](#index)
 
@@ -331,7 +403,13 @@
 * 権限エラー
 * 管理操作
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 10. 実装パターン（概念）
 [🔙 目次に戻る](#index)
@@ -349,6 +427,9 @@ def auth_required(user=Depends(get_user)):
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 #### SPA（React）
 [🔙 目次に戻る](#index)
 
@@ -357,7 +438,13 @@ def auth_required(user=Depends(get_user)):
 if (!user) return <Navigate to="/login" />;
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 11. 成果物（設計書）
 [🔙 目次に戻る](#index)
@@ -372,6 +459,9 @@ if (!user) return <Navigate to="/login" />;
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 12. よくある失敗例
 [🔙 目次に戻る](#index)
 
@@ -384,6 +474,9 @@ if (!user) return <Navigate to="/login" />;
 | 403乱用      | 情報漏洩 |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 13. 設計レビュー観点（抜粋）
 [🔙 目次に戻る](#index)
@@ -416,6 +509,12 @@ if (!user) return <Navigate to="/login" />;
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ## 1. マルチテナント認可とは（前提）
 [🔙 目次に戻る](#index)
 
@@ -431,6 +530,12 @@ if (!user) return <Navigate to="/login" />;
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ## 2. マルチテナントで守るべき境界
 [🔙 目次に戻る](#index)
 
@@ -445,6 +550,9 @@ if (!user) return <Navigate to="/login" />;
 👉 **境界が4層あるのが業務系の現実**
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 3. テナントモデルの種類（設計起点）
 [🔙 目次に戻る](#index)
@@ -464,6 +572,9 @@ if (!user) return <Navigate to="/login" />;
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 3.2 推奨（一般SaaS）
 [🔙 目次に戻る](#index)
 
@@ -471,7 +582,13 @@ if (!user) return <Navigate to="/login" />;
 * **行分離 + tenant_id**
 * 物理分離は将来オプション
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 4. 認可モデル設計（中核）
 [🔙 目次に戻る](#index)
@@ -505,6 +622,9 @@ user.tenant_id === resource.tenant_id
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 #### ② ロール認可（機能）
 [🔙 目次に戻る](#index)
 
@@ -517,8 +637,17 @@ user.tenant_id === resource.tenant_id
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 #### ③ データスコープ認可（ABAC）
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
+
 
 
 * 所属部署
@@ -526,6 +655,9 @@ user.tenant_id === resource.tenant_id
 * 契約範囲
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 5. 認可情報の持ち方（設計の肝）
 [🔙 目次に戻る](#index)
@@ -546,6 +678,9 @@ user.tenant_id === resource.tenant_id
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 5.2 例（概念）
 [🔙 目次に戻る](#index)
 
@@ -559,7 +694,13 @@ user.tenant_id === resource.tenant_id
 }
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 6. API認可設計（必須）
 [🔙 目次に戻る](#index)
@@ -578,6 +719,9 @@ user.tenant_id === resource.tenant_id
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 6.2 API設計例
 [🔙 目次に戻る](#index)
 
@@ -590,17 +734,29 @@ user.tenant_id === resource.tenant_id
 GET /users/123
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### ⭕ 良い例
 [🔙 目次に戻る](#index)
 
 
 ```
 GET /tenants/{tenantId}/users/{id}
+
+[🔙 目次に戻る](#index)
+
 ```
 
 👉 **URIにテナントを含めると安全性が上がる**
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 7. データアクセス設計（超重要）
 [🔙 目次に戻る](#index)
@@ -616,6 +772,9 @@ GET /tenants/{tenantId}/users/{id}
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 7.2 ORMレベル制御（推奨）
 [🔙 目次に戻る](#index)
 
@@ -630,7 +789,13 @@ WHERE tenant_id = :tenant_id
 
 👉 **開発者ミスを防ぐ**
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 8. BFFにおける役割
 [🔙 目次に戻る](#index)
@@ -647,6 +812,9 @@ WHERE tenant_id = :tenant_id
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 9. フロントエンド（SPA）の扱い
 [🔙 目次に戻る](#index)
 
@@ -657,6 +825,9 @@ WHERE tenant_id = :tenant_id
 
 * tenant_idは表示用のみ
 * 送信値は信用しない
+
+[🔙 目次に戻る](#index)
+
 
 ### 9.2 表示制御
 [🔙 目次に戻る](#index)
@@ -672,7 +843,13 @@ WHERE tenant_id = :tenant_id
 
 👉 UX向上用
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 10. クロステナント操作（例外設計）
 [🔙 目次に戻る](#index)
@@ -690,6 +867,12 @@ WHERE tenant_id = :tenant_id
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ## 11. 非機能設計
 [🔙 目次に戻る](#index)
 
@@ -702,6 +885,9 @@ WHERE tenant_id = :tenant_id
 * ID推測耐性
 * ログにtenant_id必須
 
+[🔙 目次に戻る](#index)
+
+
 ### 11.2 監査
 [🔙 目次に戻る](#index)
 
@@ -710,7 +896,13 @@ WHERE tenant_id = :tenant_id
 * どのテナントで
 * 何をしたか
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 12. テスト設計（必須）
 [🔙 目次に戻る](#index)
@@ -725,6 +917,9 @@ WHERE tenant_id = :tenant_id
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 13. 成果物（設計書）
 [🔙 目次に戻る](#index)
 
@@ -738,6 +933,9 @@ WHERE tenant_id = :tenant_id
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 14. よくある致命的失敗
 [🔙 目次に戻る](#index)
 
@@ -750,6 +948,9 @@ WHERE tenant_id = :tenant_id
 | 手書きWHERE     | ヒューマンエラー |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 15. 設計レビュー観点（抜粋）
 [🔙 目次に戻る](#index)
@@ -773,3 +974,9 @@ WHERE tenant_id = :tenant_id
 * 二重防御が正解
 
 ---
+
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+

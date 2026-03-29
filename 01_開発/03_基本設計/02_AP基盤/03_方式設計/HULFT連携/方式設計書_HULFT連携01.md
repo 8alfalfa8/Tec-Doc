@@ -52,6 +52,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 2. 目的と背景
 [🔙 目次に戻る](#index)
 
@@ -60,6 +63,9 @@
 * 背景：手作業によるデータ転送の自動化、転送の信頼性向上、監査ログ確保。
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 3. 範囲（スコープ）
 [🔙 目次に戻る](#index)
@@ -73,6 +79,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 4. 前提条件・制約
 [🔙 目次に戻る](#index)
 
@@ -85,6 +94,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 5. 用語定義
 [🔙 目次に戻る](#index)
 
@@ -95,6 +107,9 @@
 * Transfer Unit：1つの送受信ジョブ（ファイル単位）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 6. 関係者（RACI）
 [🔙 目次に戻る](#index)
@@ -107,6 +122,9 @@
   （責任を明確化：R=実行者、A=最終承認者、C=協力、I=通知）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 7. システム構成概要
 [🔙 目次に戻る](#index)
@@ -123,6 +141,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 8. 非機能要件
 [🔙 目次に戻る](#index)
 
@@ -133,6 +154,9 @@
 * セキュリティ：転送は暗号化（SFTP/FTPS 等）を利用、転送ログの保管期間 1 年
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 9. 転送フロー（シーケンス）
 [🔙 目次に戻る](#index)
@@ -149,6 +173,9 @@
 9. 転送ファイルは一定期間アーカイブ後に削除（保持ポリシー）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 10. ファイル仕様（例）
 [🔙 目次に戻る](#index)
@@ -167,6 +194,9 @@
   例：`CUST01_ORD_20250810_001.csv`
 * サンプルレコード：`<カラム名>,<型>,<長さ>,<説明>`（別表で詳細定義）
 
+[🔙 目次に戻る](#index)
+
+
 ### 10.2 CSV項目例（受注データ）
 [🔙 目次に戻る](#index)
 
@@ -182,7 +212,13 @@
 
 （各項目の型・桁数・必須/任意・サンプル値を別表で定義）
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 11. HULFT設定方針（送信側）
 [🔙 目次に戻る](#index)
@@ -213,6 +249,12 @@ Notify: send mail to ops-team@company.example.com on failure
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ## 12. 受信側設計（取引先から受ける場合）
 [🔙 目次に戻る](#index)
 
@@ -228,6 +270,9 @@ Notify: send mail to ops-team@company.example.com on failure
 * ACK/レスポンス：受領結果をメール／FTP ACKファイル／APIで通知（取引先仕様に合わせる）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 13. エラーハンドリング／再送設計
 [🔙 目次に戻る](#index)
@@ -257,6 +302,9 @@ Notify: send mail to ops-team@company.example.com on failure
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 14. 監視・通知
 [🔙 目次に戻る](#index)
 
@@ -281,6 +329,9 @@ Notify: send mail to ops-team@company.example.com on failure
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 15. セキュリティ
 [🔙 目次に戻る](#index)
 
@@ -295,6 +346,9 @@ Notify: send mail to ops-team@company.example.com on failure
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 16. 運用・作業フロー
 [🔙 目次に戻る](#index)
 
@@ -308,6 +362,9 @@ Notify: send mail to ops-team@company.example.com on failure
 3. 02:10 送信完了通知 / 受信側ACK待ち
 4. 03:00 受信側ACK未着の場合は自動リトライ → 失敗時はオペレーター通知
 
+[🔙 目次に戻る](#index)
+
+
 ### 定常作業
 [🔙 目次に戻る](#index)
 
@@ -316,7 +373,13 @@ Notify: send mail to ops-team@company.example.com on failure
 * 週次：エラー件数レビュー
 * 月次：鍵ローテーション、バージョンパッチ適用
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 17. テスト計画（受け入れ条件）
 [🔙 目次に戻る](#index)
@@ -332,6 +395,9 @@ Notify: send mail to ops-team@company.example.com on failure
 * リカバリ：中断後の再送、リトライ挙動
 * 性能：並列ジョブ数を増やした際の転送時間
 
+[🔙 目次に戻る](#index)
+
+
 ### 受入基準（例）
 [🔙 目次に戻る](#index)
 
@@ -340,7 +406,13 @@ Notify: send mail to ops-team@company.example.com on failure
 * エラー時に自動で所定の通知が発報されること
 * 再送手順で正常復旧が可能であること
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 18. 移行・デプロイ手順（概要）
 [🔙 目次に戻る](#index)
@@ -354,6 +426,9 @@ Notify: send mail to ops-team@company.example.com on failure
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 19. ログ・監査項目（必須）
 [🔙 目次に戻る](#index)
 
@@ -365,6 +440,9 @@ Notify: send mail to ops-team@company.example.com on failure
 * 操作履歴（誰が手動で再送したか）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 20. 例：HULFT転送設定（テンプレ：概念）
 [🔙 目次に戻る](#index)
@@ -395,6 +473,9 @@ TransferJob:
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 21. 付録（サンプル）
 [🔙 目次に戻る](#index)
 
@@ -408,6 +489,9 @@ order_id,order_date,customer_code,product_code,quantity,unit_price,currency,rema
 ORD000123,2025-08-10,CUST01,PRD-A001,10,120.5,JPY,通常注文
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ### B. エラーメッセージ例
 [🔙 目次に戻る](#index)
 
@@ -416,7 +500,13 @@ ORD000123,2025-08-10,CUST01,PRD-A001,10,120.5,JPY,通常注文
 * `E002: AUTH_FAIL` — 認証失敗
 * `E003: FORMAT_ERROR at line 45` — フォーマット不整合
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 22. 受け渡し（成果物）
 [🔙 目次に戻る](#index)
@@ -428,6 +518,9 @@ ORD000123,2025-08-10,CUST01,PRD-A001,10,120.5,JPY,通常注文
 * 運用手順書（日次／障害対応）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 
 

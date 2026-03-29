@@ -100,6 +100,9 @@
 2. 変数定義（CIDR、AZ、タグ、環境名、運用担当）を YAML/TFVars に記載
 3. 構築メンバーとロール（実行者、レビューア、承認者）を決定
 
+[🔙 目次に戻る](#index)
+
+
 ## B. VPC とサブネット作成（例）
 [🔙 目次に戻る](#index)
 
@@ -114,6 +117,9 @@
 
 **検証**：各サブネット内の EC2 から外部への疎通確認（curl、dig）、パブリックIP取得の確認
 
+[🔙 目次に戻る](#index)
+
+
 ## C. セキュリティ設定
 [🔙 目次に戻る](#index)
 
@@ -126,6 +132,9 @@
 4. VPC Flow Logs を有効化して CloudWatch or S3 に保存（監査用）。([AWSドキュメント][2])
 
 **検証**：ポートスキャン（内部から）、許可/拒否のログ確認（Flow Logs）
+
+[🔙 目次に戻る](#index)
+
 
 ## D. プライベート接続（オンプレ→AWS）
 [🔙 目次に戻る](#index)
@@ -140,6 +149,9 @@
 
 **検証**：BGP セッション確立、経路伝播確認、帯域測定
 
+[🔙 目次に戻る](#index)
+
+
 ## E. サービス接続・最適化
 [🔙 目次に戻る](#index)
 
@@ -149,6 +161,9 @@
 3. Route53（プライベートホストゾーン）で内部 DNS 設計
 
 **検証**：エンドポイント経由でのアクセス確認、DNS 解決の検証
+
+[🔙 目次に戻る](#index)
+
 
 ## F. 監視・ログ・運用設定
 [🔙 目次に戻る](#index)
@@ -251,4 +266,7 @@ resource "aws_route_table_association" "rta_public_a" {
 [6]: https://docs.aws.amazon.com/wellarchitected/latest/framework/perf-networking.html?utm_source=chatgpt.com "Networking and content delivery - AWS Well-Architected ..."
 [7]: https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-site-to-site-vpn.html?utm_source=chatgpt.com "AWS Direct Connect + AWS Site-to-Site VPN"
 [8]: https://docs.aws.amazon.com/whitepapers/latest/aws-best-practices-ddos-resiliency/security-groups-and-network-acls-bp5.html?utm_source=chatgpt.com "Security groups and network ACLs (BP5)"
+
+[🔙 目次に戻る](#index)
+
 

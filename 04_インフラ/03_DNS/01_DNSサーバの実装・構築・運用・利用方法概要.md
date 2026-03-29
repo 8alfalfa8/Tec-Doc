@@ -81,6 +81,9 @@ DNS（Domain Name System）は以下を担います。
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 1.2 DNSサーバ種別（重要）
 [🔙 目次に戻る](#index)
 
@@ -95,7 +98,13 @@ DNS（Domain Name System）は以下を担います。
 
 👉 **実務では「権威DNS」と「キャッシュDNS」を分離**するのが原則
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 2. Linux DNSサーバ主要実装方式
 [🔙 目次に戻る](#index)
@@ -119,6 +128,12 @@ DNS（Domain Name System）は以下を担います。
 * キャッシュDNS：**Unbound**
 
 ---
+
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
 
 ## 3. DNSサーバ構成設計（重要）
 [🔙 目次に戻る](#index)
@@ -148,6 +163,12 @@ DNS（Domain Name System）は以下を担います。
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
+[🔙 目次に戻る](#index)
+
+
 ### 3.2 Split DNS（内部/外部分離）
 [🔙 目次に戻る](#index)
 
@@ -155,11 +176,17 @@ DNS（Domain Name System）は以下を担います。
 | 領域    | 内容                   |
 | ----- | -------------------- |
 | 内部DNS | intranet.example.com |
+
+[🔙 目次に戻る](#index)
+
 | 外部DNS | example.com          |
 
 **金融・公共では必須**
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 4. DNSサーバ構築（BIND9）
 [🔙 目次に戻る](#index)
@@ -181,6 +208,9 @@ dnf install -y bind bind-utils
 
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### Ubuntu
 [🔙 目次に戻る](#index)
 
@@ -194,7 +224,13 @@ sudo apt install -y bind9 dnsutils
 #sudo apt install bind9 bind9-utils bind9-doc
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### 4.2 基本設定ファイル構成
 [🔙 目次に戻る](#index)
@@ -219,6 +255,9 @@ sudo apt install -y bind9 dnsutils
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 4.3 基本的な設定例
 [🔙 目次に戻る](#index)
 
@@ -240,6 +279,9 @@ zone "example.com" IN {
     file "example.com.zone";
 };
 ```
+
+[🔙 目次に戻る](#index)
+
 
 #### named.conf.options (基本的なオプション設定)
 [🔙 目次に戻る](#index)
@@ -272,6 +314,9 @@ options {
 };
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### named.conf (DNSキャッシュサーバーとしての設定)
 [🔙 目次に戻る](#index)
 
@@ -289,11 +334,17 @@ options {
     dnssec-enable yes;
     dnssec-validation yes;
     auth-nxdomain no;
+
+[🔙 目次に戻る](#index)
+
 };
 ```
 
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### 4.4 ゾーンファイル例
 [🔙 目次に戻る](#index)
@@ -319,6 +370,9 @@ ns1 IN A 192.168.1.10
 ns2 IN A 192.168.1.11
 www IN A 192.168.1.100
 ```
+
+[🔙 目次に戻る](#index)
+
 
 #### 設定例２
 [🔙 目次に戻る](#index)
@@ -352,7 +406,13 @@ mail    IN      A       192.168.1.101
 ftp     IN      CNAME   www.example.com.
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### 4.5 逆引きゾーンファイル
 [🔙 目次に戻る](#index)
@@ -364,6 +424,9 @@ $TTL    86400
 @       IN      SOA     ns1.example.com. admin.example.com. (
                         2024010101
                         3600
+
+[🔙 目次に戻る](#index)
+
                         1800
                         604800
                         86400 )
@@ -381,6 +444,9 @@ $TTL    86400
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 4.6 起動・確認
 [🔙 目次に戻る](#index)
 
@@ -397,6 +463,9 @@ named-checkzone example.com /var/named/example.com.zone
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 5. キャッシュDNS（Unbound）構築
 [🔙 目次に戻る](#index)
 
@@ -410,6 +479,9 @@ dnf install -y unbound
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### 5.2 設定例
 [🔙 目次に戻る](#index)
@@ -425,7 +497,13 @@ server:
   prefetch: yes
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 6. DNSセキュリティ設計（必須）
 [🔙 目次に戻る](#index)
@@ -446,6 +524,9 @@ server:
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 6.2 DNSSEC（概要）
 [🔙 目次に戻る](#index)
 
@@ -460,6 +541,9 @@ server:
 ※金融系では「**DNSSEC対応有無**」が監査指摘になりやすい
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### 6.3 基本的なセキュリティ対策設定例
 
@@ -490,6 +574,9 @@ options {
 ```
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 6.4 ACL設定
 
 [🔙 目次に戻る](#index)
@@ -501,6 +588,9 @@ acl trusted-nets {
     10.0.0.0/8;
 };
 
+[🔙 目次に戻る](#index)
+
+
 acl dns-servers {
     192.168.1.10;
     192.168.1.11;
@@ -508,6 +598,9 @@ acl dns-servers {
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 7. 運用設計（非常に重要）
 [🔙 目次に戻る](#index)
@@ -535,6 +628,9 @@ rndc stats
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 7.2 ログ管理
 
 [🔙 目次に戻る](#index)
@@ -560,6 +656,9 @@ journalctl -u named -f
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 7.3 ゾーン転送設定
 
 [🔙 目次に戻る](#index)
@@ -583,6 +682,9 @@ zone "example.com" {
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 7.4 運用タスク一覧
 [🔙 目次に戻る](#index)
 
@@ -597,6 +699,9 @@ zone "example.com" {
 | 定期検証   | dig/nslookup |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### 7.5 変更手順（例）
 [🔙 目次に戻る](#index)
@@ -614,6 +719,9 @@ rndc reload example.com
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### 7.6 監視とメンテナンス
 [🔙 目次に戻る](#index)
@@ -648,7 +756,13 @@ cat /var/cache/bind/named_dump.db | head -50
 ps aux | grep named
 ```
 
+[🔙 目次に戻る](#index)
+
+
 #### バックアップとリストア
+
+[🔙 目次に戻る](#index)
+
 
 [🔙 目次に戻る](#index)
 
@@ -665,8 +779,14 @@ BACKUP_DIR="/backup/bind"
 DATE=$(date +%Y%m%d)
 tar czf "$BACKUP_DIR/bind-full-$DATE.tar.gz" /etc/bind /var/cache/bind
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +30 -delete
+
+[🔙 目次に戻る](#index)
+
 ```
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 8. DNS利用（クライアント側）
 [🔙 目次に戻る](#index)
@@ -684,6 +804,9 @@ search example.com
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### 8.2 動作確認
 [🔙 目次に戻る](#index)
 
@@ -693,7 +816,13 @@ dig www.example.com
 nslookup www.example.com
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 9. 高可用性設計
 [🔙 目次に戻る](#index)
@@ -707,6 +836,9 @@ nslookup www.example.com
 | 冗長FW      | UDP/TCP 53 |
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 10. 金融・公共向けDNSチェックリスト（抜粋）
 [🔙 目次に戻る](#index)
@@ -722,6 +854,9 @@ nslookup www.example.com
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 11. まとめ（実務視点）
 [🔙 目次に戻る](#index)
 
@@ -733,3 +868,6 @@ nslookup www.example.com
 * BIND + Unbound構成が最も無難
 
 ---
+
+[🔙 目次に戻る](#index)
+

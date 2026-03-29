@@ -333,6 +333,9 @@ Claude
 Llama
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ### Agent Framework
 [🔙 目次に戻る](#index)
 
@@ -342,6 +345,9 @@ LangGraph
 CrewAI
 Semantic Kernel
 ```
+
+[🔙 目次に戻る](#index)
+
 
 ### RAG
 [🔙 目次に戻る](#index)
@@ -353,6 +359,9 @@ LlamaIndex
 Haystack
 ```
 
+[🔙 目次に戻る](#index)
+
+
 ### VectorDB
 [🔙 目次に戻る](#index)
 
@@ -363,6 +372,9 @@ Weaviate
 Pinecone
 pgvector
 ```
+
+[🔙 目次に戻る](#index)
+
 
 ### DevOps
 [🔙 目次に戻る](#index)
@@ -415,3 +427,6 @@ Deployment
 ```
 
 ---
+
+[🔙 目次に戻る](#index)
+

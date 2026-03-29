@@ -46,6 +46,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 2. 移行が必要な主な理由と原因
 [🔙 目次に戻る](#index)
 
@@ -61,6 +64,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ② DNS・アプリ構成の一貫性
 [🔙 目次に戻る](#index)
 
@@ -69,6 +75,9 @@
 * **Route53で管理することで、DNS名とAWSリソースの紐付けが自然になる。**
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### ③ 運用効率と一元管理
 [🔙 目次に戻る](#index)
@@ -79,6 +88,12 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
+
+
 ### ④ ドメイン戦略・セキュリティ
 [🔙 目次に戻る](#index)
 
@@ -87,6 +102,9 @@
 * 内部専用DNSは **Route53 Private Hosted Zone** でAWS VPC内に閉域管理可。
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 3. 移行設計（高レベル）
 [🔙 目次に戻る](#index)
@@ -108,6 +126,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ② 移行方針の決定
 [🔙 目次に戻る](#index)
 
@@ -120,6 +141,9 @@
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### ③ 名前解決フロー（移行後）
 [🔙 目次に戻る](#index)
 
@@ -128,11 +152,17 @@
 Client
   ├ Public DNS > Route53 Public
   └ AWS Private Resolver > Route53 Private
+
+[🔙 目次に戻る](#index)
+
 ```
 
 必要であれば **オンプレDNSからRoute53への条件付きフォワード** を設定し、AWS内の名前解決をRoute53に委ねる設計にもできます。
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 4. 具体的な移行作業（ステップ）
 [🔙 目次に戻る](#index)
@@ -147,6 +177,9 @@ Client
 * TTLを短く設定（300秒程度）
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### Step 1. Route53 Hosted Zone作成
 [🔙 目次に戻る](#index)
@@ -167,6 +200,9 @@ Route53 Console → Hosted Zone → internal.example.com（Private）
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### Step 2. レコード移行
 [🔙 目次に戻る](#index)
 
@@ -178,6 +214,9 @@ Route53 Console → Hosted Zone → internal.example.com（Private）
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### Step 3. 旧DNSと並行運用
 [🔙 目次に戻る](#index)
 
@@ -186,6 +225,9 @@ Route53 Console → Hosted Zone → internal.example.com（Private）
 * TTLを短くして切替影響を最小化
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### Step 4. 切替
 [🔙 目次に戻る](#index)
@@ -196,8 +238,14 @@ Route53 Console → Hosted Zone → internal.example.com（Private）
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ### Step 5. 検証
 [🔙 目次に戻る](#index)
+
+[🔙 目次に戻る](#index)
+
 
 
 * `dig example.com @8.8.8.8`
@@ -205,6 +253,9 @@ Route53 Console → Hosted Zone → internal.example.com（Private）
 * アプリケーションアクセス確認
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ### Step 6. 旧DNS縮退・廃止
 [🔙 目次に戻る](#index)
@@ -214,6 +265,9 @@ Route53 Console → Hosted Zone → internal.example.com（Private）
 * TTLを元に戻す
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 ## 5. リスクと対策
 [🔙 目次に戻る](#index)
@@ -227,6 +281,9 @@ Route53 Console → Hosted Zone → internal.example.com（Private）
 
 ---
 
+[🔙 目次に戻る](#index)
+
+
 ## 6. 要点まとめ
 [🔙 目次に戻る](#index)
 
@@ -237,5 +294,8 @@ Route53 Console → Hosted Zone → internal.example.com（Private）
 * TTL短縮・並行運用・検証は切替の鉄則
 
 ---
+
+[🔙 目次に戻る](#index)
+
 
 
