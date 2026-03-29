@@ -90,9 +90,6 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 ---
 
 <!-- START_TREE -->
-
-[🔙 目次に戻る](#index)
-
 ## プロジェクト構成  
 ├── 01_開発/  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 01_企画/  
@@ -354,6 +351,3 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 └── [index.html](index.html)  
 
 72 directories, 186 files  
-
-[🔙 目次に戻る](#index)
-
