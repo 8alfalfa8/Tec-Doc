@@ -7,6 +7,7 @@ GitHub Actionsから呼び出されることを想定
 import os
 import re
 import sys
+import subprocess
 from pathlib import Path
 
 
@@ -25,15 +26,75 @@ def load_config():
     config = DEFAULT_CONFIG.copy()
     
     # 環境変数から上書き
-    if os.environ.get('HEADING_LEVEL'):
-        config['heading_level'] = os.environ['HEADING_LEVEL']
+    heading_level = os.environ.get('HEADING_LEVEL')
+    if heading_level and heading_level.strip():
+        config['heading_level'] = heading_level
     
     return config
 
 
+def get_changed_md_files():
+    """変更されたMarkdownファイルのリストを取得"""
+    md_files = []
+    
+    # GitHub Actions のイベントタイプを確認
+    event_name = os.environ.get('GITHUB_EVENT_NAME', '')
+    
+    if event_name == 'push':
+        # pushイベントの場合
+        # HEADと前回のコミットの差分を取得
+        result = subprocess.run(
+            ['git', 'diff', '--name-only', 'HEAD~1', 'HEAD'],
+            capture_output=True,
+            text=True
+        )
+        if result.returncode == 0:
+            files = result.stdout.strip().split('\n')
+            md_files = [f for f in files if f.endswith('.md') and os.path.exists(f)]
+    
+    elif event_name == 'pull_request':
+        # pull_requestイベントの場合
+        # 現在のHEADとベースブランチの差分を取得
+        base_ref = os.environ.get('GITHUB_BASE_REF', '')
+        if base_ref:
+            # リモートのベースブランチをフェッチ
+            subprocess.run(['git', 'fetch', 'origin', base_ref], capture_output=True)
+            result = subprocess.run(
+                ['git', 'diff', '--name-only', f'origin/{base_ref}', 'HEAD'],
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                files = result.stdout.strip().split('\n')
+                md_files = [f for f in files if f.endswith('.md') and os.path.exists(f)]
+    
+    else:
+        # その他のイベントまたはローカル実行
+        # 最新のコミットからの変更を取得
+        result = subprocess.run(
+            ['git', 'diff', '--name-only', 'HEAD~1', 'HEAD'],
+            capture_output=True,
+            text=True
+        )
+        if result.returncode == 0:
+            files = result.stdout.strip().split('\n')
+            md_files = [f for f in files if f.endswith('.md') and os.path.exists(f)]
+        
+        # 変更がない場合は、追跡されているすべてのMarkdownファイルを処理
+        if not md_files:
+            result = subprocess.run(
+                ['git', 'ls-files', '*.md'],
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                md_files = [f for f in result.stdout.strip().split('\n') if f and os.path.exists(f)]
+    
+    return md_files
+
+
 def extract_headings(content, heading_level):
     """指定されたレベルの見出しを抽出"""
-    # 見出しパターン（例: ## 見出し）
     pattern = rf'^{re.escape(heading_level)}\s+(.+)$'
     headings = []
     
@@ -59,28 +120,26 @@ def generate_toc(headings, config):
     
     for title, anchor_id in headings:
         # 番号を除去してリンクテキストを作成
-        # 例: "1. オブジェクト指向プログラミング" -> "1 オブジェクト指向プログラミング"
         link_text = re.sub(r'^(\d+)\.\s+', r'\1 ', title)
         toc_lines.append(f"- [{link_text}](#{anchor_id})")
     
     return "\n".join(toc_lines)
 
 
-def add_back_to_toc_links(content, headings, back_link):
+def add_back_to_toc_links(content, headings, back_link, heading_level):
     """各見出しセクションの最後に「目次に戻る」リンクを追加"""
     lines = content.split('\n')
     result = []
     i = 0
     section_start = None
-    current_heading = None
     
     while i < len(lines):
         line = lines[i]
         
         # 見出し行を検出
-        if re.match(rf'^{re.escape(HEADING_LEVEL)}\s+', line.strip()):
+        if re.match(rf'^{re.escape(heading_level)}\s+', line.strip()):
             # 前のセクションが終了した場合、戻るリンクを追加
-            if section_start is not None and current_heading is not None:
+            if section_start is not None:
                 # セクション内に既に戻るリンクがあるか確認
                 section_content = '\n'.join(result[section_start:i])
                 if back_link not in section_content:
@@ -95,13 +154,12 @@ def add_back_to_toc_links(content, headings, back_link):
                         i += 2
             
             section_start = i
-            current_heading = line
         
         result.append(line)
         i += 1
     
     # 最後のセクションに戻るリンクを追加
-    if section_start is not None and current_heading is not None:
+    if section_start is not None:
         section_content = '\n'.join(result[section_start:])
         if back_link not in section_content:
             if result and result[-1].strip() == '':
@@ -115,19 +173,17 @@ def add_back_to_toc_links(content, headings, back_link):
     return '\n'.join(result)
 
 
+def has_toc(content, config):
+    """既存の目次があるか確認"""
+    toc_pattern = rf'{re.escape(config["toc_marker_start"])}.*?{re.escape(config["toc_marker_end"])}'
+    return re.search(toc_pattern, content, re.DOTALL) is not None
+
+
 def update_markdown_toc(file_path, config):
     """Markdownファイルの目次を更新"""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-        
-        # 既存の目次を検出して削除
-        toc_pattern = rf'{re.escape(config["toc_marker_start"])}.*?{re.escape(config["toc_marker_end"])}'
-        toc_section = re.search(toc_pattern, content, re.DOTALL)
-        
-        if toc_section:
-            content = re.sub(toc_pattern, '', content, flags=re.DOTALL)
-            content = re.sub(r'\n{3,}', '\n\n', content)
         
         # 見出しを抽出
         headings = extract_headings(content, config['heading_level'])
@@ -139,39 +195,42 @@ def update_markdown_toc(file_path, config):
         # 新しい目次を生成
         new_toc = generate_toc(headings, config)
         
-        # 目次を配置（最初の対象見出しの前に挿入）
-        heading_pattern = rf'^{re.escape(config["heading_level"])}\s+'
-        heading_match = re.search(heading_pattern, content, re.MULTILINE)
+        # 既存の目次を検出
+        existing_toc = has_toc(content, config)
         
-        if heading_match:
-            insert_pos = heading_match.start()
+        if existing_toc:
+            # マーカー方式の場合 - 既存の目次を置換
+            toc_pattern = rf'{re.escape(config["toc_marker_start"])}.*?{re.escape(config["toc_marker_end"])}'
+            replacement = f"{config['toc_marker_start']}\n{new_toc}\n{config['toc_marker_end']}"
+            new_content = re.sub(toc_pattern, replacement, content, flags=re.DOTALL)
+        else:
+            # マーカーがない場合 - 最初の対象見出しの前に挿入
+            heading_pattern = rf'^{re.escape(config["heading_level"])}\s+'
+            heading_match = re.search(heading_pattern, content, re.MULTILINE)
             
-            # アンカー用のindexを追加
-            index_anchor = '<a id="index"></a>\n'
-            
-            # 目次セクションを作成
-            if toc_section:
-                toc_section_content = f"{config['toc_marker_start']}\n{new_toc}\n{config['toc_marker_end']}"
+            if heading_match:
+                insert_pos = heading_match.start()
+                index_anchor = '<a id="index"></a>\n'
+                new_content = (content[:insert_pos] + 
+                             index_anchor + 
+                             new_toc + 
+                             "\n\n" + 
+                             content[insert_pos:])
             else:
-                toc_section_content = f"{new_toc}"
-            
-            new_content = (content[:insert_pos] + 
-                         index_anchor + 
-                         toc_section_content + 
-                         "\n\n" + 
-                         content[insert_pos:])
-            
-            # 各見出しセクションに「目次に戻る」を追加
-            new_content = add_back_to_toc_links(new_content, headings, config['back_to_toc'])
-            
-            # ファイルに書き戻し
+                print(f"  ⚠️ 対象の見出しが見つかりません: {file_path}")
+                return False
+        
+        # 各見出しセクションに「目次に戻る」を追加
+        new_content = add_back_to_toc_links(new_content, headings, config['back_to_toc'], config['heading_level'])
+        
+        # 内容に変更がある場合のみ書き込み
+        if new_content != content:
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write(new_content)
-            
             print(f"  ✅ 更新完了: {file_path}")
             return True
         else:
-            print(f"  ⚠️ 対象の見出しが見つかりません: {file_path}")
+            print(f"  ℹ️  変更なし: {file_path}")
             return False
             
     except Exception as e:
@@ -183,15 +242,16 @@ def main():
     """メイン処理"""
     # 設定を読み込み
     config = load_config()
-    global HEADING_LEVEL  # 関数内で使用するため
-    HEADING_LEVEL = config['heading_level']
     
     # 変更されたMarkdownファイルを取得
-    changed_files = os.popen('git diff --name-only HEAD~1 HEAD').read().strip().split('\n')
-    md_files = [f for f in changed_files if f.endswith('.md') and os.path.exists(f)]
+    md_files = get_changed_md_files()
     
     if not md_files:
         print("📝 変更されたMarkdownファイルはありません")
+        # デバッグ情報を出力
+        print(f"🔍 イベントタイプ: {os.environ.get('GITHUB_EVENT_NAME', 'N/A')}")
+        print(f"🔍 リポジトリ: {os.environ.get('GITHUB_REPOSITORY', 'N/A')}")
+        print(f"🔍 リファレンス: {os.environ.get('GITHUB_REF', 'N/A')}")
         sys.exit(0)
     
     print(f"📝 処理対象ファイル: {', '.join(md_files)}")
@@ -209,8 +269,10 @@ def main():
     
     # 更新があれば環境変数を設定
     if updated > 0:
-        with open(os.environ['GITHUB_ENV'], 'a') as f:
-            f.write('UPDATED=true\n')
+        github_env = os.environ.get('GITHUB_ENV')
+        if github_env:
+            with open(github_env, 'a') as f:
+                f.write('UPDATED=true\n')
 
 
 if __name__ == "__main__":
