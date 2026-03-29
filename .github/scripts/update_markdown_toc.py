@@ -13,7 +13,7 @@ from pathlib import Path
 
 # 設定（デフォルト値）
 DEFAULT_CONFIG = {
-    'heading_level': '##',  # 目次対象の見出しレベル
+    'heading_level': '##',
     'toc_marker_start': '<!-- toc -->',
     'toc_marker_end': '<!-- tocstop -->',
     'back_to_toc': '[🔙 目次に戻る](#index)',
@@ -25,7 +25,6 @@ def load_config():
     """設定を読み込む（環境変数またはデフォルト値）"""
     config = DEFAULT_CONFIG.copy()
     
-    # 環境変数から上書き
     heading_level = os.environ.get('HEADING_LEVEL')
     if heading_level and heading_level.strip():
         config['heading_level'] = heading_level
@@ -37,58 +36,83 @@ def get_changed_md_files():
     """変更されたMarkdownファイルのリストを取得"""
     md_files = []
     
-    # GitHub Actions のイベントタイプを確認
-    event_name = os.environ.get('GITHUB_EVENT_NAME', '')
+    # 方法1: GitHubが提供するbefore/after SHAを使用
+    before_sha = os.environ.get('BEFORE_SHA')
+    current_sha = os.environ.get('CURRENT_SHA')
     
-    if event_name == 'push':
-        # pushイベントの場合
-        # HEADと前回のコミットの差分を取得
+    if before_sha and current_sha and before_sha != '0000000000000000000000000000000000000000':
+        print(f"🔍 Using GitHub SHA: {before_sha} -> {current_sha}")
         result = subprocess.run(
-            ['git', 'diff', '--name-only', 'HEAD~1', 'HEAD'],
+            ['git', 'diff', '--name-only', before_sha, current_sha],
             capture_output=True,
             text=True
         )
-        if result.returncode == 0:
+        if result.returncode == 0 and result.stdout.strip():
             files = result.stdout.strip().split('\n')
             md_files = [f for f in files if f.endswith('.md') and os.path.exists(f)]
+            if md_files:
+                print(f"✅ Found {len(md_files)} changed MD files using GitHub SHA")
+                return md_files
     
-    elif event_name == 'pull_request':
-        # pull_requestイベントの場合
-        # 現在のHEADとベースブランチの差分を取得
-        base_ref = os.environ.get('GITHUB_BASE_REF', '')
-        if base_ref:
-            # リモートのベースブランチをフェッチ
-            subprocess.run(['git', 'fetch', 'origin', base_ref], capture_output=True)
+    # 方法2: HEAD~1 と HEAD の比較
+    result = subprocess.run(
+        ['git', 'diff', '--name-only', 'HEAD~1', 'HEAD'],
+        capture_output=True,
+        text=True
+    )
+    if result.returncode == 0 and result.stdout.strip():
+        files = result.stdout.strip().split('\n')
+        md_files = [f for f in files if f.endswith('.md') and os.path.exists(f)]
+        if md_files:
+            print(f"✅ Found {len(md_files)} changed MD files using HEAD~1")
+            return md_files
+    
+    # 方法3: 最新の2つのコミットを比較
+    result = subprocess.run(
+        ['git', 'log', '-2', '--oneline', '--format=%H'],
+        capture_output=True,
+        text=True
+    )
+    if result.returncode == 0:
+        commits = result.stdout.strip().split('\n')
+        if len(commits) >= 2:
             result = subprocess.run(
-                ['git', 'diff', '--name-only', f'origin/{base_ref}', 'HEAD'],
+                ['git', 'diff', '--name-only', commits[1], commits[0]],
                 capture_output=True,
                 text=True
             )
-            if result.returncode == 0:
+            if result.returncode == 0 and result.stdout.strip():
                 files = result.stdout.strip().split('\n')
                 md_files = [f for f in files if f.endswith('.md') and os.path.exists(f)]
+                if md_files:
+                    print(f"✅ Found {len(md_files)} changed MD files using git log")
+                    return md_files
     
-    else:
-        # その他のイベントまたはローカル実行
-        # 最新のコミットからの変更を取得
+    # 方法4: 変更がない場合は、最近更新されたMarkdownファイルを検出
+    if not md_files:
+        print("⚠️ No changed files detected, checking for recently modified MD files...")
         result = subprocess.run(
-            ['git', 'diff', '--name-only', 'HEAD~1', 'HEAD'],
+            ['git', 'ls-files', '*.md'],
             capture_output=True,
             text=True
         )
         if result.returncode == 0:
-            files = result.stdout.strip().split('\n')
-            md_files = [f for f in files if f.endswith('.md') and os.path.exists(f)]
-        
-        # 変更がない場合は、追跡されているすべてのMarkdownファイルを処理
-        if not md_files:
-            result = subprocess.run(
-                ['git', 'ls-files', '*.md'],
-                capture_output=True,
-                text=True
-            )
-            if result.returncode == 0:
-                md_files = [f for f in result.stdout.strip().split('\n') if f and os.path.exists(f)]
+            all_md_files = [f for f in result.stdout.strip().split('\n') if f]
+            
+            # 最近のコミットで変更されたファイルを確認
+            for md_file in all_md_files:
+                result = subprocess.run(
+                    ['git', 'log', '-1', '--format=%H', '--', md_file],
+                    capture_output=True,
+                    text=True
+                )
+                if result.returncode == 0 and result.stdout.strip():
+                    # このファイルはGit管理下にある
+                    if os.path.exists(md_file):
+                        md_files.append(md_file)
+            
+            if md_files:
+                print(f"✅ Found {len(md_files)} tracked MD files")
     
     return md_files
 
@@ -173,12 +197,6 @@ def add_back_to_toc_links(content, headings, back_link, heading_level):
     return '\n'.join(result)
 
 
-def has_toc(content, config):
-    """既存の目次があるか確認"""
-    toc_pattern = rf'{re.escape(config["toc_marker_start"])}.*?{re.escape(config["toc_marker_end"])}'
-    return re.search(toc_pattern, content, re.DOTALL) is not None
-
-
 def update_markdown_toc(file_path, config):
     """Markdownファイルの目次を更新"""
     try:
@@ -196,11 +214,11 @@ def update_markdown_toc(file_path, config):
         new_toc = generate_toc(headings, config)
         
         # 既存の目次を検出
-        existing_toc = has_toc(content, config)
+        toc_pattern = rf'{re.escape(config["toc_marker_start"])}.*?{re.escape(config["toc_marker_end"])}'
+        existing_toc = re.search(toc_pattern, content, re.DOTALL)
         
         if existing_toc:
             # マーカー方式の場合 - 既存の目次を置換
-            toc_pattern = rf'{re.escape(config["toc_marker_start"])}.*?{re.escape(config["toc_marker_end"])}'
             replacement = f"{config['toc_marker_start']}\n{new_toc}\n{config['toc_marker_end']}"
             new_content = re.sub(toc_pattern, replacement, content, flags=re.DOTALL)
         else:
@@ -248,10 +266,18 @@ def main():
     
     if not md_files:
         print("📝 変更されたMarkdownファイルはありません")
-        # デバッグ情報を出力
         print(f"🔍 イベントタイプ: {os.environ.get('GITHUB_EVENT_NAME', 'N/A')}")
         print(f"🔍 リポジトリ: {os.environ.get('GITHUB_REPOSITORY', 'N/A')}")
         print(f"🔍 リファレンス: {os.environ.get('GITHUB_REF', 'N/A')}")
+        print(f"🔍 Before SHA: {os.environ.get('BEFORE_SHA', 'N/A')}")
+        print(f"🔍 Current SHA: {os.environ.get('CURRENT_SHA', 'N/A')}")
+        
+        # デバッグ情報を追加
+        print("\n🔍 Debug - git status:")
+        subprocess.run(['git', 'status'], capture_output=False)
+        print("\n🔍 Debug - git log:")
+        subprocess.run(['git', 'log', '--oneline', '-3'], capture_output=False)
+        
         sys.exit(0)
     
     print(f"📝 処理対象ファイル: {', '.join(md_files)}")
