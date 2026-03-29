@@ -1,4 +1,47 @@
 
+<!-- TOC_START -->
+<a id="index"></a>📖 目次
+
+- [1. AIDD × DocDD × RAG 全体システム構成](#1-aidd-docdd-rag-全体システム構成)
+  - [全体アーキテクチャ](#全体アーキテクチャ)
+- [2. 各レイヤー詳細](#2-各レイヤー詳細)
+- [3. Document Layer（DocDD）](#3-document-layerdocdd)
+  - [DocDDドキュメント構成](#docddドキュメント構成)
+  - [ドキュメント例](#ドキュメント例)
+    - [requirements.md](#requirementsmd)
+    - [architecture.md](#architecturemd)
+- [4. Knowledge Layer（RAG Knowledge Base）](#4-knowledge-layerrag-knowledge-base)
+  - [RAGデータパイプライン](#ragデータパイプライン)
+  - [データ処理](#データ処理)
+    - [① Parsing](#①-parsing)
+    - [② Chunking](#②-chunking)
+    - [③ Embedding](#③-embedding)
+    - [④ Vector Database](#④-vector-database)
+- [5. Retrieval Layer（検索）](#5-retrieval-layer検索)
+  - [Retrievalフロー](#retrievalフロー)
+- [6. AI Generation Layer（LLM）](#6-ai-generation-layerllm)
+  - [Prompt構造](#prompt構造)
+  - [出力](#出力)
+- [7. AI Agent Layer（AIDD）](#7-ai-agent-layeraidd)
+  - [AIエージェント構成](#aiエージェント構成)
+  - [例](#例)
+    - [Code Agent](#code-agent)
+    - [Test Agent](#test-agent)
+    - [Infra Agent](#infra-agent)
+- [8. DevOps Layer](#8-devops-layer)
+  - [CI/CD構成](#cicd構成)
+- [9. データフロー（重要）](#9-データフロー重要)
+  - [開発フロー](#開発フロー)
+  - [図](#図)
+- [10. 実際の技術スタック](#10-実際の技術スタック)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+  - [RAG](#rag)
+  - [VectorDB](#vectordb)
+  - [LLM](#llm)
+  - [Agent](#agent)
+<!-- TOC_END -->
+
 # ◆ AIDD × DocDD × RAG 開発方式概要
 
 **AIDD × DocDD × RAG** は、現在のエンタープライズAI開発で非常に重要なアーキテクチャです。  
@@ -23,8 +66,12 @@ AIDD（AI自動開発）
 ---
 
 ## 1. AIDD × DocDD × RAG 全体システム構成
+[🔙 目次に戻る](#index)
+
 
 ### 全体アーキテクチャ
+[🔙 目次に戻る](#index)
+
 
 ```mermaid
 graph TD
@@ -43,6 +90,8 @@ graph TD
 ---
 
 ## 2. 各レイヤー詳細
+[🔙 目次に戻る](#index)
+
 
 このアーキテクチャは **6つのレイヤー**で構成されます。
 
@@ -58,6 +107,8 @@ graph TD
 ---
 
 ## 3. Document Layer（DocDD）
+[🔙 目次に戻る](#index)
+
 
 DocDDでは
 
@@ -75,6 +126,8 @@ DocDDでは、コードより先にドキュメントを作成します。
 ---
 
 ### DocDDドキュメント構成
+[🔙 目次に戻る](#index)
+
 
 例
 
@@ -91,8 +144,12 @@ docs/
 ---
 
 ### ドキュメント例
+[🔙 目次に戻る](#index)
+
 
 #### requirements.md
+[🔙 目次に戻る](#index)
+
 
 ```
 System: Customer Support AI
@@ -106,6 +163,8 @@ Feature:
 ---
 
 #### architecture.md
+[🔙 目次に戻る](#index)
+
 
 ```
 Architecture:
@@ -118,6 +177,8 @@ Architecture:
 ---
 
 ## 4. Knowledge Layer（RAG Knowledge Base）
+[🔙 目次に戻る](#index)
+
 
 DocDDドキュメントは **RAGの知識ベース**になります。
 
@@ -131,6 +192,8 @@ RAGとは
 ---
 
 ### RAGデータパイプライン
+[🔙 目次に戻る](#index)
+
 
 ```
 Document
@@ -147,8 +210,12 @@ VectorDB
 ---
 
 ### データ処理
+[🔙 目次に戻る](#index)
+
 
 #### ① Parsing
+[🔙 目次に戻る](#index)
+
 
 ```
 PDF
@@ -167,6 +234,8 @@ Metadata
 ---
 
 #### ② Chunking
+[🔙 目次に戻る](#index)
+
 
 文章を小さく分割
 
@@ -180,6 +249,8 @@ overlap 128
 ---
 
 #### ③ Embedding
+[🔙 目次に戻る](#index)
+
 
 ```
 Text → Vector
@@ -197,6 +268,8 @@ Text → Vector
 ---
 
 #### ④ Vector Database
+[🔙 目次に戻る](#index)
+
 
 保存
 
@@ -216,6 +289,8 @@ pgvector
 ---
 
 ## 5. Retrieval Layer（検索）
+[🔙 目次に戻る](#index)
+
 
 ユーザーが質問すると
 
@@ -232,6 +307,8 @@ TopK documents
 ---
 
 ### Retrievalフロー
+[🔙 目次に戻る](#index)
+
 
 ```
 User Query
@@ -248,12 +325,16 @@ Context Builder
 ---
 
 ## 6. AI Generation Layer（LLM）
+[🔙 目次に戻る](#index)
+
 
 RAGで取得した情報を **LLMに渡して生成**します。
 
 ---
 
 ### Prompt構造
+[🔙 目次に戻る](#index)
+
 
 ```
 System:
@@ -269,6 +350,8 @@ Generate API design
 ---
 
 ### 出力
+[🔙 目次に戻る](#index)
+
 
 ```
 FastAPI implementation
@@ -277,6 +360,8 @@ FastAPI implementation
 ---
 
 ## 7. AI Agent Layer（AIDD）
+[🔙 目次に戻る](#index)
+
 
 ここが **AIDDの核心**です。
 
@@ -285,6 +370,8 @@ AIが開発作業を自動化します。
 ---
 
 ### AIエージェント構成
+[🔙 目次に戻る](#index)
+
 
 ```
 AI Orchestrator
@@ -299,8 +386,12 @@ AI Orchestrator
 ---
 
 ### 例
+[🔙 目次に戻る](#index)
+
 
 #### Code Agent
+[🔙 目次に戻る](#index)
+
 
 ```
 Doc → code
@@ -317,6 +408,8 @@ FastAPI code
 ---
 
 #### Test Agent
+[🔙 目次に戻る](#index)
+
 
 ```
 Doc → test
@@ -333,6 +426,8 @@ pytest
 ---
 
 #### Infra Agent
+[🔙 目次に戻る](#index)
+
 
 ```
 Architecture doc
@@ -343,6 +438,8 @@ Terraform
 ---
 
 ## 8. DevOps Layer
+[🔙 目次に戻る](#index)
+
 
 生成されたコードは
 
@@ -356,6 +453,8 @@ CI/CD
 ---
 
 ### CI/CD構成
+[🔙 目次に戻る](#index)
+
 
 ```
 GitHub
@@ -372,8 +471,12 @@ Deploy
 ---
 
 ## 9. データフロー（重要）
+[🔙 目次に戻る](#index)
+
 
 ### 開発フロー
+[🔙 目次に戻る](#index)
+
 
 ```
 1 Developer writes document
@@ -387,6 +490,8 @@ Deploy
 ---
 
 ### 図
+[🔙 目次に戻る](#index)
+
 
 ```
 Doc
@@ -405,8 +510,12 @@ Deploy
 ---
 
 ## 10. 実際の技術スタック
+[🔙 目次に戻る](#index)
+
 
 ### Frontend
+[🔙 目次に戻る](#index)
+
 
 ```
 React
@@ -416,6 +525,8 @@ Next.js
 ---
 
 ### Backend
+[🔙 目次に戻る](#index)
+
 
 ```
 FastAPI
@@ -425,6 +536,8 @@ Node.js
 ---
 
 ### RAG
+[🔙 目次に戻る](#index)
+
 
 ```
 LangChain
@@ -435,6 +548,8 @@ Haystack
 ---
 
 ### VectorDB
+[🔙 目次に戻る](#index)
+
 
 ```
 Pinecone
@@ -446,6 +561,8 @@ pgvector
 ---
 
 ### LLM
+[🔙 目次に戻る](#index)
+
 
 ```
 OpenAI
@@ -457,6 +574,8 @@ Mistral
 ---
 
 ### Agent
+[🔙 目次に戻る](#index)
+
 
 ```
 CrewAI
