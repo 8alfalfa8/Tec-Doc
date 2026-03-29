@@ -7,6 +7,14 @@ on:
   pull_request:
     paths:
       - '**/*.md'
+  workflow_dispatch:
+    inputs:
+      toc_level:
+        description: 'Maximum heading level for TOC (2=##, 3=###, ...)'
+        required: false
+        default: '2'
+        type: choice
+        options: ['2', '3', '4', '5', '6']
 
 # Allow the workflow to push commits back to the repository
 permissions:
@@ -56,16 +64,23 @@ jobs:
       # ── 4. run TOC script ──────────────────────────────────────────────────
       - name: Update TOC in changed files
         if: steps.changed.outputs.files != ''
-        env:
-          # Override the default heading level here, or pass via workflow_dispatch input.
-          # 2 = ## (default), 3 = ### etc.
-          TOC_LEVEL: ${{ vars.TOC_LEVEL || '2' }}
         run: |
-          # Download the helper script from the repo itself
-          # (the script lives at scripts/update_toc.py in your repository)
+          # Heading level: workflow_dispatch input → env var TOC_LEVEL → default 2
+          if [ -n "${{ inputs.toc_level }}" ]; then
+            LEVEL="${{ inputs.toc_level }}"
+          elif [ -n "$TOC_LEVEL" ]; then
+            LEVEL="$TOC_LEVEL"
+          else
+            LEVEL="2"
+          fi
+          echo "Using TOC level: $LEVEL"
           python scripts/update_toc.py \
-            --level "$TOC_LEVEL" \
+            --level "$LEVEL" \
             ${{ steps.changed.outputs.files }}
+        env:
+          # Set TOC_LEVEL here to change the default for push/pull_request events.
+          # 2 = ## (default), 3 = ###, etc.
+          TOC_LEVEL: '2'
 
       # ── 5. commit if anything changed ──────────────────────────────────────
       - name: Commit updated files
