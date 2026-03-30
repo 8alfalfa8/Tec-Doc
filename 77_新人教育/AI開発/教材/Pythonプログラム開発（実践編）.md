@@ -78,7 +78,7 @@ user2.have_birthday()  # Bobが31歳になりました！
 print(f"総ユーザー数: {User.user_count}")  # 総ユーザー数: 2
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -109,7 +109,7 @@ print(admin.greet())  # 管理者: Charlieです。権限: ['read', 'write', 'de
 admin.delete_user(user1)  # CharlieがAliceを削除しました
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -153,7 +153,7 @@ print(account.balance_info)  # Taroの残高: 150000円
 # print(account.__balance)  # AttributeError（直接アクセス不可）
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -163,7 +163,7 @@ print(account.balance_info)  # Taroの残高: 150000円
 - `Cart`クラス（商品と数量を管理、合計金額計算、在庫確認）
 - `Order`クラス（カートから注文を作成、注文番号発行）
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -174,7 +174,7 @@ print(account.balance_info)  # Taroの残高: 150000円
 - システム全体のPython環境を汚染しない
 - 依存関係の競合を防止する
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -196,7 +196,7 @@ source venv/bin/activate
 (venv) $ 
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -215,7 +215,7 @@ pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -229,7 +229,7 @@ rm -rf venv  # macOS/Linux
 rmdir /s venv  # Windows
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -244,7 +244,7 @@ my_project/
 └── tests/                # テストコード
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -328,7 +328,7 @@ python -m unittest test_calculator.py
 python -m unittest discover  # すべてのテストを自動発見
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -375,7 +375,7 @@ pytest -v  # 詳細表示
 pytest -k "add"  # 特定のテストのみ実行
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -384,7 +384,7 @@ pytest -k "add"  # 特定のテストのみ実行
 2. **Green**：テストが通る最低限のコードを書く
 3. **Refactor**：コードを改善する（テストが通ることを確認）
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -400,7 +400,7 @@ git config --global user.email "your.email@example.com"
 git config --list
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -425,7 +425,7 @@ git log --oneline  # 簡潔に表示
 git log --graph --pretty=oneline  # グラフ表示
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -453,7 +453,7 @@ git merge feature/add-divide
 git branch -d feature/add-divide
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -472,7 +472,7 @@ git pull origin main
 git clone https://github.com/username/my_project.git
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -500,7 +500,7 @@ git push origin feature/add-login
 # 7. レビュー後、mainにマージ
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -526,7 +526,7 @@ Thumbs.db
 .env
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -541,7 +541,7 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install flask
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -579,7 +579,7 @@ python app.py
 # http://127.0.0.1:5000 にアクセス
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -639,7 +639,7 @@ flask_app/
 {% endblock %}
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -687,7 +687,7 @@ def api_add_task():
     return jsonify({'status': 'error'}), 400
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -743,7 +743,7 @@ def complete(task_id):
     return redirect(url_for('index'))
 ```
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -755,7 +755,7 @@ def complete(task_id):
 - 記事編集・削除機能
 - （発展）ユーザー認証機能
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
 
@@ -773,6 +773,6 @@ def complete(task_id):
 
 repository: [https://github.com/8alfalfa8/Tec-Doc](https://github.com/8alfalfa8/Tec-Doc)
 
-[🔙 目次に戻る](#index)
+[🔝 目次に戻る](#index)
 
 ---
