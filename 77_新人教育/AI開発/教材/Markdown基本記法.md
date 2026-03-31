@@ -356,7 +356,7 @@ ___
 
 ## 14. HTMLタグ
 Markdown記法はもともと、ホームページを簡単に書くことを目的として作成されています。
-よって、MarkDown記法にない装飾等は、HTMLタグが使えますよ。
+よって、MarkDown記法にない装飾等は、HTMLタグが使えます。
 
 ```html
 <div align="center">真ん中に寄せてみた</div>
