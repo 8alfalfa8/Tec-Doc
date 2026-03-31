@@ -25,7 +25,7 @@
 - [15. Mermaid図記法](#15-Mermaid図記法)
 - [16. LaTeX記法](#16-LaTeX記法)
 - [17. 目次と戻る記法](#17-目次と戻る記法)
-- [付録：ブラウザでのMarkdown閲覧環境整備（Markdown Viewer のインストール）](#付録ブラウザでのMarkdown閲覧環境整備Markdown-Viewer-のインストール)
+- [付録：ブラウザ上のMarkdown閲覧環境の整備（Markdown Viewer のインストール）](#付録ブラウザ上のMarkdown閲覧環境の整備Markdown-Viewer-のインストール)
 - [本教材編集履歴](#本教材編集履歴)
 
 ---
@@ -461,7 +461,7 @@ HTMLのタグを少し混ぜるのが最も確実な方法です。
 
 ---
 
-## 付録：ブラウザでのMarkdown閲覧環境整備（Markdown Viewer のインストール）
+## 付録：ブラウザ上のMarkdown閲覧環境の整備（Markdown Viewer のインストール）
 
 本リポジトリのドキュメント（Markdown記法）をブラウザで正しく閲覧し、図解（Mermaid）を表示させるために、ブラウザ拡張機能 **「Markdown Viewer」** のインストールと設定を推奨しています。
 
