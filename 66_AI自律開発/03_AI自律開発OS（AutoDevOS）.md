@@ -37,48 +37,41 @@ AI = 開発主体
 
 # 2. AutoDev OSの全体アーキテクチャ
 
+```mermaid
+graph TD
+    A["Developer / PM"] --> B["AI Interface<br>Chat / CLI / API"]
+    B --> C["AI Orchestrator<br>Workflow / Task Planner"]
+    C --> D["AI Agent Layer<br>Requirement / Architecture<br> Code / Test / Security <br> DevOps / Review"]
+    D --> E["RAG Knowledge<br>Docs / Codebase <br> Design Patterns"]
+    E --> F["Development Engine<br>Code Gen / Test Gen <br> Infra Gen"]
+    F --> G["DevOps Engine<br>Git / CI / CD / Deployment"]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bfb,stroke:#333,stroke-width:2px
+    style F fill:#fbb,stroke:#333,stroke-width:2px
+    style G fill:#fbb,stroke:#333,stroke-width:2px
 ```
-                ┌─────────────────────┐
-                │   Developer / PM    │
-                └──────────┬──────────┘
-                           │
-                           ▼
-             ┌───────────────────────────┐
-             │        AI Interface       │
-             │      Chat / CLI / API     │
-             └─────────────┬─────────────┘
-                           │
-                           ▼
-             ┌───────────────────────────┐
-             │      AI Orchestrator      │
-             │  Workflow / Task Planner  │
-             └─────────────┬─────────────┘
-                           │
-                           ▼
-         ┌─────────────────────────────────────┐
-         │           AI Agent Layer            │
-         │  Requirement / Architecture / Code  │
-         │  Test / Security / DevOps / Review  │
-         └─────────────────┬───────────────────┘
-                           │
-                           ▼
-         ┌─────────────────────────────────────┐
-         │           RAG Knowledge             │
-         │  Docs / Codebase / Design Patterns  │
-         └─────────────────┬───────────────────┘
-                           │
-                           ▼
-         ┌─────────────────────────────────────┐
-         │        Development Engine           │
-         │   Code Gen / Test Gen / Infra Gen   │
-         └─────────────────┬───────────────────┘
-                           │
-                           ▼
-         ┌─────────────────────────────────────┐
-         │            DevOps Engine            │
-         │      Git / CI / CD / Deployment     │
-         └─────────────────────────────────────┘
-```
+
+このMermaid図では、以下の要素を表現しています：
+
+1. **フロー**：上から下への一貫したデータ/指示の流れ
+2. **各ノード**：
+   - `Developer / PM`：開始点（紫色）
+   - `AI Interface`：ユーザーとの接点（青色）
+   - `AI Orchestrator`：タスク計画（青色）
+   - `AI Agent Layer`：複数の専門エージェント（青色）
+   - `RAG Knowledge`：知識ベース（緑色）
+   - `Development Engine`：コード生成（赤色）
+   - `DevOps Engine`：デプロイ（赤色）
+
+3. **色分け**：
+   - 紫色：人間の役割
+   - 青色：AI関連の意思決定層
+   - 緑色：知識ベース
+   - 赤色：実行/生成エンジン
 
 ---
 
