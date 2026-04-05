@@ -253,7 +253,8 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [02_金融・公共向けテスト計画書（標準）.md](04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/80_%E3%83%86%E3%82%B9%E3%83%88%28%E8%A9%A6%E9%A8%93%29/02_%E9%87%91%E8%9E%8D%E3%83%BB%E5%85%AC%E5%85%B1%E5%90%91%E3%81%91%E3%83%86%E3%82%B9%E3%83%88%E8%A8%88%E7%94%BB%E6%9B%B8%EF%BC%88%E6%A8%99%E6%BA%96%EF%BC%89.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [03_AWS特化 試験観点一覧（金融・公共向け）.md](04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/80_%E3%83%86%E3%82%B9%E3%83%88%28%E8%A9%A6%E9%A8%93%29/03_AWS%E7%89%B9%E5%8C%96%20%E8%A9%A6%E9%A8%93%E8%A6%B3%E7%82%B9%E4%B8%80%E8%A6%A7%EF%BC%88%E9%87%91%E8%9E%8D%E3%83%BB%E5%85%AC%E5%85%B1%E5%90%91%E3%81%91%EF%BC%89.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── AWS-CDK/  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [01_UT工程自動化のアーキテクチャ案１.md](04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/80_%E3%83%86%E3%82%B9%E3%83%88%28%E8%A9%A6%E9%A8%93%29/AWS-CDK/01_UT%E5%B7%A5%E7%A8%8B%E8%87%AA%E5%8B%95%E5%8C%96%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E6%A1%88%EF%BC%91.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [01_UT工程自動化のアーキテクチャ案１.md](04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/80_%E3%83%86%E3%82%B9%E3%83%88%28%E8%A9%A6%E9%A8%93%29/AWS-CDK/01_UT%E5%B7%A5%E7%A8%8B%E8%87%AA%E5%8B%95%E5%8C%96%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E6%A1%88%EF%BC%91.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [02_UT工程自動化のアーキテクチャ案２.md](04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/80_%E3%83%86%E3%82%B9%E3%83%88%28%E8%A9%A6%E9%A8%93%29/AWS-CDK/02_UT%E5%B7%A5%E7%A8%8B%E8%87%AA%E5%8B%95%E5%8C%96%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E6%A1%88%EF%BC%92.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── セキュリティと監査/  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [セキュリティと監査全般.md](04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%81%A8%E7%9B%A3%E6%9F%BB/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%81%A8%E7%9B%A3%E6%9F%BB%E5%85%A8%E8%88%AC.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [自律最適化インフラへの進化.md](04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/%E8%87%AA%E5%BE%8B%E6%9C%80%E9%81%A9%E5%8C%96%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E3%81%B8%E3%81%AE%E9%80%B2%E5%8C%96.md)  
@@ -312,4 +313,4 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 ├── [README.md](README.md)  
 └── [index.html](index.html)  
 
-73 directories, 189 files  
+73 directories, 190 files  
