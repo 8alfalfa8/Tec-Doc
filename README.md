@@ -280,6 +280,7 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [04_オンプレミスシステムからAWS移行における運用設計.md](07_%E9%81%8B%E7%94%A8/04_%E3%82%AA%E3%83%B3%E3%83%97%E3%83%AC%E3%83%9F%E3%82%B9%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%8B%E3%82%89AWS%E7%A7%BB%E8%A1%8C%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E9%81%8B%E7%94%A8%E8%A8%AD%E8%A8%88.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [05_運用設計書(オブザーバビリティの3本柱版).md](07_%E9%81%8B%E7%94%A8/05_%E9%81%8B%E7%94%A8%E8%A8%AD%E8%A8%88%E6%9B%B8%28%E3%82%AA%E3%83%96%E3%82%B6%E3%83%BC%E3%83%90%E3%83%93%E3%83%AA%E3%83%86%E3%82%A3%E3%81%AE3%E6%9C%AC%E6%9F%B1%E7%89%88%29.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [80_GitHub運用管理プロセス.md](07_%E9%81%8B%E7%94%A8/80_GitHub%E9%81%8B%E7%94%A8%E7%AE%A1%E7%90%86%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [ops_design_doc_structure.svg](07_%E9%81%8B%E7%94%A8/ops_design_doc_structure.svg)  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [ログ確認・トラブルシュート作業.md](07_%E9%81%8B%E7%94%A8/%E3%83%AD%E3%82%B0%E7%A2%BA%E8%AA%8D%E3%83%BB%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%88%E4%BD%9C%E6%A5%AD.md)  
 ├── 66_AI自律開発/  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [01_AIDD×DocDD×RAG開発方式概要.md](66_AI%E8%87%AA%E5%BE%8B%E9%96%8B%E7%99%BA/01_AIDD%C3%97DocDD%C3%97RAG%E9%96%8B%E7%99%BA%E6%96%B9%E5%BC%8F%E6%A6%82%E8%A6%81.md)  
@@ -314,4 +315,4 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 ├── [README.md](README.md)  
 └── [index.html](index.html)  
 
-73 directories, 191 files  
+73 directories, 192 files  
