@@ -22,11 +22,15 @@
 - [12. 脚注(Githubのみ対応)](#12-脚注Githubのみ対応)
 - [13. 水平線](#13-水平線)
 - [14. HTMLタグ](#14-HTMLタグ)
-- [15. Mermaid図記法](#15-Mermaid図記法)
-- [16. LaTeX記法](#16-LaTeX記法)
-- [17. 目次と戻る記法](#17-目次と戻る記法)
-- [付録：ブラウザ上のMarkdown閲覧環境の整備（Markdown Viewer のインストール）](#付録ブラウザ上のMarkdown閲覧環境の整備Markdown-Viewer-のインストール)
-- [本教材編集履歴](#本教材編集履歴)
+- [15. 折りたたみ](#15-折りたたみ)
+- [16. Mermaid図記法](#16-Mermaid図記法)
+- [17. LaTeX記法](#17-LaTeX記法)
+- [18. 目次と戻る記法](#18-目次と戻る記法)
+- [19. コメントアウト記法](#19-コメントアウト記法)
+- [付録１： ブラウザ上のMarkdown閲覧環境の整備（Markdown Viewer のインストール）](#付録１-ブラウザ上のMarkdown閲覧環境の整備Markdown-Viewer-のインストール)
+- [付録２： 環境別 Markdown HTMLタグ対応](#付録２-環境別-Markdown-HTMLタグ対応
+)
+- [本教材編集更新履歴](#本教材編集更新履歴)
 
 ---
 
@@ -370,8 +374,32 @@ Markdown記法はもともと、ホームページを簡単に書くことを目
 [🔝 目次に戻る](#index)
 
 ---
+## 15. 折りたたみ
 
-## 15. Mermaid図記法
+```html
+<details>
+<summary>xxx</summary>
+
+aaaaaaaaaaaaaaaaaaaaa
+bbbbbbbbbbbbbbbbbbb
+ccccccccccccccccccccc
+</details>
+```
+
+#### 〇表示例
+
+<details>
+<summary>xxx</summary>
+
+aaaaaaaaaaaaaaaaaaaaa
+bbbbbbbbbbbbbbbbbbb
+ccccccccccccccccccccc
+</details>
+
+[🔝 目次に戻る](#index)
+
+---
+## 16. Mermaid図記法
 
 [Mermaid（マーメイド）](https://mermaid.js.org/)は、Markdownライクなテキストベースの記法で、フローチャートやシーケンス図、ガントチャート、ER図などの様々な図表を自動生成できるツールです。最大の特徴は、コードとして図を管理できるため、修正が容易でバージョン管理とも相性が良い点です。AI開発において仕様書や設計書などのドキュメントに利用されています。
 
@@ -404,7 +432,7 @@ graph TD
 
 ---
 
-## 16. LaTeX記法
+## 17. LaTeX記法
 
 [LaTeX（ラテフ/ラテック）](https://www.latex-project.org/)記法は、特殊なコマンドを用いて数式や構造化された文書をテキストベースで記述し、美しくレイアウトする組版システムです。AI開発における仕様書や設計書などのドキュメントにおいて利用されています。
 
@@ -427,7 +455,7 @@ graph TD
 
 ---
 
-## 17. 目次と戻る記法
+## 18. 目次と戻る記法
 
 ### 目次に「ID」を設定する
 まず、戻り先となる目次の見出しにIDを割り振ります。
@@ -461,7 +489,58 @@ HTMLのタグを少し混ぜるのが最も確実な方法です。
 
 ---
 
-## 付録：ブラウザ上のMarkdown閲覧環境の整備（Markdown Viewer のインストール）
+## 19. コメントアウト記法
+
+### 基本：HTMLコメントを使う方法（推奨）
+
+もっとも汎用性が高く、GitHubやQiita、VS Codeなど大半の環境で正しく機能します。 
+
+* 単一箇所のコメントアウト
+
+```markdown
+<!-- ここにコメントを書きます。画面には表示されません -->
+```
+
+* 複数行のコメントアウト
+
+```markdown
+<!-- 
+ここも、
+あそこも、まとめて非表示になります。
+-->
+```
+
+### リンク参照記法を応用する方法
+一部のパーサー（解析器）で利用できる、Markdown独自の「リンク参照」の仕組みをハックした方法です。HTMLタグを打ちたくない場合に便利です。
+
+```markdwon
+[comment]: <> (ここにコメントを書く)
+[//]: # (これでも非表示になります)
+```
+
+* 注意点: プラットフォーム（Notionや一部のエディタなど）によっては、そのまま画面に文字列が露出してしまうケースがあるため、事前にプレビューで確認してください。
+
+### 【番外編】コードブロック内でのコメントアウト
+
+Markdownの文章内ではなく、``` で囲まれたコードブロックの中でコメントアウトしたい場合は、その「プログラミング言語」の規則に従います。 
+
+* JavaScript / Python などの例
+
+```javascript
+// JavaScriptの1行コメント
+/* 複数行の
+   コメント */
+```
+
+```Python
+# Pythonのコメント
+```
+
+[🔝 目次に戻る](#index)
+
+---
+
+## 付録１: ブラウザ上のMarkdown閲覧環境の整備（Markdown Viewer のインストール）
 
 Markdown記法のドキュメントをブラウザで正しく閲覧し、図解（Mermaid）を表示させるために、ブラウザ拡張機能 **「Markdown Viewer」** のインストールと設定を推奨しています。
 
@@ -492,14 +571,455 @@ PC上のファイルをブラウザで開くために、以下の設定を行っ
 
 ---
 
-## 本教材編集履歴
+## 付録２： 環境別 Markdown HTMLタグ対応
 
-|作成者|バージョン|   日付   |　内容   |
-|------|-------|----------|----------|
-| Y.F  |1.0.0  |2026-03-31|新規作成|
+Markdownはプレーンテキストを手軽に構造化できる記法ですが、環境によってはHTMLタグを直接記述することで、より高度なレイアウトや機能を実現できます。  
+ここでは、Markdownは環境によってHTMLタグの対応状況が異なります。主要な環境での対応を整理しました。
 
-repository: [https://github.com/8alfalfa8/Tec-Doc](https://github.com/8alfalfa8/Tec-Doc)
+---
+
+#### 1. 基本HTMLタグの対応状況
+
+| HTMLタグ | ブラウザ | GitHub | Notion | Qiita | Zenn | 備考 |
+|---------|:--------:|:-------:|:-------:|:------:|:-----:|------|
+| **基本ブロック要素** |
+| `<h1>`〜`<h6>` | ✅ | ✅ | ✅ | ✅ | ✅ | Markdown見出しと混在可能 |
+| `<p>` | ✅ | ✅ | ✅ | ✅ | ✅ | 段落 |
+| `<div>` | ✅ | ✅ | ❌ | ✅ | ✅ | レイアウト用 |
+| `<span>` | ✅ | ✅ | ❌ | ✅ | ✅ | インライン要素 |
+| `<br>` | ✅ | ✅ | ✅ | ✅ | ✅ | 改行 |
+| `<hr>` | ✅ | ✅ | ✅ | ✅ | ✅ | 水平線 |
+| **テキスト装飾** |
+| `<strong>` | ✅ | ✅ | ✅ | ✅ | ✅ | 太字 |
+| `<em>` | ✅ | ✅ | ✅ | ✅ | ✅ | イタリック |
+| `<u>` | ✅ | ✅ | ✅ | ✅ | ✅ | 下線 |
+| `<s>` | ✅ | ✅ | ✅ | ✅ | ✅ | 取り消し線 |
+| `<mark>` | ✅ | ✅ | ❌ | ✅ | ✅ | ハイライト |
+| `<small>` | ✅ | ✅ | ❌ | ✅ | ✅ | 小さな文字 |
+| `<sub>` | ✅ | ✅ | ✅ | ✅ | ✅ | 下付き文字 |
+| `<sup>` | ✅ | ✅ | ✅ | ✅ | ✅ | 上付き文字 |
+| `<code>` | ✅ | ✅ | ✅ | ✅ | ✅ | コード |
+| `<kbd>` | ✅ | ✅ | ✅ | ✅ | ✅ | キーボード入力 |
+| **リスト** |
+| `<ul>` | ✅ | ✅ | ✅ | ✅ | ✅ | 箇条書き |
+| `<ol>` | ✅ | ✅ | ✅ | ✅ | ✅ | 番号付きリスト |
+| `<li>` | ✅ | ✅ | ✅ | ✅ | ✅ | リスト項目 |
+| `<dl>` | ✅ | ✅ | ❌ | ✅ | ✅ | 定義リスト |
+| **テーブル** |
+| `<table>` | ✅ | ✅ | ✅ | ✅ | ✅ | テーブル |
+| `<thead>` | ✅ | ✅ | ❌ | ✅ | ✅ | テーブルヘッダー |
+| `<tbody>` | ✅ | ✅ | ❌ | ✅ | ✅ | テーブルボディ |
+| `<tr>` | ✅ | ✅ | ✅ | ✅ | ✅ | テーブル行 |
+| `<th>` | ✅ | ✅ | ✅ | ✅ | ✅ | ヘッダーセル |
+| `<td>` | ✅ | ✅ | ✅ | ✅ | ✅ | データセル |
+| **リンク・画像** |
+| `<a>` | ✅ | ✅ | ✅ | ✅ | ✅ | リンク |
+| `<img>` | ✅ | ✅ | ✅ | ✅ | ✅ | 画像 |
+| `<figure>` | ✅ | ✅ | ❌ | ✅ | ✅ | 図 |
+| `<figcaption>` | ✅ | ✅ | ❌ | ✅ | ✅ | 図のキャプション |
+| **その他** |
+| `<blockquote>` | ✅ | ✅ | ✅ | ✅ | ✅ | 引用 |
+| `<pre>` | ✅ | ✅ | ✅ | ✅ | ✅ | 整形済みテキスト |
+| `<details>` | ✅ | ✅ | ❌ | ✅ | ❌ | 詳細折りたたみ |
+| `<summary>` | ✅ | ✅ | ❌ | ✅ | ❌ | 詳細の概要 |
+| `<abbr>` | ✅ | ✅ | ❌ | ✅ | ✅ | 略語 |
+
+---
+
+#### 2. 環境別の特徴と制限
+
+##### 2.1. ブラウザ（一般的なHTMLレンダリング）
+
+最も自由度が高く、ほぼ全てのHTMLタグが使用可能です。
+
+```html
+<div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px;">
+  <h2 style="color: #333;">カスタムスタイル付きHTML</h2>
+  <p style="font-size: 16px; line-height: 1.5;">
+    ブラウザでは<span style="color: red; font-weight: bold;">インラインスタイル</span>も有効です。
+  </p>
+  <button onclick="alert('クリックされました')">クリック可能なボタン</button>
+</div>
+```
+
+**表示例：**
+
+<div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px;">
+  <h2 style="color: #333;">カスタムスタイル付きHTML</h2>
+  <p style="font-size: 16px; line-height: 1.5;">
+    ブラウザでは<span style="color: red; font-weight: bold;">インラインスタイル</span>も有効です。
+  </p>
+  <button onclick="alert('クリックされました')">クリック可能なボタン</button>
+</div>
+
+---
+
+##### 2.2. GitHub
+
+セキュリティ上の理由から、一部のHTMLタグと属性が制限されています。
+
+```html
+<!-- GitHubで有効な例 -->
+<details>
+  <summary>クリックして展開</summary>
+  <p>GitHub Flavored Markdownでは<code>details</code>タグが使用できます。</p>
+  <ul>
+    <li>リスト項目1</li>
+    <li>リスト項目2</li>
+  </ul>
+</details>
+
+<!-- 画像にカスタムサイズを指定 -->
+<img src="https://via.placeholder.com/150" width="100" alt="サイズ指定画像">
+
+<!-- インラインスタイルは一部のみ有効 -->
+<p align="center">中央揃えのテキスト（align属性）</p>
+```
+
+**表示例（GitHub環境）：**
+
+<details>
+  <summary>クリックして展開</summary>
+  <p>GitHub Flavored Markdownでは<code>details</code>タグが使用できます。</p>
+  <ul>
+    <li>リスト項目1</li>
+    <li>リスト項目2</li>
+  </ul>
+</details>
+
+<img src="https://via.placeholder.com/150" width="100" alt="サイズ指定画像">
+
+<p align="center">中央揃えのテキスト（align属性）</p>
+
+---
+
+##### 2.3. Notion
+
+Notionは独自のレンダリングエンジンを使用しており、HTMLタグの対応が限定的です。
+
+```html
+<!-- Notionで有効な例 -->
+<strong>太字テキスト</strong><br>
+<em>イタリック</em><br>
+<u>下線</u><br>
+<s>取り消し線</s><br>
+<code>コード</code><br>
+<a href="https://example.com">リンク</a>
+
+<!-- ❌ Notionでは無効な例 -->
+<div style="color: red;">スタイルは適用されません</div>
+<details>折りたたみは機能しません</details>
+<mark>ハイライトされません</mark>
+```
+
+**表示例：**
+
+<!-- Notionで有効な例 -->
+<strong>太字テキスト</strong><br>
+<em>イタリック</em><br>
+<u>下線</u><br>
+<s>取り消し線</s><br>
+<code>コード</code><br>
+<a href="https://example.com">リンク</a>
+
+**注意：** NotionではHTMLタグを記述しても、プレーンテキストとして表示されるか、一部の基本的なタグのみがMarkdown記法に変換されます。
+
+---
+
+##### 2.4. Qiita
+
+比較的多くのHTMLタグが使用可能ですが、セキュリティ上の制限があります。
+
+```html
+<!-- Qiitaで有効な例 -->
+<div class="note">
+  <p>Qiitaでは<strong>class属性</strong>を持つdivタグが使用できます。</p>
+</div>
+
+<details>
+  <summary>詳細情報</summary>
+  <p>折りたたみも可能です。</p>
+</details>
+
+<kbd>Ctrl</kbd> + <kbd>C</kbd>
+
+<!-- 制限付きで有効 -->
+<font color="blue">色付きテキスト</font> <!-- color属性は制限付きで有効 -->
+```
+---
+
+**表示例（Qiita環境）：**
+
+<div class="note">
+  <p>Qiitaでは<strong>class属性</strong>を持つdivタグが使用できます。</p>
+</div>
+
+<kbd>Ctrl</kbd> + <kbd>C</kbd>
+
+##### 2.5. Zenn
+
+ZennはMarkdownを拡張したZenn Flavored Markdownを使用しており、HTMLタグの使用は制限されています。
+
+```html
+<!-- Zennで有効な例 -->
+<strong>太字</strong><br>
+<em>イタリック</em><br>
+<code>コード</code><br>
+<a href="https://zenn.dev">リンク</a>
+
+<!-- ⚠️ 制限付きで有効 -->
+<img src="https://via.placeholder.com/150" alt="代替テキスト" />
+<!-- width/height属性は無視される場合があります -->
+
+<!-- ❌ Zennでは無効な例 -->
+<div>スタイル付きdivは無効</div>
+<details>折りたたみは別記法を使用</details>
+<font>フォントタグは無効</font>
+```
+**表示例：**
+
+<!-- Zennで有効な例 -->
+<strong>太字</strong><br>
+<em>イタリック</em><br>
+<code>コード</code><br>
+<a href="https://zenn.dev">リンク</a>
+
+<!-- ⚠️ 制限付きで有効 -->
+<img src="https://via.placeholder.com/150" alt="代替テキスト" />
+<!-- width/height属性は無視される場合があります -->
+
+---
+
+#### 3. 実用的なHTMLタグ使用例
+
+##### 3.1. 画像のサイズ調整と配置
+
+**ブラウザ・GitHub・Qiita（制限付き）:**
+```html
+<img src="https://via.placeholder.com/300x200" 
+     width="150" 
+     height="100" 
+     alt="リサイズ画像"
+     style="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+     align="right">
+<p>画像が右寄せになります。</p>
+```
+
+**表示例：**
+
+<img src="https://via.placeholder.com/300x200" 
+     width="150" 
+     height="100" 
+     alt="リサイズ画像"
+     style="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+     align="right">
+<p>画像が右寄せになります。</p>
+<div style="clear: both;"></div>
+
+---
+
+##### 3.2. 複雑なテーブル
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">結合ヘッダー</th>
+      <th>単一ヘッダー</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">結合行</td>
+      <td>データ1</td>
+      <td>データ2</td>
+    </tr>
+    <tr>
+      <td>データ3</td>
+      <td>データ4</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="text-align: center;">フッター的な行</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+**表示例：**
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">結合ヘッダー</th>
+      <th>単一ヘッダー</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">結合行</td>
+      <td>データ1</td>
+      <td>データ2</td>
+    </tr>
+    <tr>
+      <td>データ3</td>
+      <td>データ4</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="text-align: center;">フッター的な行</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+##### 3.3. 吹き出し・メモ（カスタムクラス）
+
+```html
+<div style="background-color: #e3f2fd; border-left: 4px solid #2196f3; padding: 12px; margin: 16px 0; border-radius: 4px;">
+  <strong>📝 メモ：</strong>
+  <p>このような吹き出しやメモは、HTMLタグを使用することで実現できます。</p>
+  <p style="margin-top: 8px; font-size: 0.9em;">※ただし環境によって表示が異なります。</p>
+</div>
+
+<div style="background-color: #fff3e0; border-left: 4px solid #ff9800; padding: 12px; margin: 16px 0; border-radius: 4px;">
+  <strong>⚠️ 警告：</strong>
+  <p>HTMLタグの使用は環境によって制限があります。</p>
+</div>
+```
+**表示例：**
+
+<div style="background-color: #e3f2fd; border-left: 4px solid #2196f3; padding: 12px; margin: 16px 0; border-radius: 4px;">
+  <strong>📝 メモ：</strong>
+  <p>このような吹き出しやメモは、HTMLタグを使用することで実現できます。</p>
+  <p style="margin-top: 8px; font-size: 0.9em;">※ただし環境によって表示が異なります。</p>
+</div>
+
+<div style="background-color: #fff3e0; border-left: 4px solid #ff9800; padding: 12px; margin: 16px 0; border-radius: 4px;">
+  <strong>⚠️ 警告：</strong>
+  <p>HTMLタグの使用は環境によって制限があります。</p>
+</div>
+
+---
+
+##### 3.4. 埋め込み動画（YouTube等）
+
+```html
+<!-- ブラウザで有効（一部環境では埋め込みが制限される） -->
+<iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        frameborder="0" 
+        allowfullscreen>
+</iframe>
+
+<!-- 代替方法：画像リンク -->
+<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+  <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg" 
+       alt="YouTube動画" 
+       width="560" 
+       height="315">
+</a>
+```
+
+---
+
+#### 4. 環境別の注意点とベストプラクティス
+
+##### 4.1. セキュリティ上の制限
+- **JavaScript** (`<script>`, `onclick` など) は、ほぼ全ての環境で無効化されています
+- `iframe` は多くの環境で制限あり（特にNotion, GitHubでは無効）
+- `style`属性や`class`属性は環境によって制限あり
+
+---
+
+##### 4.2. 推奨される使い分け
+
+| 目的 | 推奨方法 | 備考 |
+|------|---------|------|
+| **基本的なテキスト装飾** | Markdown記法 | 互換性が最も高い |
+| **テーブルのセル結合** | HTMLテーブル | Markdownでは表現不可 |
+| **画像のサイズ調整** | HTML `<img>` | 環境依存あり |
+| **折りたたみ** | `<details>` | GitHub, Qiitaで有効 |
+| **カスタムレイアウト** | 環境固有の記法 | Notionはブロック、Zennは独自記法 |
+
+---
+
+##### 4.3. 互換性を高める書き方
+
+```html
+<!-- 悪い例：環境依存が強い -->
+<div style="position: absolute; top: 0; left: 0;">
+  <script>alert('危険')</script>
+</div>
+
+<!-- 良い例：基本的な機能に限定 -->
+<div style="margin: 16px 0; padding: 12px; background-color: #f5f5f5;">
+  <strong>注意：</strong>
+  <p>シンプルな構造で、多くの環境で表示可能。</p>
+</div>
+
+<!-- 代替テキストを用意 -->
+<details>
+  <summary>詳細（対応環境のみ表示）</summary>
+  <p>折りたたみ内容</p>
+</details>
+<!-- 代替：折りたたみ非対応環境用のプレーンテキスト -->
+<noscript>※詳細は上記の通りです。</noscript>
+```
+
+**表示例：**
+<!-- 悪い例：環境依存が強い -->
+<div style="position: absolute; top: 0; left: 0;">
+  <script>alert('危険')</script>
+</div>
+
+<!-- 良い例：基本的な機能に限定 -->
+<div style="margin: 16px 0; padding: 12px; background-color: #f5f5f5;">
+  <strong>注意：</strong>
+  <p>シンプルな構造で、多くの環境で表示可能。</p>
+</div>
+
+<!-- 代替テキストを用意 -->
+<details>
+  <summary>詳細（対応環境のみ表示）</summary>
+  <p>折りたたみ内容</p>
+</details>
+<!-- 代替：折りたたみ非対応環境用のプレーンテキスト -->
+<noscript>※詳細は上記の通りです。</noscript>
+
+---
+
+#### 5. まとめ
+
+| 環境 | HTMLタグ対応度 | 主な制限 | 推奨用途 |
+|------|--------------|---------|---------|
+| **ブラウザ** | ほぼ完全 | JavaScript制限 | 高度なレイアウト、インタラクション |
+| **GitHub** | 制限付き | スタイル制限、セキュリティ | details, 画像サイズ指定 |
+| **Notion** | 最小限 | 基本的なテキスト装飾のみ | Markdown記法を推奨 |
+| **Qiita** | 中程度 | スタイル制限 | details, キーボード表示 |
+| **Zenn** | 限定的 | 独自記法優先 | 基本的な装飾のみ |
+
+---
+
+**ポイント：**
+- 移植性を重視する場合は、Markdown記法を優先
+- 環境固有の機能が必要な場合は、その環境の公式ドキュメントを参照
+- HTMLタグを使用する際は、非対応環境での代替表示を考慮
 
 [🔝 目次に戻る](#index)
 
 ---
+
+
+## 本教材編集更新履歴
+
+|作成者|バージョン| 日付 | 内容 |
+|------|-------|----------|----------|
+| Y.F  |1.0.0  |2026-03-31|新規作成|
+| Y.F  |1.0.1  |2026-07-022|19. コメントアウト記法の追加|
+
+repository: [https://github.com/8alfalfa8/docs](https://github.com/8alfalfa8/docs)
+
+[🔝 目次に戻る](#index)
+
+---
+
