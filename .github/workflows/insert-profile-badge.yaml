@@ -1,0 +1,126 @@
+# .github/workflows/insert-profile-badge.yml
+name: Insert Profile Badge into Markdown Files
+
+on:
+  push:
+    branches:
+      # - main
+      - develop
+    paths:
+      - '**/*.md'
+
+  workflow_dispatch:
+
+jobs:
+  insert-badge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # ----------------------------------------
+      # 対象のMarkdownファイルを検出
+      # ----------------------------------------
+      - name: Find target Markdown files
+        id: find-files
+        run: |
+          set -e
+          echo "=== Finding Markdown files ==="
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "Detecting changed .md files from push..."
+            changed_files=$(git diff --name-only HEAD~1 HEAD -- '*.md' 2>/dev/null || git diff --name-only --diff-filter=ACM HEAD -- '*.md')
+            if [ -z "$changed_files" ]; then
+              echo "No .md files changed in this push."
+              echo "has_target=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "$changed_files" > /tmp/target_files.txt
+          else
+            echo "workflow_dispatch: targeting all .md files"
+            find . -name '*.md' -not -path './.github/*' -not -path './node_modules/*' | sed 's|^./||' > /tmp/target_files.txt
+          fi
+          echo "Target files:"
+          cat /tmp/target_files.txt
+          file_count=$(wc -l < /tmp/target_files.txt | tr -d ' ')
+          if [ "$file_count" -eq 0 ]; then
+            echo "No target files found."
+            echo "has_target=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Found $file_count target file(s)."
+            echo "has_target=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ----------------------------------------
+      # プロフィールバッジを各ファイルに挿入
+      # ----------------------------------------
+      - name: Insert profile badges
+        if: ${{ steps.find-files.outputs.has_target == 'true' }}
+        run: |
+          set -e
+          echo "=== Inserting profile badges ==="
+
+          # バッジ内容を一時ファイルに書き出し（printfでYAML構文問題を回避）
+          printf '%s\n' '<!-- PROFILE_BADGE_START -->' '' '[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)' '[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)' '[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)' '[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)' '' '<!-- PROFILE_BADGE_END -->' '' > /tmp/badge.txt
+
+          changed_count=0
+
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            [ ! -f "$file" ] && continue
+
+            echo "Processing: $file"
+
+            # 既にバッジが挿入されているかチェック
+            if grep -q "<!-- PROFILE_BADGE_START -->" "$file"; then
+              echo "  Badge already exists. Skipping."
+              continue
+            fi
+
+            # ファイルの先頭が#で始まる行を検出
+            first_heading=$(grep -n '^#' "$file" | head -n 1 | cut -d: -f1)
+
+            if [ -n "$first_heading" ] && [ "$first_heading" -gt 0 ]; then
+              echo "  First heading found at line $first_heading"
+
+              # タイトル行まで + バッジ + 残りの内容
+              head -n "$first_heading" "$file" > /tmp/md_new.md
+              cat /tmp/badge.txt >> /tmp/md_new.md
+              tail -n +$((first_heading + 1)) "$file" >> /tmp/md_new.md
+
+              mv /tmp/md_new.md "$file"
+              changed_count=$((changed_count + 1))
+              echo "  Badge inserted."
+            else
+              echo "  No heading found. Inserting at top."
+              cat /tmp/badge.txt > /tmp/md_new.md
+              cat "$file" >> /tmp/md_new.md
+              mv /tmp/md_new.md "$file"
+              changed_count=$((changed_count + 1))
+              echo "  Badge inserted at top."
+            fi
+          done < /tmp/target_files.txt
+
+          echo "=== Total files modified: $changed_count ==="
+          echo "modified_count=$changed_count" >> "$GITHUB_OUTPUT"
+
+      # ----------------------------------------
+      # 変更をコミット＆プッシュ
+      # ----------------------------------------
+      - name: Commit and Push changes
+        if: ${{ steps.find-files.outputs.has_target == 'true' }}
+        run: |
+          set -e
+          echo "=== Committing changes ==="
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: Insert profile badges into Markdown files [skip ci]"
+          git push
+          echo "Changes pushed successfully."
