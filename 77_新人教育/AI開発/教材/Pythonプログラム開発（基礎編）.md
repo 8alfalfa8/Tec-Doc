@@ -1,4 +1,13 @@
 # ◆ Pythonプログラム開発（基礎編）
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 **Python**は、シンプルで読みやすい文法を持つ汎用プログラミング言語で、AI開発やデータ分析、Web開発など幅広く利用されます。変数、条件分岐、ループ、関数などを直感的に記述でき、豊富なライブラリにより数値計算やデータ分析、API開発まで対応可能です。特にAI分野では標準言語として、TensorFlowやPyTorchなどを用いたモデル構築・学習・評価・デプロイを一貫して実施できます。さらにLinuxやクラウドとの親和性も高く、データ処理や自動化、MLOpsにも活用されます。
 

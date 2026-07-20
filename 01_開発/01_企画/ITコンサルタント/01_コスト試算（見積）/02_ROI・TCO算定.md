@@ -1,4 +1,13 @@
 # ◆ ROI/TCO算定
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 以下では、**DX案件／基幹刷新案件におけるROI / TCO算定**を、
 「**実務でどう作るか」「どう説明・合意するか**」まで含めて詳しく整理します。

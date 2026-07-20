@@ -1,4 +1,13 @@
 # ◆ Git実務操作
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 **Git実務操作**は、AI開発を含むソフトウェア開発に不可欠なバージョン管理スキルです。Gitによりコードやドキュメントの履歴を安全に管理し、作業の可視化と品質向上を実現します。基本操作（add／commit／log／diff）や、リモート連携（clone／pull／push）、ブランチ運用によりチーム開発を効率化します。さらにGitHub等と連携したPR・コードレビュー、CI/CDによる自動化も重要です。AI開発では、プロンプトやデータ、モデル設定も含めて管理することで再現性を確保でき、AIDDにおいても中核的役割を担います。
 

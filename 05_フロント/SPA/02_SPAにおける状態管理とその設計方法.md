@@ -1,4 +1,13 @@
 # ◆ SPAにおける状態管理（State Management）とその設計方法
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 以下では、**SPAにおける状態管理（State Management）と、その設計方法**について、
 **概念 → 種類分類 → 設計原則 → 設計手順 → 具体パターン → 実装例 → よくある失敗**

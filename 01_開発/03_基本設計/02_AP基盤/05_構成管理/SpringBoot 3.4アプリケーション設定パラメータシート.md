@@ -1,4 +1,13 @@
 # ◆ Spring Boot 3.4 アプリケーション設定パラメータシート
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 以下は **Spring Boot 3.4** 向けの **設定パラメータシート（設計用テンプレート）** です。
 そのままExcelに貼り付けて利用できるよう、表形式で整理しています。

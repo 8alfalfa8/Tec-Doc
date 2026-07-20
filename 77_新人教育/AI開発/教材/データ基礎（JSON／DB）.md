@@ -1,4 +1,13 @@
 # ◆ データ基礎（JSON／DB）
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 データ基礎（JSON／DB）は、システム開発やAI開発に不可欠な情報管理の基盤です。JSONは軽量で可読性の高いデータ形式で、API連携や設定、AIとのデータ交換に広く利用されます。一方、DBはデータの保存・検索・更新を担い、RDB（MySQL等）とNoSQL（MongoDB等）を用途に応じて使い分けます。これにより、APIで取得したJSONデータの蓄積・加工・分析が可能になります。AI分野では、学習データ管理や推論結果の保存、RAGにおけるデータ統合など、あらゆる工程で重要な役割を果たします。データを正しく扱う力はAI時代の必須スキルです。
 

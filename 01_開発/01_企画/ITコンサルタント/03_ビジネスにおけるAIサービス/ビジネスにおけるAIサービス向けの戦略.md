@@ -1,3 +1,12 @@
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 ビジネスにおけるAIサービス向けの戦略は下記をご参照ください。
 ---
 * [AIサービス提供時の課題及び対策](https://github.com/8alfalfa8/Tec-Doc/blob/3bff78328c738b2a151af43bae675922f04fc405/02_%E6%8A%80%E8%A1%93/AI/05_AI%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%8F%90%E4%BE%9B%E6%99%82%E3%81%AE%E8%AA%B2%E9%A1%8C%E3%81%8A%E3%82%88%E3%81%B3%E5%AF%BE%E7%AD%96.md)

@@ -1,4 +1,13 @@
 # ◆ AWS におけるネットワーク設計と構築 — タスク／成果物／構築手順（詳解）
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 以下は、企業規模のクラウド移行／新規構築プロジェクトでの**ネットワーク（VPC〜オンプレ接続〜セキュリティ）を設計・実装する際の実務フロー**です。要件定義から運用移行までの典型的なタスク、作成すべき成果物（納品物）、そして構築手順（手順書に落とすべき具体手順）を段階的にまとめます。最重要ポイントには公式ドキュメントへの参照を付けています。
 

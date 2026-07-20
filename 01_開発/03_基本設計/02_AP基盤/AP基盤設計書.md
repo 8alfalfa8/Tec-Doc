@@ -1,5 +1,14 @@
 
 # ◆ AP基盤 基本設計書（テンプレート）
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 AP基盤（アプリケーション基盤）の\*\*基本設計書（テンプレート兼プロジェクト向け骨子）\*\*を作成しました。業務システムの標準的な要件（可用性・運用性・拡張性・セキュリティ）を満たすことを目的に、設計方針・構成要素・運用ルール・SLO/監視・運用手順までカバーしています。プロジェクト環境（クラウド事業者／オンプレ／コンテナかVMか等）に合わせてすぐカスタマイズできるように要点と例を盛り込みました。
 
 ---
