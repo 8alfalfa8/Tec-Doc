@@ -1,4 +1,13 @@
 # ◆ DNSをAWSのRoute53へ移行する必要性
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 **オンプレミスのWebアプリケーションをAWSへ移行する際、DNS（オンプレミスで管理しているドメイン名の名前解決）をAWSのRoute53へ移行する必要があるか**は、設計方針と運用要件によって判断します。
 以下に **理由・原因・移行設計・移行作業詳細** を、実務視点で整理します。

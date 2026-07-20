@@ -1,4 +1,13 @@
 # ◆ Markdown 基本記法
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 **Markdown**は、シンプルな記法で文書構造を表現できる軽量マークアップ言語です。プレーンテキストで記述でき、可読性が高く、ドキュメントや技術資料、READMEなどで広く利用されます。通常、Markdownで作成されたファイルは「.md」という拡張子で保存され、GitHubなどの環境でそのまま整形表示されるのが特徴です。見出し（#）、箇条書き（-）、強調、リンク、コードブロックなどの基本記法により、構造化された文書を容易に作成できます。HTML変換やGitHub等での標準サポートにより、開発・業務の両面で活用されています。**AI分野**では、プロンプト設計やナレッジ管理、RAGにおけるデータ記述形式として重要性が高く、人とAI双方にとって扱いやすい共通フォーマットとして機能します。
 

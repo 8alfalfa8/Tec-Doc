@@ -1,4 +1,13 @@
 # ◆ Web基礎（HTTP／API）
+<!-- PROFILE_BADGE_START -->
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?logo=github)](https://github.com/8alfalfa8)
+[![Qiita](https://img.shields.io/badge/Qiita-Profile-55C500?logo=qiita&logoColor=white)](https://qiita.com/8alfalfa8)
+[![Zenn](https://img.shields.io/badge/Zenn-Profile-3EA8FF?logo=zenn&logoColor=white)](https://zenn.dev/8alfalfa8)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
+
+<!-- PROFILE_BADGE_END -->
+
 
 **Web基礎（HTTP／API）** は、システム開発やAI連携に不可欠な基盤知識です。HTTPはクライアントとサーバー間の通信プロトコルで、GET・POST・PUT・DELETEなどのメソッドやステータスコードによりデータのやり取りを制御します。APIはシステム間連携の仕組みで、HTTPとJSONを用いたWeb APIが一般的です。これにより、フロントエンドとバックエンドの連携やクラウド・マイクロサービス構成が実現されます。AI分野では、モデルがAPIとして提供されるため、その理解は不可欠であり、RAGなどの高度な構成でも重要な役割を担います。
 
